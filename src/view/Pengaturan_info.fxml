@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="345.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.Pengaturan_infoController">
+   <children>
+      <VBox prefHeight="400.0" prefWidth="345.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label style="-fx-font-size: 14;" text="Nama Perusahaan" />
+            <TextField fx:id="tnama" promptText="Nama Perusahaan" style="-fx-font-size: 14;" />
+            <Label style="-fx-font-size: 14;" text="Nama Pemilik" />
+            <TextField fx:id="tpemilik" promptText="Pemilik" style="-fx-font-size: 14;" />
+            <Label style="-fx-font-size: 14;" text="No Handphone" />
+            <TextField fx:id="tnohp" promptText="No Handphone" style="-fx-font-size: 14;" />
+            <Label style="-fx-font-size: 14;" text="Email" />
+            <TextField fx:id="temail" promptText="Email" style="-fx-font-size: 14;" />
+            <Label style="-fx-font-size: 14;" text="Alamat" />
+            <TextArea fx:id="talamat" prefHeight="138.0" prefWidth="335.0" promptText="Alamat Perusahaan" style="-fx-font-size: 14;" wrapText="true" />
+            <Button fx:id="bsimpan" mnemonicParsing="false" style="-fx-font-size: 14;" text="Simpan" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

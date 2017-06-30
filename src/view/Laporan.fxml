@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.embed.swing.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="488.0" prefWidth="1031.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.LaporanController">
+   <children>
+      <ToolBar layoutY="-6.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+            <ComboBox fx:id="ckategori" prefHeight="22.0" prefWidth="203.0" promptText="Pilih Kategori" style="-fx-font-size: 14;" />
+            <DatePicker fx:id="ddari" promptText="Dari tanggal" style="-fx-font-size: 14;" />
+            <DatePicker fx:id="dsampai" promptText="Sampai tanggal" style="-fx-font-size: 14;" />
+          <Button fx:id="blihat" mnemonicParsing="false" style="-fx-font-size: 14;" text="Generate Laporan" />
+        </items>
+      </ToolBar>
+      <SwingNode fx:id="swingnode" layoutX="40.0" layoutY="110.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="38.0" />
+   </children>
+</AnchorPane>
