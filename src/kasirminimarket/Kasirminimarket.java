@@ -55,7 +55,7 @@ public class Kasirminimarket extends Application {
         stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
-        stage.setTitle("Minami Software House Aplikasi Kasir V.1.0");
+        stage.setTitle("Kasirku Kasir V.1.0");
         stage.getIcons().add(new Image(getClass().getResource("/image/logo.png").toString()));
         stage.show();
 

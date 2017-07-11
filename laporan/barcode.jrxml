@@ -58,7 +58,7 @@
 			</line>
 			<componentElement>
 				<reportElement x="15" y="1" width="124" height="50" uuid="96cca023-da55-4b77-a8cb-b0c99c70a064"/>
-				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="NW7" drawText="false" checksumRequired="false">
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Codabar" drawText="false" checksumRequired="false">
 					<jr:codeExpression><![CDATA[$F{id_barang}]]></jr:codeExpression>
 				</jr:barbecue>
 			</componentElement>

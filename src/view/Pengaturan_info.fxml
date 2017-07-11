@@ -11,17 +11,17 @@
    <children>
       <VBox prefHeight="400.0" prefWidth="345.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label style="-fx-font-size: 14;" text="Nama Perusahaan" />
-            <TextField fx:id="tnama" promptText="Nama Perusahaan" style="-fx-font-size: 14;" />
-            <Label style="-fx-font-size: 14;" text="Nama Pemilik" />
-            <TextField fx:id="tpemilik" promptText="Pemilik" style="-fx-font-size: 14;" />
-            <Label style="-fx-font-size: 14;" text="No Handphone" />
-            <TextField fx:id="tnohp" promptText="No Handphone" style="-fx-font-size: 14;" />
+            <Label style="-fx-font-size: 14;" text="Company Name" />
+            <TextField fx:id="tnama" promptText="Input Company Name" style="-fx-font-size: 14;" />
+            <Label style="-fx-font-size: 14;" text="Owner Name" />
+            <TextField fx:id="tpemilik" promptText="Input Owner Name" style="-fx-font-size: 14;" />
+            <Label style="-fx-font-size: 14;" text="Phone Number" />
+            <TextField fx:id="tnohp" promptText="Input Phone Number" style="-fx-font-size: 14;" />
             <Label style="-fx-font-size: 14;" text="Email" />
-            <TextField fx:id="temail" promptText="Email" style="-fx-font-size: 14;" />
-            <Label style="-fx-font-size: 14;" text="Alamat" />
-            <TextArea fx:id="talamat" prefHeight="138.0" prefWidth="335.0" promptText="Alamat Perusahaan" style="-fx-font-size: 14;" wrapText="true" />
-            <Button fx:id="bsimpan" mnemonicParsing="false" style="-fx-font-size: 14;" text="Simpan" />
+            <TextField fx:id="temail" promptText="Input Email" style="-fx-font-size: 14;" />
+            <Label style="-fx-font-size: 14;" text="Address" />
+            <TextArea fx:id="talamat" prefHeight="138.0" prefWidth="335.0" promptText="Input Address" style="-fx-font-size: 14;" wrapText="true" />
+            <Button fx:id="bsimpan" mnemonicParsing="false" style="-fx-font-size: 14;" text="Save Information" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
