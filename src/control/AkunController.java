@@ -105,19 +105,19 @@ public class AkunController implements Initializable {
     private void makeup() {
         bhapus.disableProperty().set(Boolean.TRUE);
         bsimpan.setGraphic(new ImageView(getClass().getResource("/image/document-save-5.png").toString()));
-        bsimpan.setTooltip(new Tooltip("Simpan Data"));
+        bsimpan.setTooltip(new Tooltip("Save Data"));
         bhapus.setGraphic(new ImageView(getClass().getResource("/image/edit-delete-9.png").toString()));
-        bhapus.setTooltip(new Tooltip("Hapus Data"));
+        bhapus.setTooltip(new Tooltip("Delete Data"));
         bclear.setGraphic(new ImageView(getClass().getResource("/image/edit-clear-2.png").toString()));
         bclear.setTooltip(new Tooltip("Clear Field"));
         brefresh.setGraphic(new ImageView(getClass().getResource("/image/view-refresh.png").toString()));
         brefresh.setTooltip(new Tooltip("Refresh Data"));
         bnext.setGraphic(new ImageView(getClass().getResource("/image/go-next-3.png").toString()));
-        bnext.setTooltip(new Tooltip("Data Selanjutnya"));
+        bnext.setTooltip(new Tooltip("Next Data"));
         bprev.setGraphic(new ImageView(getClass().getResource("/image/go-previous-3.png").toString()));
-        bprev.setTooltip(new Tooltip("Data Sebelumnya"));
+        bprev.setTooltip(new Tooltip("Previous Data"));
         bberanda.setGraphic(new ImageView(getClass().getResource("/image/go-home-4.png").toString()));
-        bberanda.setTooltip(new Tooltip("Beranda"));
+        bberanda.setTooltip(new Tooltip("Home"));
     }
 
     private void loadtipe() {
@@ -157,8 +157,8 @@ public class AkunController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(AkunController.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -169,7 +169,7 @@ public class AkunController implements Initializable {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -211,8 +211,8 @@ public class AkunController implements Initializable {
                 } catch (SQLException ex) {
                     Logger.getLogger(AkunController.class.getName()).log(Level.SEVERE, null, ex);
                     Alert al = new Alert(Alert.AlertType.ERROR);
-                    al.setTitle("Kesalahan");
-                    al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                    al.setTitle("Error");
+                    al.setHeaderText("Application Error");
                     VBox v = new VBox();
                     v.setPadding(new Insets(5, 5, 5, 5));
                     v.setSpacing(5);
@@ -223,7 +223,7 @@ public class AkunController implements Initializable {
                     terror.setMaxWidth(400);
                     terror.setMaxHeight(400);
                     terror.setWrapText(true);
-                    v.getChildren().add(new Label("Detail error yang terbaca :"));
+                    v.getChildren().add(new Label("Error Detail has been read :"));
                     v.getChildren().add(terror);
                     al.getDialogPane().setContent(v);
                     al.showAndWait();
@@ -265,8 +265,8 @@ public class AkunController implements Initializable {
                 } catch (SQLException ex) {
                     Logger.getLogger(AkunController.class.getName()).log(Level.SEVERE, null, ex);
                     Alert al = new Alert(Alert.AlertType.ERROR);
-                    al.setTitle("Kesalahan");
-                    al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                    al.setTitle("Error");
+                    al.setHeaderText("Application Error");
                     VBox v = new VBox();
                     v.setPadding(new Insets(5, 5, 5, 5));
                     v.setSpacing(5);
@@ -277,7 +277,7 @@ public class AkunController implements Initializable {
                     terror.setMaxWidth(400);
                     terror.setMaxHeight(400);
                     terror.setWrapText(true);
-                    v.getChildren().add(new Label("Detail error yang terbaca :"));
+                    v.getChildren().add(new Label("Error Detail has been read :"));
                     v.getChildren().add(terror);
                     al.getDialogPane().setContent(v);
                     al.showAndWait();
@@ -331,8 +331,8 @@ public class AkunController implements Initializable {
                 } catch (SQLException ex) {
                     Logger.getLogger(AkunController.class.getName()).log(Level.SEVERE, null, ex);
                     Alert al = new Alert(Alert.AlertType.ERROR);
-                    al.setTitle("Kesalahan");
-                    al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                    al.setTitle("Error");
+                    al.setHeaderText("Application Error");
                     VBox v = new VBox();
                     v.setPadding(new Insets(5, 5, 5, 5));
                     v.setSpacing(5);
@@ -343,7 +343,7 @@ public class AkunController implements Initializable {
                     terror.setMaxWidth(400);
                     terror.setMaxHeight(400);
                     terror.setWrapText(true);
-                    v.getChildren().add(new Label("Detail error yang terbaca :"));
+                    v.getChildren().add(new Label("Error Detail has been read :"));
                     v.getChildren().add(terror);
                     al.getDialogPane().setContent(v);
                     al.showAndWait();
@@ -440,8 +440,8 @@ public class AkunController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(AkunController.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -452,7 +452,7 @@ public class AkunController implements Initializable {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -490,8 +490,8 @@ public class AkunController implements Initializable {
             } catch (SQLException ex) {
                 Logger.getLogger(AkunController.class.getName()).log(Level.SEVERE, null, ex);
                 Alert al = new Alert(Alert.AlertType.ERROR);
-                al.setTitle("Kesalahan");
-                al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                al.setTitle("Error");
+                al.setHeaderText("Application Error");
                 VBox v = new VBox();
                 v.setPadding(new Insets(5, 5, 5, 5));
                 v.setSpacing(5);
@@ -502,7 +502,7 @@ public class AkunController implements Initializable {
                 terror.setMaxWidth(400);
                 terror.setMaxHeight(400);
                 terror.setWrapText(true);
-                v.getChildren().add(new Label("Detail error yang terbaca :"));
+                v.getChildren().add(new Label("Error Detail has been read :"));
                 v.getChildren().add(terror);
                 al.getDialogPane().setContent(v);
                 al.showAndWait();

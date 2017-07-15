@@ -72,7 +72,7 @@
 				<textElement verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
-				<text><![CDATA[Barang]]></text>
+				<text><![CDATA[Item]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="120" y="2" width="16" height="13" uuid="60d49a8c-eafd-41af-b30b-0f31b9be6695"/>
@@ -86,7 +86,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
-				<text><![CDATA[Harga]]></text>
+				<text><![CDATA[Price]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="15" width="182" height="1" uuid="058d30bd-3150-4f72-ae86-b76148def3fe"/>
@@ -99,7 +99,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
-				<text><![CDATA[No]]></text>
+				<text><![CDATA[N]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -159,14 +159,14 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Tunai]]></text>
+				<text><![CDATA[Cash]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="23" width="120" height="11" uuid="c941db4e-e355-43c6-b6d4-868447778998"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Kembali]]></text>
+				<text><![CDATA[Change]]></text>
 			</staticText>
 			<textField pattern="Rp #,##0">
 				<reportElement x="125" y="11" width="57" height="11" uuid="cdac1069-292c-4ca1-803b-a5a08fce448c"/>

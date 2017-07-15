@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="struck2inc" pageWidth="136" pageHeight="709" columnWidth="136" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="62478702-e89a-469d-8dbe-8195036f8d69">
 	<property name="ireport.zoom" value="4.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="144"/>
 	<parameter name="nama" class="java.lang.String"/>
 	<parameter name="alamat" class="java.lang.String"/>
 	<parameter name="nohp" class="java.lang.String"/>
@@ -80,7 +80,7 @@
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[Barang]]></text>
+				<text><![CDATA[Item]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="72" y="2" width="13" height="13" uuid="60d49a8c-eafd-41af-b30b-0f31b9be6695"/>
@@ -94,7 +94,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[Harga]]></text>
+				<text><![CDATA[Price]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="15" width="136" height="1" uuid="058d30bd-3150-4f72-ae86-b76148def3fe"/>
@@ -107,7 +107,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[No]]></text>
+				<text><![CDATA[N]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -167,14 +167,14 @@
 				<textElement verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Tunai]]></text>
+				<text><![CDATA[Cash]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="23" width="58" height="11" uuid="c941db4e-e355-43c6-b6d4-868447778998"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Kembali]]></text>
+				<text><![CDATA[Change]]></text>
 			</staticText>
 			<textField pattern="Rp #,##0">
 				<reportElement x="58" y="11" width="78" height="11" uuid="cdac1069-292c-4ca1-803b-a5a08fce448c"/>
@@ -201,7 +201,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
-				<text><![CDATA[-- Terima Kasih Atas Kunjungan Anda --]]></text>
+				<text><![CDATA[-- Thank You --]]></text>
 			</staticText>
 		</band>
 	</summary>

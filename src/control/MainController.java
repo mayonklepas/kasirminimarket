@@ -56,7 +56,7 @@ import kasirminimarket.Kasirminimarket;
 public class MainController implements Initializable {
 
     @FXML
-    MenuItem mbarang, makun, mpenjualan, mpembelian, mdatabase, minfo, mlaporan,mtentang,mclear;
+    MenuItem mbarang, makun, mpenjualan, mpembelian, mdatabase, minfo, mlaporan, mtentang, mclear;
     @FXML
     TabPane tabpane;
     @FXML
@@ -81,17 +81,15 @@ public class MainController implements Initializable {
         menutentang();
         cleartransaksi();
 
-        try {
+        /*try {
             ibg.setImage(new Image(new FileInputStream(image)));
             ibg.fitWidthProperty().bind(borderpane.widthProperty());
             ibg.fitHeightProperty().bind(borderpane.heightProperty());
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
 
     }
-    
-    
 
     private void menubarang() {
         mbarang.setOnAction(new EventHandler<ActionEvent>() {
@@ -108,13 +106,13 @@ public class MainController implements Initializable {
                     try {
                         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                         Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/Barang.fxml"));
-                        Tab page = new Tab("Data Barang", node);
+                        Tab page = new Tab("Item", node);
                         tabpane.getTabs().add(page);
                     } catch (IOException ex) {
                         Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
                         Alert al = new Alert(Alert.AlertType.ERROR);
-                        al.setTitle("Kesalahan");
-                        al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                        al.setTitle("Error");
+                        al.setHeaderText("Application Error");
                         VBox v = new VBox();
                         v.setPadding(new Insets(5, 5, 5, 5));
                         v.setSpacing(5);
@@ -125,7 +123,7 @@ public class MainController implements Initializable {
                         terror.setMaxWidth(400);
                         terror.setMaxHeight(400);
                         terror.setWrapText(true);
-                        v.getChildren().add(new Label("Detail error yang terbaca :"));
+                        v.getChildren().add(new Label("Error Detail has been read :"));
                         v.getChildren().add(terror);
                         al.getDialogPane().setContent(v);
                         al.showAndWait();
@@ -143,13 +141,13 @@ public class MainController implements Initializable {
                 try {
                     //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                     Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/Penjualan.fxml"));
-                    Tab page = new Tab("Penjualan", node);
+                    Tab page = new Tab("Sales", node);
                     tabpane.getTabs().add(page);
                 } catch (IOException ex) {
                     Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
                     Alert al = new Alert(Alert.AlertType.ERROR);
-                    al.setTitle("Kesalahan");
-                    al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                    al.setTitle("Error");
+                    al.setHeaderText("Application Error");
                     VBox v = new VBox();
                     v.setPadding(new Insets(5, 5, 5, 5));
                     v.setSpacing(5);
@@ -160,7 +158,7 @@ public class MainController implements Initializable {
                     terror.setMaxWidth(400);
                     terror.setMaxHeight(400);
                     terror.setWrapText(true);
-                    v.getChildren().add(new Label("Detail error yang terbaca :"));
+                    v.getChildren().add(new Label("Error Detail has been read :"));
                     v.getChildren().add(terror);
                     al.getDialogPane().setContent(v);
                     al.showAndWait();
@@ -183,13 +181,13 @@ public class MainController implements Initializable {
                     try {
                         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                         Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/Pembelian.fxml"));
-                        Tab page = new Tab("Pembelian", node);
+                        Tab page = new Tab("Purchase", node);
                         tabpane.getTabs().add(page);
                     } catch (IOException ex) {
                         Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
                         Alert al = new Alert(Alert.AlertType.ERROR);
-                        al.setTitle("Kesalahan");
-                        al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                        al.setTitle("Error");
+                        al.setHeaderText("Application Error");
                         VBox v = new VBox();
                         v.setPadding(new Insets(5, 5, 5, 5));
                         v.setSpacing(5);
@@ -200,7 +198,7 @@ public class MainController implements Initializable {
                         terror.setMaxWidth(400);
                         terror.setMaxHeight(400);
                         terror.setWrapText(true);
-                        v.getChildren().add(new Label("Detail error yang terbaca :"));
+                        v.getChildren().add(new Label("Error Detail has been read :"));
                         v.getChildren().add(terror);
                         al.getDialogPane().setContent(v);
                         al.showAndWait();
@@ -223,13 +221,13 @@ public class MainController implements Initializable {
                     try {
                         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                         Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/Akun.fxml"));
-                        Tab page = new Tab("Akun", node);
+                        Tab page = new Tab("User Account", node);
                         tabpane.getTabs().add(page);
                     } catch (IOException ex) {
                         Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
                         Alert al = new Alert(Alert.AlertType.ERROR);
-                        al.setTitle("Kesalahan");
-                        al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                        al.setTitle("Error");
+                        al.setHeaderText("Application Error");
                         VBox v = new VBox();
                         v.setPadding(new Insets(5, 5, 5, 5));
                         v.setSpacing(5);
@@ -240,7 +238,7 @@ public class MainController implements Initializable {
                         terror.setMaxWidth(400);
                         terror.setMaxHeight(400);
                         terror.setWrapText(true);
-                        v.getChildren().add(new Label("Detail error yang terbaca :"));
+                        v.getChildren().add(new Label("Error Detail has been read :"));
                         v.getChildren().add(terror);
                         al.getDialogPane().setContent(v);
                         al.showAndWait();
@@ -263,13 +261,13 @@ public class MainController implements Initializable {
                     try {
                         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                         Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/Laporan.fxml"));
-                        Tab page = new Tab("Laporan", node);
+                        Tab page = new Tab("Report", node);
                         tabpane.getTabs().add(page);
                     } catch (IOException ex) {
                         Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
                         Alert al = new Alert(Alert.AlertType.ERROR);
-                        al.setTitle("Kesalahan");
-                        al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                        al.setTitle("Error");
+                        al.setHeaderText("Application Error");
                         VBox v = new VBox();
                         v.setPadding(new Insets(5, 5, 5, 5));
                         v.setSpacing(5);
@@ -280,7 +278,7 @@ public class MainController implements Initializable {
                         terror.setMaxWidth(400);
                         terror.setMaxHeight(400);
                         terror.setWrapText(true);
-                        v.getChildren().add(new Label("Detail error yang terbaca :"));
+                        v.getChildren().add(new Label("Error Detail has been read :"));
                         v.getChildren().add(terror);
                         al.getDialogPane().setContent(v);
                         al.showAndWait();
@@ -301,15 +299,15 @@ public class MainController implements Initializable {
                     Stage st = new Stage();
                     Parent root = FXMLLoader.load(getClass().getResource("/view/Pengaturan_database.fxml"));
                     Scene sc = new Scene(root);
-                    st.setTitle("Pengaturan Database");
+                    st.setTitle("Database Setting");
                     st.setScene(sc);
                     st.initModality(Modality.APPLICATION_MODAL);
                     st.show();
                 } catch (IOException ex) {
                     Logger.getLogger(Kasirminimarket.class.getName()).log(Level.SEVERE, null, ex);
                     Alert al = new Alert(Alert.AlertType.ERROR);
-                    al.setTitle("Kesalahan");
-                    al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                    al.setTitle("Error");
+                    al.setHeaderText("Application Error");
                     VBox v = new VBox();
                     v.setPadding(new Insets(5, 5, 5, 5));
                     v.setSpacing(5);
@@ -320,7 +318,7 @@ public class MainController implements Initializable {
                     terror.setMaxWidth(400);
                     terror.setMaxHeight(400);
                     terror.setWrapText(true);
-                    v.getChildren().add(new Label("Detail error yang terbaca :"));
+                    v.getChildren().add(new Label("Error Detail has been read :"));
                     v.getChildren().add(terror);
                     al.getDialogPane().setContent(v);
                     al.show();
@@ -340,7 +338,7 @@ public class MainController implements Initializable {
                     Stage st = new Stage();
                     Parent root = FXMLLoader.load(getClass().getResource("/view/Pengaturan_info.fxml"));
                     Scene sc = new Scene(root);
-                    st.setTitle("Pengaturan Info");
+                    st.setTitle("Information Setting");
                     st.setScene(sc);
                     st.initModality(Modality.APPLICATION_MODAL);
                     st.show();
@@ -348,7 +346,8 @@ public class MainController implements Initializable {
                     Logger.getLogger(Kasirminimarket.class.getName()).log(Level.SEVERE, null, ex);
                     Alert al = new Alert(Alert.AlertType.ERROR);
                     al.setTitle("Kesalahan");
-                    al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                    al.setTitle("Error");
+                    al.setHeaderText("Application Error");
                     VBox v = new VBox();
                     v.setPadding(new Insets(5, 5, 5, 5));
                     v.setSpacing(5);
@@ -359,7 +358,7 @@ public class MainController implements Initializable {
                     terror.setMaxWidth(400);
                     terror.setMaxHeight(400);
                     terror.setWrapText(true);
-                    v.getChildren().add(new Label("Detail error yang terbaca :"));
+                    v.getChildren().add(new Label("Error Detail has been read :"));
                     v.getChildren().add(terror);
                     al.getDialogPane().setContent(v);
                     al.show();
@@ -378,7 +377,7 @@ public class MainController implements Initializable {
                     Parent root = FXMLLoader.load(getClass().getResource("/view/Tentangapp.fxml"));
                     Scene sc = new Scene(root);
                     Stage st = new Stage();
-                    st.setTitle("Tentang Aplikasi");
+                    st.setTitle("About");
                     st.initModality(Modality.APPLICATION_MODAL);
                     st.resizableProperty().setValue(Boolean.FALSE);
                     st.setScene(sc);
@@ -389,32 +388,31 @@ public class MainController implements Initializable {
             }
         });
     }
-    
-    
-    private void cleartransaksi(){
+
+    private void cleartransaksi() {
         mclear.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                Alert dial=new Alert(Alert.AlertType.CONFIRMATION);
+                Alert dial = new Alert(Alert.AlertType.CONFIRMATION);
                 dial.setTitle("Konfirmasi");
                 dial.setHeaderText("Yakin Ingin Menghapus Semua Data Transaksi??");
                 dial.setContentText("Data yang sudah dihapus tidak akan bisa dikembaliakan");
-                ButtonType ya=new ButtonType("Ya");
-                ButtonType tidak= new ButtonType("Tidak");
-                dial.getButtonTypes().setAll(ya,tidak);
-                Optional<ButtonType> opt=dial.showAndWait();
-                if (opt.get()==ya){
+                ButtonType ya = new ButtonType("Ya");
+                ButtonType tidak = new ButtonType("Tidak");
+                dial.getButtonTypes().setAll(ya, tidak);
+                Optional<ButtonType> opt = dial.showAndWait();
+                if (opt.get() == ya) {
                     try {
-                        helper h=new helper();
+                        helper h = new helper();
                         h.connect();
                         h.exec("DELETE FROM penjualan");
                         h.disconnect();
-                        
+
                     } catch (SQLException ex) {
                         Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    Alert al=new Alert(Alert.AlertType.INFORMATION);
+                    Alert al = new Alert(Alert.AlertType.INFORMATION);
                     al.setTitle("Informasi");
                     al.setHeaderText("Berhasil");
                     al.setContentText("Data penjualan sudah berhasil dikosongkan");

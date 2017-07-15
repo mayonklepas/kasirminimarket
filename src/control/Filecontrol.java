@@ -31,7 +31,7 @@ public class Filecontrol {
     File dbsetting = new File("dbsetting");
     File modemsetting = new File("modemsetting");
     File info = new File("info");
-    File satuan= new File("satuan");
+    File satuan = new File("satuan");
 
     public Filecontrol() {
         if (!dbsetting.exists()) {
@@ -40,8 +40,8 @@ public class Filecontrol {
             } catch (IOException ex) {
                 Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
                 Alert al = new Alert(Alert.AlertType.ERROR);
-                al.setTitle("Kesalahan");
-                al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                al.setTitle("Error");
+                al.setHeaderText("Application Error");
                 VBox v = new VBox();
                 v.setPadding(new Insets(5, 5, 5, 5));
                 v.setSpacing(5);
@@ -52,7 +52,7 @@ public class Filecontrol {
                 terror.setMaxWidth(400);
                 terror.setMaxHeight(400);
                 terror.setWrapText(true);
-                v.getChildren().add(new Label("Detail error yang terbaca :"));
+                v.getChildren().add(new Label("Error Detail has been read :"));
                 v.getChildren().add(terror);
                 al.getDialogPane().setContent(v);
                 al.showAndWait();
@@ -65,8 +65,8 @@ public class Filecontrol {
             } catch (IOException ex) {
                 Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
                 Alert al = new Alert(Alert.AlertType.ERROR);
-                al.setTitle("Kesalahan");
-                al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                al.setTitle("Error");
+                al.setHeaderText("Application Error");
                 VBox v = new VBox();
                 v.setPadding(new Insets(5, 5, 5, 5));
                 v.setSpacing(5);
@@ -77,22 +77,21 @@ public class Filecontrol {
                 terror.setMaxWidth(400);
                 terror.setMaxHeight(400);
                 terror.setWrapText(true);
-                v.getChildren().add(new Label("Detail error yang terbaca :"));
+                v.getChildren().add(new Label("Error Detail has been read :"));
                 v.getChildren().add(terror);
                 al.getDialogPane().setContent(v);
                 al.showAndWait();
             }
         }
-        
-        
+
         if (!info.exists()) {
             try {
                 info.createNewFile();
             } catch (IOException ex) {
                 Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
                 Alert al = new Alert(Alert.AlertType.ERROR);
-                al.setTitle("Kesalahan");
-                al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                al.setTitle("Error");
+                al.setHeaderText("Application Error");
                 VBox v = new VBox();
                 v.setPadding(new Insets(5, 5, 5, 5));
                 v.setSpacing(5);
@@ -103,21 +102,21 @@ public class Filecontrol {
                 terror.setMaxWidth(400);
                 terror.setMaxHeight(400);
                 terror.setWrapText(true);
-                v.getChildren().add(new Label("Detail error yang terbaca :"));
+                v.getChildren().add(new Label("Error Detail has been read :"));
                 v.getChildren().add(terror);
                 al.getDialogPane().setContent(v);
                 al.showAndWait();
             }
         }
-        
+
         if (!satuan.exists()) {
             try {
                 satuan.createNewFile();
             } catch (IOException ex) {
                 Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
                 Alert al = new Alert(Alert.AlertType.ERROR);
-                al.setTitle("Kesalahan");
-                al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                al.setTitle("Error");
+                al.setHeaderText("Application Error");
                 VBox v = new VBox();
                 v.setPadding(new Insets(5, 5, 5, 5));
                 v.setSpacing(5);
@@ -128,7 +127,7 @@ public class Filecontrol {
                 terror.setMaxWidth(400);
                 terror.setMaxHeight(400);
                 terror.setWrapText(true);
-                v.getChildren().add(new Label("Detail error yang terbaca :"));
+                v.getChildren().add(new Label("Error Detail has been read :"));
                 v.getChildren().add(terror);
                 al.getDialogPane().setContent(v);
                 al.showAndWait();
@@ -154,8 +153,8 @@ public class Filecontrol {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -166,15 +165,15 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
         } catch (IOException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -185,7 +184,7 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -211,8 +210,8 @@ public class Filecontrol {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -223,15 +222,15 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
         } catch (IOException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -242,7 +241,7 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -268,8 +267,8 @@ public class Filecontrol {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -280,15 +279,15 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
         } catch (IOException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -299,7 +298,7 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -325,8 +324,8 @@ public class Filecontrol {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -337,15 +336,15 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
         } catch (IOException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -356,7 +355,7 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -382,8 +381,8 @@ public class Filecontrol {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -394,15 +393,15 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
         } catch (IOException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -413,7 +412,7 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -440,8 +439,8 @@ public class Filecontrol {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -452,15 +451,15 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
         } catch (IOException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -471,7 +470,7 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -497,8 +496,8 @@ public class Filecontrol {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -509,15 +508,15 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
         } catch (IOException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -528,7 +527,7 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -554,8 +553,8 @@ public class Filecontrol {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -566,15 +565,15 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
         } catch (IOException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -585,7 +584,7 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -611,8 +610,8 @@ public class Filecontrol {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -623,15 +622,15 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
         } catch (IOException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -642,7 +641,7 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -668,8 +667,8 @@ public class Filecontrol {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -680,15 +679,15 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
         } catch (IOException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -699,7 +698,7 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -726,8 +725,8 @@ public class Filecontrol {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -738,15 +737,15 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
         } catch (IOException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -757,7 +756,7 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -782,8 +781,8 @@ public class Filecontrol {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -794,15 +793,15 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
         } catch (IOException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -813,7 +812,7 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -840,8 +839,8 @@ public class Filecontrol {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -852,15 +851,15 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
         } catch (IOException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -871,7 +870,7 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -897,8 +896,8 @@ public class Filecontrol {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -909,15 +908,15 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
         } catch (IOException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -928,7 +927,7 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -954,8 +953,8 @@ public class Filecontrol {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -966,15 +965,15 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
         } catch (IOException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -985,7 +984,7 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -993,10 +992,8 @@ public class Filecontrol {
 
         return dataline;
     }
-    
-    
-    
-     public String email() {
+
+    public String email() {
         String data = "";
         int line = 0;
         String dataline = "";
@@ -1014,7 +1011,8 @@ public class Filecontrol {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
             al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -1025,15 +1023,15 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
         } catch (IOException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -1044,7 +1042,7 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -1052,8 +1050,7 @@ public class Filecontrol {
 
         return dataline;
     }
-    
-     
+
     public String alamat() {
         String data = "";
         int line = 0;
@@ -1071,8 +1068,8 @@ public class Filecontrol {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -1083,15 +1080,15 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
         } catch (IOException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -1102,7 +1099,7 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -1129,8 +1126,8 @@ public class Filecontrol {
         } catch (IOException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -1141,7 +1138,7 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -1170,8 +1167,8 @@ public class Filecontrol {
         } catch (IOException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -1182,14 +1179,13 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
         }
     }
-    
-    
+
     public void simpaninfo(String namaperusahaan, String namapemilik, String nohp, String email, String alamat) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(info));
@@ -1206,8 +1202,8 @@ public class Filecontrol {
         } catch (IOException ex) {
             Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -1218,7 +1214,7 @@ public class Filecontrol {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();

@@ -39,7 +39,7 @@ public class Pengaturan_databaseController implements Initializable {
         baca();
         simpan();
          bsimpan.setGraphic(new ImageView(getClass().getResource("/image/document-save-5.png").toString()));
-        bsimpan.setTooltip(new Tooltip("Simpan Pengaturan"));
+        bsimpan.setTooltip(new Tooltip("Save Setting"));
     }
 
     public void simpan() {
@@ -54,9 +54,9 @@ public class Pengaturan_databaseController implements Initializable {
                 String database = tdatabase.getText();
                 fc.simpanpengaturandb(host, port, user, password, database);
                  Alert al=new Alert(Alert.AlertType.INFORMATION);
-                 al.setTitle("Informasi");
-                 al.setHeaderText("Pengaturan telah disimpan");
-                 al.setContentText("Rstart Aplikasi untuk menerapkan pengaturan");
+                 al.setTitle("Information");
+                 al.setHeaderText("Setting has been saved");
+                 al.setContentText("Restart Application to apply setting");
                  al.showAndWait();
             }
            

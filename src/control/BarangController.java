@@ -64,7 +64,7 @@ public class BarangController implements Initializable {
     @FXML
     TableColumn<BarangEntity, String> kode_barang, nama_barang, satuan, harga_beli, harga_jual_ecer, harga_jual_grosir, jumlah;
     @FXML
-    Button bsimpan, bclear, brefresh, bnext, bprev, bberanda, bhapus,bcek;
+    Button bsimpan, bclear, brefresh, bnext, bprev, bberanda, bhapus, bcek;
     @FXML
     TextField tkodebarang, tnamabarang, thargabeli, thargajualecer, thargajualgrosir, tjumlah, tlimit, tcari;
     @FXML
@@ -106,36 +106,36 @@ public class BarangController implements Initializable {
         loadsatuan();
         cekhargabeli();
         loadsatuan();
-        
+
     }
 
     private void makeup() {
         bhapus.disableProperty().set(Boolean.TRUE);
         bsimpan.setGraphic(new ImageView(getClass().getResource("/image/document-save-5.png").toString()));
-        bsimpan.setTooltip(new Tooltip("Simpan Data"));
+        bsimpan.setTooltip(new Tooltip("Save Data"));
         bhapus.setGraphic(new ImageView(getClass().getResource("/image/edit-delete-9.png").toString()));
-        bhapus.setTooltip(new Tooltip("Hapus Data"));
+        bhapus.setTooltip(new Tooltip("Delete Data"));
         bclear.setGraphic(new ImageView(getClass().getResource("/image/edit-clear-2.png").toString()));
         bclear.setTooltip(new Tooltip("Clear Field"));
         brefresh.setGraphic(new ImageView(getClass().getResource("/image/view-refresh.png").toString()));
         brefresh.setTooltip(new Tooltip("Refresh Data"));
         bnext.setGraphic(new ImageView(getClass().getResource("/image/go-next-3.png").toString()));
-        bnext.setTooltip(new Tooltip("Data Selanjutnya"));
+        bnext.setTooltip(new Tooltip("Next Data"));
         bprev.setGraphic(new ImageView(getClass().getResource("/image/go-previous-3.png").toString()));
-        bprev.setTooltip(new Tooltip("Data Sebelumnya"));
+        bprev.setTooltip(new Tooltip("Previous Data"));
         bberanda.setGraphic(new ImageView(getClass().getResource("/image/go-home-4.png").toString()));
-        bberanda.setTooltip(new Tooltip("Beranda"));
+        bberanda.setTooltip(new Tooltip("Home"));
     }
 
     private void loadsatuan() {
-       ObservableList ols = FXCollections.observableArrayList();
-        String data="";
-        int i=1;
-        int j=1;
+        ObservableList ols = FXCollections.observableArrayList();
+        String data = "";
+        int i = 1;
+        int j = 1;
         try {
-            BufferedReader br=new BufferedReader(new FileReader(new File("satuan")));
-            while ((data=br.readLine())!=null) {
-                if(i==j){
+            BufferedReader br = new BufferedReader(new FileReader(new File("satuan")));
+            while ((data = br.readLine()) != null) {
+                if (i == j) {
                     ols.add(data);
                     i++;
                     j++;
@@ -183,8 +183,8 @@ public class BarangController implements Initializable {
         } catch (SQLException | NumberFormatException | NullPointerException ex) {
             Logger.getLogger(BarangController.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -195,7 +195,7 @@ public class BarangController implements Initializable {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -242,8 +242,8 @@ public class BarangController implements Initializable {
                 } catch (SQLException | NumberFormatException | NullPointerException ex) {
                     Logger.getLogger(BarangController.class.getName()).log(Level.SEVERE, null, ex);
                     Alert al = new Alert(Alert.AlertType.ERROR);
-                    al.setTitle("Kesalahan");
-                    al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                    al.setTitle("Error");
+                    al.setHeaderText("Application Error");
                     VBox v = new VBox();
                     v.setPadding(new Insets(5, 5, 5, 5));
                     v.setSpacing(5);
@@ -254,7 +254,7 @@ public class BarangController implements Initializable {
                     terror.setMaxWidth(400);
                     terror.setMaxHeight(400);
                     terror.setWrapText(true);
-                    v.getChildren().add(new Label("Detail error yang terbaca :"));
+                    v.getChildren().add(new Label("Error Detail has been read :"));
                     v.getChildren().add(terror);
                     al.getDialogPane().setContent(v);
                     al.showAndWait();
@@ -301,8 +301,8 @@ public class BarangController implements Initializable {
                 } catch (SQLException | NumberFormatException | NullPointerException ex) {
                     Logger.getLogger(BarangController.class.getName()).log(Level.SEVERE, null, ex);
                     Alert al = new Alert(Alert.AlertType.ERROR);
-                    al.setTitle("Kesalahan");
-                    al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                    al.setTitle("Error");
+                    al.setHeaderText("Application Error");
                     VBox v = new VBox();
                     v.setPadding(new Insets(5, 5, 5, 5));
                     v.setSpacing(5);
@@ -313,7 +313,7 @@ public class BarangController implements Initializable {
                     terror.setMaxWidth(400);
                     terror.setMaxHeight(400);
                     terror.setWrapText(true);
-                    v.getChildren().add(new Label("Detail error yang terbaca :"));
+                    v.getChildren().add(new Label("Error Detail has been read :"));
                     v.getChildren().add(terror);
                     al.getDialogPane().setContent(v);
                     al.showAndWait();
@@ -377,8 +377,8 @@ public class BarangController implements Initializable {
                 } catch (SQLException | NullPointerException ex) {
                     Logger.getLogger(BarangController.class.getName()).log(Level.SEVERE, null, ex);
                     Alert al = new Alert(Alert.AlertType.ERROR);
-                    al.setTitle("Kesalahan");
-                    al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                    al.setTitle("Error");
+                    al.setHeaderText("Application Error");
                     VBox v = new VBox();
                     v.setPadding(new Insets(5, 5, 5, 5));
                     v.setSpacing(5);
@@ -389,7 +389,7 @@ public class BarangController implements Initializable {
                     terror.setMaxWidth(400);
                     terror.setMaxHeight(400);
                     terror.setWrapText(true);
-                    v.getChildren().add(new Label("Detail error yang terbaca :"));
+                    v.getChildren().add(new Label("Error Detail has been read :"));
                     v.getChildren().add(terror);
                     al.getDialogPane().setContent(v);
                     al.showAndWait();
@@ -487,8 +487,8 @@ public class BarangController implements Initializable {
                             + "harga_beli_barang=?,harga_jual_ecer_barang=?,harga_jual_grosir_barang=?,jumlah_barang=?"
                             + "WHERE id_barang=? ", 8, o);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setHeaderText("Data berhasil diperbaharui");
-                    alert.setContentText("Lakukan Refresh jika data belum terlihat");
+                    alert.setHeaderText("Success");
+                    alert.setContentText("Refresh if new data not appeared");
                     alert.showAndWait();
                 }
 
@@ -498,8 +498,8 @@ public class BarangController implements Initializable {
         } catch (SQLException | NumberFormatException | NullPointerException ex) {
             Logger.getLogger(BarangController.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -510,7 +510,7 @@ public class BarangController implements Initializable {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -601,16 +601,15 @@ public class BarangController implements Initializable {
             }
         });
     }
-    
-    
-    private void cekhargabeli(){
+
+    private void cekhargabeli() {
         bcek.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                int hargabeli=Integer.parseInt(thargabeli.getText().replaceAll("[.,]", ""));
-                int jumlahbarang=Integer.parseInt(tjumlah.getText());
-                thargabeli.setText(String.valueOf(hargabeli/jumlahbarang));
+                int hargabeli = Integer.parseInt(thargabeli.getText().replaceAll("[.,]", ""));
+                int jumlahbarang = Integer.parseInt(tjumlah.getText());
+                thargabeli.setText(String.valueOf(hargabeli / jumlahbarang));
             }
         });
     }

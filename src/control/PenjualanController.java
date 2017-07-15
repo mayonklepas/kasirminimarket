@@ -126,21 +126,21 @@ public class PenjualanController implements Initializable {
         autoinsert();
         makeup();
         updatejenispenjualan();
-        
+
     }
 
     private void makeup() {
         bhapus.disableProperty().setValue(Boolean.TRUE);
         bsimpan.setGraphic(new ImageView(getClass().getResource("/image/document-save-5.png").toString()));
-        bsimpan.setTooltip(new Tooltip("Simpan Data"));
+        bsimpan.setTooltip(new Tooltip("Save Data"));
         bhapus.setGraphic(new ImageView(getClass().getResource("/image/edit-delete-9.png").toString()));
-        bhapus.setTooltip(new Tooltip("Hapus Data"));
+        bhapus.setTooltip(new Tooltip("Delete Data"));
         bclear.setGraphic(new ImageView(getClass().getResource("/image/edit-clear-2.png").toString()));
-        bclear.setTooltip(new Tooltip("Clear Field dan Refresh"));
+        bclear.setTooltip(new Tooltip("Clear Field and Refresh"));
         bbayar.setGraphic(new ImageView(getClass().getResource("/image/money.png").toString()));
-        bbayar.setTooltip(new Tooltip("Bayar"));
+        bbayar.setTooltip(new Tooltip("Payment"));
         bprint.setGraphic(new ImageView(getClass().getResource("/image/printer-6.png").toString()));
-        bprint.setTooltip(new Tooltip("Simpan dan Cetak"));
+        bprint.setTooltip(new Tooltip("Save and Print"));
 
     }
 
@@ -187,8 +187,8 @@ public class PenjualanController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(PenjualanController.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -199,7 +199,7 @@ public class PenjualanController implements Initializable {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -250,7 +250,7 @@ public class PenjualanController implements Initializable {
             o[0] = number.nourut("PJ", "id_penjualan", "penjualan");
             o[1] = tkodebarang.getText();
             o[2] = 1;
-            o[3] = "Eceran";
+            o[3] = "Normal";
             o[4] = tkodebarang.getText();
             o[5] = tkodebarang.getText();
             o[6] = ses.getId();
@@ -264,8 +264,8 @@ public class PenjualanController implements Initializable {
         } catch (SQLException | NumberFormatException | NullPointerException ex) {
             Logger.getLogger(BarangController.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
-            al.setTitle("Kesalahan");
-            al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+            al.setTitle("Error");
+            al.setHeaderText("Application Error");
             VBox v = new VBox();
             v.setPadding(new Insets(5, 5, 5, 5));
             v.setSpacing(5);
@@ -276,7 +276,7 @@ public class PenjualanController implements Initializable {
             terror.setMaxWidth(400);
             terror.setMaxHeight(400);
             terror.setWrapText(true);
-            v.getChildren().add(new Label("Detail error yang terbaca :"));
+            v.getChildren().add(new Label("Error Detail has been read :"));
             v.getChildren().add(terror);
             al.getDialogPane().setContent(v);
             al.showAndWait();
@@ -285,10 +285,10 @@ public class PenjualanController implements Initializable {
 
     public void rawhapus() {
         Alert alertcon = new Alert(Alert.AlertType.CONFIRMATION);
-        alertcon.setHeaderText("Yakin ingin menghapus data ini?");
-        alertcon.setContentText("Data yang sudah dihapus tidak bisa dikembalikan lagi.");
-        ButtonType ya = new ButtonType("Ya");
-        ButtonType tidak = new ButtonType("Tidak");
+        alertcon.setHeaderText("Are you sure to delete this data?");
+        alertcon.setContentText("You can't undo this process");
+        ButtonType ya = new ButtonType("Yes");
+        ButtonType tidak = new ButtonType("No");
         alertcon.getButtonTypes().setAll(ya, tidak);
         Optional<ButtonType> opt = alertcon.showAndWait();
         if (opt.get() == ya) {
@@ -303,8 +303,8 @@ public class PenjualanController implements Initializable {
             } catch (SQLException | NumberFormatException | NullPointerException ex) {
                 Logger.getLogger(BarangController.class.getName()).log(Level.SEVERE, null, ex);
                 Alert al = new Alert(Alert.AlertType.ERROR);
-                al.setTitle("Kesalahan");
-                al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                al.setTitle("Error");
+                al.setHeaderText("Application Error");
                 VBox v = new VBox();
                 v.setPadding(new Insets(5, 5, 5, 5));
                 v.setSpacing(5);
@@ -315,7 +315,7 @@ public class PenjualanController implements Initializable {
                 terror.setMaxWidth(400);
                 terror.setMaxHeight(400);
                 terror.setWrapText(true);
-                v.getChildren().add(new Label("Detail error yang terbaca :"));
+                v.getChildren().add(new Label("Error Detail has been read :"));
                 v.getChildren().add(terror);
                 al.getDialogPane().setContent(v);
                 al.showAndWait();
@@ -394,7 +394,7 @@ public class PenjualanController implements Initializable {
                         h.update("UPDATE barang SET jumlah_barang=jumlah_barang-? WHERE id_barang=?", 2, o2);
                     }
 
-                    String kode_transaksi=setterkodetransaksi();
+                    String kode_transaksi = setterkodetransaksi();
                     Sessiongs ses = new Sessiongs();
                     Filecontrol fc = new Filecontrol();
                     HashMap has = new HashMap(6);
@@ -408,10 +408,10 @@ public class PenjualanController implements Initializable {
                     JasperReport jr = (JasperReport) JRLoader.loadObject(new File("Laporan/Struk2inc.jasper"));
                     JasperPrint jp = JasperFillManager.fillReport(jr, has, h.conn);
                     JasperPrintManager.printReport(jp, false);
-                    h.exec("UPDATE penjualan SET kode_transaksi="+kode_transaksi+" WHERE status=0; UPDATE penjualan SET status=1 WHERE status=0");
+                    h.exec("UPDATE penjualan SET kode_transaksi=" + kode_transaksi + " WHERE status=0; UPDATE penjualan SET status=1 WHERE status=0");
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setHeaderText("Transaksi Berhasil");
-                    alert.setContentText("Selamat transaksi anda berhasil");
+                    alert.setHeaderText("Transaction Success");
+                    alert.setContentText("Transaction Success");
                     alert.showAndWait();
                     rawclear();
                     tbayar.clear();
@@ -420,6 +420,7 @@ public class PenjualanController implements Initializable {
 
                 } catch (SQLException ex) {
                     Logger.getLogger(PenjualanController.class.getName()).log(Level.SEVERE, null, ex);
+
                 } catch (JRException ex) {
                     Logger.getLogger(PenjualanController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -442,8 +443,8 @@ public class PenjualanController implements Initializable {
                 } catch (Exception ex) {
                     Logger.getLogger(BarangController.class.getName()).log(Level.SEVERE, null, ex);
                     Alert al = new Alert(Alert.AlertType.ERROR);
-                    al.setTitle("Kesalahan");
-                    al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                    al.setTitle("Error");
+                    al.setHeaderText("Application Error");
                     VBox v = new VBox();
                     v.setPadding(new Insets(5, 5, 5, 5));
                     v.setSpacing(5);
@@ -454,7 +455,7 @@ public class PenjualanController implements Initializable {
                     terror.setMaxWidth(400);
                     terror.setMaxHeight(400);
                     terror.setWrapText(true);
-                    v.getChildren().add(new Label("Detail error yang terbaca :"));
+                    v.getChildren().add(new Label("Error Detail has been read :"));
                     v.getChildren().add(terror);
                     al.getDialogPane().setContent(v);
                     al.showAndWait();
@@ -478,7 +479,7 @@ public class PenjualanController implements Initializable {
                             h.update("UPDATE barang SET jumlah_barang=jumlah_barang-? WHERE id_barang=?", 2, o2);
                         }
 
-                        String kode_transaksi=setterkodetransaksi();
+                        String kode_transaksi = setterkodetransaksi();
                         Filecontrol fc = new Filecontrol();
                         Sessiongs ses = new Sessiongs();
                         HashMap has = new HashMap(7);
@@ -492,10 +493,10 @@ public class PenjualanController implements Initializable {
                         JasperReport jr = (JasperReport) JRLoader.loadObject(new File("Laporan/Struk2inc.jasper"));
                         JasperPrint jp = JasperFillManager.fillReport(jr, has, h.conn);
                         JasperPrintManager.printReport(jp, false);
-                        h.exec("UPDATE penjualan SET kode_transaksi="+kode_transaksi+" WHERE status=0; UPDATE penjualan SET status=1 WHERE status=0");
+                        h.exec("UPDATE penjualan SET kode_transaksi=" + kode_transaksi + " WHERE status=0; UPDATE penjualan SET status=1 WHERE status=0");
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setHeaderText("Transaksi Berhasil");
-                        alert.setContentText("Selamat transaksi anda berhasil");
+                        alert.setHeaderText("Transaction Success");
+                        alert.setContentText("Transaction Success");
                         alert.showAndWait();
                         rawclear();
                         tbayar.clear();
@@ -555,8 +556,8 @@ public class PenjualanController implements Initializable {
                     } catch (SQLException ex) {
                         Logger.getLogger(PenjualanController.class.getName()).log(Level.SEVERE, null, ex);
                         Alert al = new Alert(Alert.AlertType.ERROR);
-                        al.setTitle("Kesalahan");
-                        al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                        al.setTitle("Error");
+                        al.setHeaderText("Application Error");
                         VBox v = new VBox();
                         v.setPadding(new Insets(5, 5, 5, 5));
                         v.setSpacing(5);
@@ -567,7 +568,7 @@ public class PenjualanController implements Initializable {
                         terror.setMaxWidth(400);
                         terror.setMaxHeight(400);
                         terror.setWrapText(true);
-                        v.getChildren().add(new Label("Detail error yang terbaca :"));
+                        v.getChildren().add(new Label("Error Detail has been read :"));
                         v.getChildren().add(terror);
                         al.getDialogPane().setContent(v);
                         al.showAndWait();
@@ -599,8 +600,8 @@ public class PenjualanController implements Initializable {
                 } catch (Exception ex) {
                     Logger.getLogger(PenjualanController.class.getName()).log(Level.SEVERE, null, ex);
                     Alert al = new Alert(Alert.AlertType.ERROR);
-                    al.setTitle("Kesalahan");
-                    al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                    al.setTitle("Error");
+                    al.setHeaderText("Application Error");
                     al.setContentText(ex.getMessage());
                     al.show();
 
@@ -608,16 +609,16 @@ public class PenjualanController implements Initializable {
             }
         });
 
-        ObservableList olsjp = FXCollections.observableArrayList("Eceran/Normal", "Grosir/Diskon");
+        ObservableList olsjp = FXCollections.observableArrayList("Normal", "Wholesaler");
         jenis_penjualan.setCellFactory(ComboBoxTableCell.forTableColumn(olsjp));
         jenis_penjualan.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<PenjualanEntity, String>>() {
             @Override
             public void handle(TableColumn.CellEditEvent<PenjualanEntity, String> event) {
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                if (event.getNewValue().equals("Eceran/Normal")) {
+                if (event.getNewValue().equals("Normal")) {
                     try {
                         Object[] o2 = new Object[3];
-                        o2[0] = "Eceran";
+                        o2[0] = "Normal";
                         o2[1] = kodebarang;
                         o2[2] = kode;
                         h.connect();
@@ -633,7 +634,7 @@ public class PenjualanController implements Initializable {
                 } else {
                     try {
                         Object[] o2 = new Object[3];
-                        o2[0] = "Grosir";
+                        o2[0] = "Wholesaler";
                         o2[1] = kodebarang;
                         o2[2] = kode;
                         h.connect();
@@ -692,8 +693,8 @@ public class PenjualanController implements Initializable {
             } catch (SQLException ex) {
                 Logger.getLogger(PenjualanController.class.getName()).log(Level.SEVERE, null, ex);
                 Alert al = new Alert(Alert.AlertType.ERROR);
-                al.setTitle("Kesalahan");
-                al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                al.setTitle("Error");
+                al.setHeaderText("Application Error");
                 VBox v = new VBox();
                 v.setPadding(new Insets(5, 5, 5, 5));
                 v.setSpacing(5);
@@ -704,7 +705,7 @@ public class PenjualanController implements Initializable {
                 terror.setMaxWidth(400);
                 terror.setMaxHeight(400);
                 terror.setWrapText(true);
-                v.getChildren().add(new Label("Detail error yang terbaca :"));
+                v.getChildren().add(new Label("Error Detail has been read :"));
                 v.getChildren().add(terror);
                 al.getDialogPane().setContent(v);
                 al.showAndWait();
@@ -714,24 +715,24 @@ public class PenjualanController implements Initializable {
         }
 
     }
-    
-     public String setterkodetransaksi() {
-         String kode_transaksi="";
+
+    public String setterkodetransaksi() {
+        String kode_transaksi = "";
         try {
-                h.connect();
-                String sqlgetno = "SELECT kode_transaksi FROM penjualan WHERE status=1 ORDER BY kode_transaksi DESC LIMIT 1";
-                ResultSet resno = h.read(sqlgetno).executeQuery();
-                String tglhariini = new SimpleDateFormat("yyMMdd").format(new Date());
-                while (resno.next()) {
-                    kode_transaksi = resno.getString("kode_transaksi");
-                }
-                if (kode_transaksi == null || kode_transaksi.equals("")
-                        || !kode_transaksi.substring(0, 6).equals(tglhariini)) {
-                    kode_transaksi = tglhariini + "1";
-                } else {
-                    kode_transaksi = String.valueOf(Integer.parseInt(kode_transaksi) + 1);
-                }
-                resno.close();
+            h.connect();
+            String sqlgetno = "SELECT kode_transaksi FROM penjualan WHERE status=1 ORDER BY kode_transaksi DESC LIMIT 1";
+            ResultSet resno = h.read(sqlgetno).executeQuery();
+            String tglhariini = new SimpleDateFormat("yyMMdd").format(new Date());
+            while (resno.next()) {
+                kode_transaksi = resno.getString("kode_transaksi");
+            }
+            if (kode_transaksi == null || kode_transaksi.equals("")
+                    || !kode_transaksi.substring(0, 6).equals(tglhariini)) {
+                kode_transaksi = tglhariini + "1";
+            } else {
+                kode_transaksi = String.valueOf(Integer.parseInt(kode_transaksi) + 1);
+            }
+            resno.close();
         } catch (SQLException ex) {
             Logger.getLogger(PenjualanController.class.getName()).log(Level.SEVERE, null, ex);
         }

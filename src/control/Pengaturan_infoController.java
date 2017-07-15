@@ -47,7 +47,7 @@ public class Pengaturan_infoController implements Initializable {
         baca();
         simpan();
         bsimpan.setGraphic(new ImageView(getClass().getResource("/image/document-save-5.png").toString()));
-        bsimpan.setTooltip(new Tooltip("Simpan Pengaturan"));
+        bsimpan.setTooltip(new Tooltip("Save Setting"));
     }
 
     private void baca() {
@@ -67,14 +67,14 @@ public class Pengaturan_infoController implements Initializable {
                 try {
                     fc.simpaninfo(tnama.getText(), tpemilik.getText(), tnohp.getText(), temail.getText(), talamat.getText());
                     Alert al = new Alert(Alert.AlertType.INFORMATION);
-                    al.setTitle("Pemberitahuan");
-                    al.setHeaderText("Pengaturan berhasil disimpan");
-                    al.setContentText("Restart aplikasi untuk menerapkan perubahan");
+                    al.setTitle("Information");
+                    al.setHeaderText("Setting has been saved");
+                    al.setContentText("Restart Application to apply setting");
                     al.show();
                 } catch (Exception e) {
                     Alert al = new Alert(Alert.AlertType.ERROR);
-                    al.setTitle("Kesalahan");
-                    al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                    al.setTitle("Error");
+                    al.setHeaderText("Application Error");
                     VBox v = new VBox();
                     v.setPadding(new Insets(5, 5, 5, 5));
                     v.setSpacing(5);
@@ -85,7 +85,7 @@ public class Pengaturan_infoController implements Initializable {
                     terror.setMaxWidth(400);
                     terror.setMaxHeight(400);
                     terror.setWrapText(true);
-                    v.getChildren().add(new Label("Detail error yang terbaca :"));
+                    v.getChildren().add(new Label("Error Detail has been read :"));
                     v.getChildren().add(terror);
                     al.getDialogPane().setContent(v);
                     al.showAndWait();

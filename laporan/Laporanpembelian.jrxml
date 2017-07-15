@@ -83,42 +83,42 @@ FROM pembelian WHERE tanggal_pembelian >= $P{dari} AND tanggal_pembelian <= $P{k
 				<textElement verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
-				<text><![CDATA[Tanggal]]></text>
+				<text><![CDATA[Date]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="79" y="19" width="97" height="15" uuid="72eaa84a-0631-450c-b18d-41b85db71952"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
-				<text><![CDATA[ID Barang]]></text>
+				<text><![CDATA[Item Code]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="176" y="19" width="151" height="15" uuid="5ccda7d6-3f3e-47f7-85e6-28bdb8ab5a31"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
-				<text><![CDATA[Nama Barang]]></text>
+				<text><![CDATA[Item Name]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="327" y="19" width="42" height="15" uuid="240ca4b2-43ef-4062-88b0-c39d175da457"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
-				<text><![CDATA[Satuan]]></text>
+				<text><![CDATA[Unit]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="369" y="19" width="48" height="15" uuid="9ae32c42-dbec-4f1c-afe1-755e92d219db"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
-				<text><![CDATA[Jumlah]]></text>
+				<text><![CDATA[Amount]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="417" y="19" width="68" height="15" uuid="0bf30965-7761-4569-85c3-5917424b44d5"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
-				<text><![CDATA[Harga]]></text>
+				<text><![CDATA[Price]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="485" y="19" width="68" height="15" uuid="9def8603-eba4-4844-91d1-f1d5fbf92182"/>

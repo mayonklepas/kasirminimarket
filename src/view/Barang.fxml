@@ -23,7 +23,7 @@
                         <TextField fx:id="thargabeli" promptText="Input Price" style="-fx-font-size: 14;" />
                         <Label style="-fx-font-size: 14;" text="Retail Price" />
                         <TextField fx:id="thargajualecer" promptText="Input Retail Price" style="-fx-font-size: 14;" />
-                  <Label style="-fx-font-size: 14;" text="Wholesale Price" />
+                  <Label style="-fx-font-size: 14;" text="Wholesaler Price" />
                   <TextField fx:id="thargajualgrosir" promptText="Input Wholesale Selling Price" style="-fx-font-size: 14;" />
                         <Label style="-fx-font-size: 14;" text="Item Amount" />
                   <HBox prefHeight="12.0" prefWidth="252.0" spacing="5.0">
@@ -69,7 +69,7 @@
                 <TableColumn fx:id="satuan" prefWidth="85.0" text="Unit" />
                 <TableColumn fx:id="harga_beli" prefWidth="141.0" text="Purchase Price" />
                 <TableColumn fx:id="harga_jual_ecer" prefWidth="116.0" text="Retail Price" />
-            <TableColumn fx:id="harga_jual_grosir" prefWidth="111.0" text="Wholesale  Price" />
+            <TableColumn fx:id="harga_jual_grosir" prefWidth="111.0" text="Wholesaler  Price" />
                 <TableColumn fx:id="jumlah" prefWidth="86.0" text="Stock" />
             </columns>
          <columnResizePolicy>

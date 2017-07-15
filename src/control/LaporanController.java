@@ -100,11 +100,11 @@ public class LaporanController implements Initializable {
 
     private void loadlist() {
         ObservableList ols = FXCollections.observableArrayList();
-        ols.add("Laporan Stock Barang");
-        ols.add("Laporan Penjualan");
-        ols.add("Laporan Pembelian");
-        ols.add("Laporan Penjualan Harian");
-        ols.add("Barcode Barang");
+        ols.add("Stock Item Reporting");
+        ols.add("Sales Reporting");
+        ols.add("Purchase Reporting");
+        ols.add("Daily Sales Reporting");
+        ols.add("Barcode Generator");
         ckategori.setItems(ols);
 
     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="stock" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8958c446-fdc9-414b-941b-7d0926c9010e">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="24"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
@@ -52,49 +52,49 @@
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<text><![CDATA[ID Barang]]></text>
+				<text><![CDATA[Item Code]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="126" y="19" width="150" height="15" uuid="d6c154b9-6b48-4cd9-ae09-2ba82efd6730"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<text><![CDATA[Nama Barang]]></text>
+				<text><![CDATA[Item Name]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="316" y="19" width="34" height="15" uuid="243014c9-4130-4ff8-97cd-c528f18a32dd"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<text><![CDATA[Satuan]]></text>
+				<text><![CDATA[Unit]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="276" y="19" width="40" height="15" uuid="42f13333-8ba6-4ce6-b664-ca38f0ea669b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<text><![CDATA[Jumlah]]></text>
+				<text><![CDATA[Amount]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="350" y="19" width="65" height="15" uuid="abb1e595-e8ba-4cd6-ba8e-f96dcfb993ba"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="9"/>
+					<font size="8"/>
 				</textElement>
-				<text><![CDATA[Harga Beli]]></text>
+				<text><![CDATA[Purchase Price]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="415" y="19" width="69" height="15" uuid="1c05af5e-c3e4-4d14-802b-dc7a21f773bb"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<text><![CDATA[Harga Eceran]]></text>
+				<text><![CDATA[Retail Price]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="484" y="19" width="71" height="15" uuid="91631716-cbc7-4a98-8f2c-e31714305545"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="9"/>
+					<font size="8"/>
 				</textElement>
-				<text><![CDATA[Harga Grosir]]></text>
+				<text><![CDATA[Wholesaler Price]]></text>
 			</staticText>
 		</band>
 	</columnHeader>

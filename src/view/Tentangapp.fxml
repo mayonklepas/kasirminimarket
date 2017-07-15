@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="316.0" prefWidth="353.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.TentangappController">
+<AnchorPane id="AnchorPane" prefHeight="249.0" prefWidth="353.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.TentangappController">
    <children>
       <Pane layoutX="14.0" layoutY="18.0" prefHeight="207.0" prefWidth="377.0" style="-fx-border-color: #000000;" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="18.0">
          <children>
@@ -16,18 +16,15 @@
                <font>
                   <Font name="System Bold" size="26.0" />
                </font></Label>
-            <Label layoutX="38.0" layoutY="176.0" text="Pengembang" />
-            <Label layoutX="135.0" layoutY="176.0" text=":" />
-            <Label layoutX="151.0" layoutY="176.0" text="CV. Satria Bahari Teknologi" />
-            <Label layoutX="38.0" layoutY="201.0" text="Website" />
-            <Label layoutX="135.0" layoutY="201.0" text=":" />
-            <Label layoutX="153.0" layoutY="201.0" text="www.sb-tech.com" />
-            <Label layoutX="40.0" layoutY="226.0" text="Handphone" />
-            <Label layoutX="137.0" layoutY="226.0" text=":" />
-            <Label layoutX="153.0" layoutY="226.0" text="+6283129345215" />
-            <Label layoutX="37.0" layoutY="100.0" text="Aplikasi yang  di rancang untuk kasir" />
-            <Label layoutX="37.0" layoutY="119.0" text="mini market dan toko untuk kemudahan " />
-            <Label layoutX="37.0" layoutY="139.0" text="dan keakuratan dalam pelayanan penjualan" />
+            <Label layoutX="35.0" layoutY="107.0" text="Developer" />
+            <Label layoutX="132.0" layoutY="107.0" text=":" />
+            <Label layoutX="148.0" layoutY="107.0" text="CV. Satria Bahari Teknologi" />
+            <Label layoutX="35.0" layoutY="132.0" text="Website" />
+            <Label layoutX="132.0" layoutY="132.0" text=":" />
+            <Label layoutX="150.0" layoutY="132.0" text="www.sb-tech.com" />
+            <Label layoutX="37.0" layoutY="157.0" text="Handphone" />
+            <Label layoutX="134.0" layoutY="157.0" text=":" />
+            <Label layoutX="150.0" layoutY="157.0" text="+6283129345215" />
             <ImageView fitHeight="67.0" fitWidth="70.0" layoutX="32.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/logo.png" />

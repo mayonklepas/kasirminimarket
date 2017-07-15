@@ -14,13 +14,13 @@
             <menus>
                 <Menu mnemonicParsing="false" text="Master Data">
                     <items>
-                        <MenuItem fx:id="mbarang" mnemonicParsing="false" text="Item" />
+                        <MenuItem fx:id="mbarang" mnemonicParsing="false" text="Items" />
                         <MenuItem fx:id="makun" mnemonicParsing="false" text="User Account" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Transaction">
                     <items>
-                        <MenuItem fx:id="mpenjualan" mnemonicParsing="false" text="Sales" />
+                        <MenuItem fx:id="mpenjualan" mnemonicParsing="false" text="Sale" />
                         <MenuItem fx:id="mpembelian" mnemonicParsing="false" text="Purchase" />
                     </items>
                 </Menu>
@@ -44,7 +44,7 @@
         </MenuBar>
         <TabPane fx:id="tabpane" layoutY="30.0" prefHeight="444.0" prefWidth="695.0" rotateGraphic="true" style="-fx-font-size: 14;" tabClosingPolicy="ALL_TABS" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
             <tabs>
-                <Tab closable="false" text="Wellcome">
+                <Tab closable="false" text="Welcome">
                     <content>
                         <AnchorPane fx:id="anchorpane" minHeight="0.0" minWidth="0.0" prefHeight="394.0" prefWidth="689.0">
                      <children>

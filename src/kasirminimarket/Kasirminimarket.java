@@ -80,20 +80,20 @@ public class Kasirminimarket extends Application {
         Label luser = new Label("Username");
         Label lpass = new Label("Password");
         TextField tuser = new TextField();
-        tuser.setPromptText("Masukan Username");
+        tuser.setPromptText("Input Username");
         PasswordField tpass = new PasswordField();
-        tpass.setPromptText("Masukan Password");
-        Label lnotif = new Label("*Maaf username atau password salah");
+        tpass.setPromptText("Input Password");
+        Label lnotif = new Label("*Invalid Username or Password");
         lnotif.setVisible(false);
         Button login = new Button("Login");
-        Button close = new Button("Tutup");
-        Button pengaturan = new Button("Atur Koneksi");
+        Button close = new Button("Close");
+        Button pengaturan = new Button("Connection Setup");
         login.setGraphic(new ImageView(getClass().getResource("/image/document-decrypt-2.png").toString()));
         login.setTooltip(new Tooltip("Login"));
         close.setGraphic(new ImageView(getClass().getResource("/image/dialog-close-2.png").toString()));
-        close.setTooltip(new Tooltip("Tutup Koneksi"));
+        close.setTooltip(new Tooltip("Close App"));
         pengaturan.setGraphic(new ImageView(getClass().getResource("/image/network-connect-2.png").toString()));
-        pengaturan.setTooltip(new Tooltip("Atur koneksi database"));
+        pengaturan.setTooltip(new Tooltip("Database Connection Setup"));
 
         login.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -127,8 +127,8 @@ public class Kasirminimarket extends Application {
                 } catch (SQLException ex) {
                     Logger.getLogger(Kasirminimarket.class.getName()).log(Level.SEVERE, null, ex);
                     Alert al = new Alert(Alert.AlertType.ERROR);
-                    al.setTitle("Kesalahan");
-                    al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                    al.setTitle("Error");
+                    al.setHeaderText("Application Error");
                     VBox v = new VBox();
                     v.setPadding(new Insets(5, 5, 5, 5));
                     v.setSpacing(5);
@@ -139,7 +139,7 @@ public class Kasirminimarket extends Application {
                     terror.setMaxWidth(400);
                     terror.setMaxHeight(400);
                     terror.setWrapText(true);
-                    v.getChildren().add(new Label("Detail error yang terbaca :"));
+                    v.getChildren().add(new Label("Error Detail has been read :"));
                     v.getChildren().add(terror);
                     al.getDialogPane().setContent(v);
                     al.show();
@@ -164,7 +164,7 @@ public class Kasirminimarket extends Application {
                     Stage st = new Stage();
                     Parent root = FXMLLoader.load(getClass().getResource("/view/Pengaturan_database.fxml"));
                     Scene sc = new Scene(root);
-                    st.setTitle("Pengaturan Database");
+                    st.setTitle("Setting Database");
                     st.setScene(sc);
                     st.initModality(Modality.APPLICATION_MODAL);
                     st.show();
@@ -206,7 +206,7 @@ public class Kasirminimarket extends Application {
         hb0.setSpacing(5);
         hb0.setAlignment(Pos.CENTER);
         Label header = new Label("Login terlebih dahulu");
-       ImageView img = new ImageView(getClass().getResource("/image/system-lock-screen-2.png").toString());
+        ImageView img = new ImageView(getClass().getResource("/image/system-lock-screen-2.png").toString());
         hb0.getChildren().addAll(img);
 
         vb.getChildren().addAll(hb0, luser, tuser, lpass, tpass, hb, lnotif);
@@ -245,8 +245,8 @@ public class Kasirminimarket extends Application {
                 } catch (SQLException ex) {
                     Logger.getLogger(Kasirminimarket.class.getName()).log(Level.SEVERE, null, ex);
                     Alert al = new Alert(Alert.AlertType.ERROR);
-                    al.setTitle("Kesalahan");
-                    al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                    al.setTitle("Error");
+                    al.setHeaderText("Application Error");
                     VBox v = new VBox();
                     v.setPadding(new Insets(5, 5, 5, 5));
                     v.setSpacing(5);
@@ -257,7 +257,7 @@ public class Kasirminimarket extends Application {
                     terror.setMaxWidth(400);
                     terror.setMaxHeight(400);
                     terror.setWrapText(true);
-                    v.getChildren().add(new Label("Detail error yang terbaca :"));
+                    v.getChildren().add(new Label("Error Detail has been read :"));
                     v.getChildren().add(terror);
                     al.getDialogPane().setContent(v);
                     al.show();

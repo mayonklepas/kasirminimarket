@@ -14,7 +14,7 @@
         <ToolBar layoutX="279.0" layoutY="-2.0" prefHeight="40.0" prefWidth="1060.0" AnchorPane.leftAnchor="279.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
             <items>
                 <Label style="-fx-font-size: 14;" text="Item Code" />
-                <TextField fx:id="tkodebarang" prefHeight="25.0" prefWidth="240.0" promptText="Input Item Code Or Scane Barcode" />
+                <TextField fx:id="tkodebarang" prefHeight="25.0" prefWidth="240.0" promptText="Input Item Code Or Scan Barcode" />
                 <Button fx:id="bsimpan" style="-fx-font-size: 14;" text="_Save CTRL+S" />
                 <Button fx:id="bbayar" style="-fx-font-size: 14;" text="_Payment CTRL+B" />
                 <Button fx:id="bhapus" style="-fx-font-size: 14;" text="_Delete CTRL+D" />
@@ -27,7 +27,7 @@
                 <TableColumn fx:id="tanggal" prefWidth="163.0" text="Date" />
                 <TableColumn fx:id="kode_barang" prefWidth="159.0" text="Item Code" />
                 <TableColumn fx:id="nama_barang" prefWidth="217.0" text="Item Name" />
-            <TableColumn fx:id="jenis_penjualan" prefWidth="122.0" text="Types Of Sales" />
+            <TableColumn fx:id="jenis_penjualan" prefWidth="122.0" text="Types Of Sale" />
                 <TableColumn fx:id="harga_barang" prefWidth="104.0" text="Price" />
                 <TableColumn fx:id="satuan" prefWidth="73.0" text="Unit" />
                 <TableColumn fx:id="jumlah" prefWidth="79.0" text="Amount" />
@@ -50,7 +50,7 @@
                               <Font name="System Bold" size="29.0" />
                           </font>
                       </Label>
-                  <Label text="Refund">
+                  <Label text="Change">
                      <font>
                         <Font name="System Bold" size="19.0" />
                      </font></Label>
@@ -59,11 +59,11 @@
                         <Font name="System Bold" size="29.0" />
                      </font>
                   </Label>
-                  <Label text="Amount of money">
+                  <Label text="Cash">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font></Label>
-                  <TextField fx:id="tbayar" prefHeight="47.0" prefWidth="257.0" promptText="Input Amount of money">
+                  <TextField fx:id="tbayar" prefHeight="47.0" prefWidth="257.0" promptText="Input Cash">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font></TextField>
