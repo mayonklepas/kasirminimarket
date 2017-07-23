@@ -69,8 +69,8 @@ public class Pengaturan_infoController implements Initializable {
                     Alert al = new Alert(Alert.AlertType.INFORMATION);
                     al.setTitle("Information");
                     al.setHeaderText("Setting has been saved");
-                    al.setContentText("Restart Application to apply setting");
-                    al.show();
+                    al.setContentText("Restart Application to apply new setting");
+                    al.showAndWait();
                 } catch (Exception e) {
                     Alert al = new Alert(Alert.AlertType.ERROR);
                     al.setTitle("Error");

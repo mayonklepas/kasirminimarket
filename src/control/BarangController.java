@@ -125,6 +125,7 @@ public class BarangController implements Initializable {
         bprev.setTooltip(new Tooltip("Previous Data"));
         bberanda.setGraphic(new ImageView(getClass().getResource("/image/go-home-4.png").toString()));
         bberanda.setTooltip(new Tooltip("Home"));
+        bcek.setVisible(false);
     }
 
     private void loadsatuan() {
@@ -404,7 +405,7 @@ public class BarangController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                loaddata();
+                rawclear();
                 bprev.setDisable(false);
                 bnext.setDisable(false);
                 tcari.clear();
@@ -416,7 +417,7 @@ public class BarangController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                loaddata();
+                rawclear();
                 bprev.setDisable(false);
                 bnext.setDisable(false);
                 tcari.clear();
@@ -426,11 +427,11 @@ public class BarangController implements Initializable {
     }
 
     private void select() {
-        tabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+        tabel.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
-            public void handle(MouseEvent event) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                int i = tabel.getSelectionModel().getSelectedIndex();
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                int i = newValue.intValue();
                 kode = String.valueOf(kode_barang.getCellData(i));
                 tkodebarang.setText(String.valueOf(kode_barang.getCellData(i)));
                 tnamabarang.setText(String.valueOf(nama_barang.getCellData(i)));
@@ -461,8 +462,8 @@ public class BarangController implements Initializable {
                         + "harga_beli_barang,harga_jual_ecer_barang,harga_jual_grosir_barang,jumlah_barang) "
                         + "VALUES(?,?,?,?,?,?,?)", 7, o);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText("Data berhasil ditambahkan");
-                alert.setContentText("Lakukan Refresh jika data belum terlihat");
+                alert.setHeaderText("Data has been added");
+                alert.setContentText("Refresh if new data not appeared");
                 alert.showAndWait();
                 tkodebarang.requestFocus();
             } else {
@@ -476,10 +477,10 @@ public class BarangController implements Initializable {
                 o[6] = Integer.parseInt(tjumlah.getText());
                 o[7] = kode;
                 Alert alertcon = new Alert(Alert.AlertType.CONFIRMATION);
-                alertcon.setHeaderText("Yakin ingin memperbaharui data ini?");
-                alertcon.setContentText("Data yang sudah diperbaharui tidak bisa dikembalikan lagi.");
-                ButtonType ya = new ButtonType("Ya");
-                ButtonType tidak = new ButtonType("Tidak");
+                alertcon.setHeaderText("Are you sure to update this data?");
+                alertcon.setContentText("You can't undo this process");
+                ButtonType ya = new ButtonType("Yes");
+                ButtonType tidak = new ButtonType("No");
                 alertcon.getButtonTypes().setAll(ya, tidak);
                 Optional<ButtonType> opt = alertcon.showAndWait();
                 if (opt.get() == ya) {
@@ -487,8 +488,8 @@ public class BarangController implements Initializable {
                             + "harga_beli_barang=?,harga_jual_ecer_barang=?,harga_jual_grosir_barang=?,jumlah_barang=?"
                             + "WHERE id_barang=? ", 8, o);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setHeaderText("Success");
-                    alert.setContentText("Refresh if new data not appeared");
+                    alert.setHeaderText("Data has been update");
+                    alert.setContentText("Refresh if data not changed");
                     alert.showAndWait();
                 }
 
@@ -531,10 +532,10 @@ public class BarangController implements Initializable {
 
     private void rawhapus() {
         Alert alertcon = new Alert(Alert.AlertType.CONFIRMATION);
-        alertcon.setHeaderText("Yakin ingin menghapus data ini?");
-        alertcon.setContentText("Data yang sudah dihapus tidak bisa dikembalikan lagi.");
-        ButtonType ya = new ButtonType("Ya");
-        ButtonType tidak = new ButtonType("Tidak");
+        alertcon.setHeaderText("Are you sure to delete this data ?");
+        alertcon.setContentText("You can't undo this process");
+        ButtonType ya = new ButtonType("Yes");
+        ButtonType tidak = new ButtonType("No");
         alertcon.getButtonTypes().setAll(ya, tidak);
         Optional<ButtonType> opt = alertcon.showAndWait();
         if (opt.get() == ya) {
@@ -549,8 +550,8 @@ public class BarangController implements Initializable {
             } catch (SQLException | NumberFormatException | NullPointerException ex) {
                 Logger.getLogger(BarangController.class.getName()).log(Level.SEVERE, null, ex);
                 Alert al = new Alert(Alert.AlertType.ERROR);
-                al.setTitle("Kesalahan");
-                al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                al.setTitle("Error");
+                al.setHeaderText("Application Error");
                 VBox v = new VBox();
                 v.setPadding(new Insets(5, 5, 5, 5));
                 v.setSpacing(5);
@@ -561,7 +562,7 @@ public class BarangController implements Initializable {
                 terror.setMaxWidth(400);
                 terror.setMaxHeight(400);
                 terror.setWrapText(true);
-                v.getChildren().add(new Label("Detail error yang terbaca :"));
+                v.getChildren().add(new Label("Error Detail has been read :"));
                 v.getChildren().add(terror);
                 al.getDialogPane().setContent(v);
                 al.showAndWait();
@@ -581,6 +582,7 @@ public class BarangController implements Initializable {
     }
 
     private void rawclear() {
+        loaddata();
         kode = null;
         tkodebarang.clear();
         tnamabarang.clear();
@@ -590,6 +592,7 @@ public class BarangController implements Initializable {
         thargajualgrosir.clear();
         tjumlah.clear();
         bhapus.disableProperty().set(Boolean.TRUE);
+        
     }
 
     private void clearfield() {

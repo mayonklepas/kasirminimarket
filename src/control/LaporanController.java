@@ -95,15 +95,15 @@ public class LaporanController implements Initializable {
         dsampai.setValue(LocalDate.now());
 
         blihat.setGraphic(new ImageView(getClass().getResource("/image/printer-6.png").toString()));
-        blihat.setTooltip(new Tooltip("Generate Laporan"));
+        blihat.setTooltip(new Tooltip("Generate Report"));
     }
 
     private void loadlist() {
         ObservableList ols = FXCollections.observableArrayList();
         ols.add("Stock Item Reporting");
-        ols.add("Sales Reporting");
+        ols.add("Sale Reporting");
         ols.add("Purchase Reporting");
-        ols.add("Daily Sales Reporting");
+        ols.add("Daily Sale Reporting");
         ols.add("Barcode Generator");
         ckategori.setItems(ols);
 
@@ -119,13 +119,13 @@ public class LaporanController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                if (newValue.intValue() == 0 || newValue.intValue()== 4) {
+                if (newValue.intValue() == 0 || newValue.intValue() == 4) {
                     ddari.setDisable(true);
                     dsampai.setDisable(true);
-                } else if(newValue.intValue()==3){
+                } else if (newValue.intValue() == 3) {
                     ddari.setDisable(false);
                     dsampai.setDisable(true);
-                }else{
+                } else {
                     ddari.setDisable(false);
                     dsampai.setDisable(false);
                 }
@@ -139,7 +139,7 @@ public class LaporanController implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     Stage st = new Stage();
-                    st.setTitle("Memproses Data");
+                    st.setTitle("Processing Data");
                     st.resizableProperty().setValue(Boolean.FALSE);
                     st.initModality(Modality.APPLICATION_MODAL);
                     VBox vb = new VBox();
@@ -163,12 +163,13 @@ public class LaporanController implements Initializable {
                     } else if (pilkat == 1) {
                         Instant dari = Instant.from(ddari.getValue().atStartOfDay(ZoneId.of("GMT")));
                         Instant sampai = Instant.from(dsampai.getValue().atStartOfDay(ZoneId.of("GMT")));
-                        hash = new HashMap(4);
+                        hash = new HashMap(5);
                         hash.put("header", fc.namaperusahaan());
                         hash.put("subheader", ckategori.getSelectionModel().getSelectedItem().toString());
-                        hash.put("dari", new Date().from(dari));
-                        hash.put("ke", new Date().from(sampai));
-                        path = "laporan/Laporanpenjualan.jasper";
+                        hash.put("tanggal_dari", new Date().from(dari));
+                        hash.put("tanggal_hingga", new Date().from(sampai));
+                        hash.put("SUBREPORT_DIR","laporan/");
+                        path = "laporan/Laporanpenjualanperiodik.jasper";
                     } else if (pilkat == 2) {
                         Instant dari = Instant.from(ddari.getValue().atStartOfDay(ZoneId.of("GMT")));
                         Instant sampai = Instant.from(dsampai.getValue().atStartOfDay(ZoneId.of("GMT")));
@@ -184,6 +185,7 @@ public class LaporanController implements Initializable {
                         hash.put("header", fc.namaperusahaan());
                         hash.put("subheader", ckategori.getSelectionModel().getSelectedItem().toString());
                         hash.put("tanggal", new Date().from(tanggal));
+                        hash.put("SUBREPORT_DIR","laporan/");
                         path = "laporan/Laporanpenjualanharian.jasper";
                     } else if (pilkat == 4) {
                         List ls = new ArrayList();
@@ -194,10 +196,10 @@ public class LaporanController implements Initializable {
 
                         }
                         m.disconnect();
-                        ChoiceDialog cod = new ChoiceDialog<>("Pilih Satuan", ls);
-                        cod.setTitle("Konfirmasi Pemilihan Satuan");
-                        cod.setHeaderText("Pilih Satuan yang ingin dicetak ");
-                        cod.setContentText("Pilih Satuan");
+                        ChoiceDialog cod = new ChoiceDialog<>("Select Unit", ls);
+                        cod.setTitle("Confirmation");
+                        cod.setHeaderText("Select Unit ");
+                        cod.setContentText("Select Unit");
                         Optional<String> opt = cod.showAndWait();
                         if (opt.isPresent()) {
                             hash = new HashMap(4);
@@ -205,8 +207,8 @@ public class LaporanController implements Initializable {
                             hash.put("subheader", ckategori.getSelectionModel().getSelectedItem().toString());
                             hash.put("satuan", opt.get());
                             path = "laporan/barcode.jasper";
-                        }else{
-                           hash = new HashMap(4);
+                        } else {
+                            hash = new HashMap(4);
                             hash.put("header", fc.namaperusahaan());
                             hash.put("subheader", ckategori.getSelectionModel().getSelectedItem().toString());
                             hash.put("satuan", "PCS");
@@ -227,7 +229,7 @@ public class LaporanController implements Initializable {
                         @Override
                         public void handle(WorkerStateEvent event) {
                             //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                             st.close();
+                            st.close();
                         }
                     });
                     pb.progressProperty().bind(lr.progressProperty());
@@ -238,8 +240,8 @@ public class LaporanController implements Initializable {
                 } catch (Exception ex) {
                     Logger.getLogger(LaporanController.class.getName()).log(Level.SEVERE, null, ex);
                     Alert al = new Alert(Alert.AlertType.ERROR);
-                    al.setTitle("Kesalahan");
-                    al.setHeaderText("Terjadi Kesalahan Pada Aplikasi");
+                    al.setTitle("Error");
+                    al.setHeaderText("Application Error");
                     VBox v = new VBox();
                     v.setPadding(new Insets(5, 5, 5, 5));
                     v.setSpacing(5);
@@ -250,7 +252,7 @@ public class LaporanController implements Initializable {
                     terror.setMaxWidth(400);
                     terror.setMaxHeight(400);
                     terror.setWrapText(true);
-                    v.getChildren().add(new Label("Detail error yang terbaca :"));
+                    v.getChildren().add(new Label("Error Detail has been read :"));
                     v.getChildren().add(terror);
                     al.getDialogPane().setContent(v);
                     al.showAndWait();
@@ -275,9 +277,7 @@ public class LaporanController implements Initializable {
             //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             try {
                 long start = System.currentTimeMillis();
-                //JasperDesign jd = JRXmlLoader.load(path);
-                //JasperReport jr = JasperCompileManager.compileReport(jd);
-                JasperReport jr= (JasperReport) JRLoader.loadObject(new File(path));
+                JasperReport jr = (JasperReport) JRLoader.loadObject(new File(path));
                 JasperPrint jp = JasperFillManager.fillReport(jr, hash, conn());
                 long stop = System.currentTimeMillis();
                 updateProgress(start, stop);

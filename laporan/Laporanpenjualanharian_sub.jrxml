@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Laporanpenjualanharian_sub" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c0620c98-bd81-4ba6-87be-0df161d08437">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tanggal" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="kode_transaksi" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="diskon" class="java.lang.Double">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT tanggal_penjualan,penjualan.id_barang,nama_barang,harga_beli_barang,jenis_penjualan,
+harga_jual AS harga_jual_barang,jumlah,diskon,harga_jual*jumlah-(diskon/100*(harga_jual*jumlah)) AS total,
+harga_jual*jumlah-(diskon/100*(harga_jual*jumlah))-harga_beli*jumlah AS keuntungan 
+FROM penjualan INNER JOIN barang ON penjualan.id_barang=barang.id_barang WHERE status=1 AND tanggal_penjualan::date = $P{tanggal} AND kode_transaksi=$P{kode_transaksi} ORDER BY tanggal_penjualan DESC]]>
+	</queryString>
+	<field name="tanggal_penjualan" class="java.sql.Timestamp"/>
+	<field name="id_barang" class="java.lang.String"/>
+	<field name="nama_barang" class="java.lang.String"/>
+	<field name="harga_beli_barang" class="java.lang.Double"/>
+	<field name="jenis_penjualan" class="java.lang.String"/>
+	<field name="harga_jual_barang" class="java.lang.Double"/>
+	<field name="jumlah" class="java.lang.Integer"/>
+	<field name="diskon" class="java.lang.Double"/>
+	<field name="total" class="java.lang.Double"/>
+	<field name="keuntungan" class="java.lang.Double"/>
+	<variable name="total_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<variable name="keuntungan_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{keuntungan}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="4" width="99" height="20" uuid="7bb6d400-2088-4d4a-9b63-bf2b497b6846"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Items]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="158" y="4" width="79" height="20" uuid="3f952c59-6950-4c1e-82a8-a9bfc561aafd"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Purchase Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="99" y="4" width="59" height="20" uuid="90f4808b-77e5-4bba-982f-b4c948f9de91"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Sale Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="237" y="4" width="79" height="20" uuid="425120f7-02aa-4cf4-b038-10f80ffccafb"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Sale Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="353" y="4" width="42" height="20" uuid="5c927658-645c-4beb-8ca4-c8f7ad647fe5"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="395" y="4" width="79" height="20" uuid="9bdeb372-7427-4e35-a53c-330de3bbb958"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="474" y="4" width="79" height="20" uuid="9a013b0c-2890-48ee-8ab3-c2333c3ca925"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Profit]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="25" width="555" height="1" uuid="57db6466-a644-4508-bce7-f3ac41606c2e"/>
+			</line>
+			<line>
+				<reportElement x="0" y="2" width="555" height="1" uuid="80260527-3391-4673-a4d8-8ec8ffd57ef4"/>
+			</line>
+			<staticText>
+				<reportElement x="316" y="4" width="37" height="20" uuid="21bfcb99-07a6-46f3-b434-2b78cf97864a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Disc]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="99" height="20" uuid="bf13231b-91e2-47a8-b164-e8434fd84ecc"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nama_barang}]]></textFieldExpression>
+			</textField>
+			<textField pattern="Rp #,##0">
+				<reportElement x="158" y="0" width="79" height="20" uuid="fe0b5fe3-8642-47b7-bcaa-1d501a3a48aa"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{harga_beli_barang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="0" width="59" height="20" uuid="8e0fdc0a-4fd3-442e-8921-267f75387a10"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{jenis_penjualan}]]></textFieldExpression>
+			</textField>
+			<textField pattern="Rp #,##0">
+				<reportElement x="237" y="0" width="79" height="20" uuid="ba67f260-bc05-465b-8bf4-08a42b997c1d"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{harga_jual_barang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="353" y="0" width="42" height="20" uuid="457502b0-53d3-4b6f-99b4-5864195b4d79"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{jumlah}]]></textFieldExpression>
+			</textField>
+			<textField pattern="Rp #,##0">
+				<reportElement x="395" y="0" width="79" height="20" uuid="3deb3f5a-d450-4d64-b128-72c0153fb7c1"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField pattern="Rp #,##0">
+				<reportElement x="474" y="0" width="79" height="20" uuid="946f0f00-f410-42f7-b070-bbd99f7502d0"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{keuntungan}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="20" width="555" height="1" uuid="d30113e5-5901-426d-a693-f3e0d2651676"/>
+			</line>
+			<textField pattern="###0">
+				<reportElement x="316" y="0" width="37" height="20" uuid="96699b63-d278-40de-8409-56c8fff18f3b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{diskon}+"%"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="50" splitType="Stretch">
+			<textField pattern="Rp #,##0">
+				<reportElement x="453" y="5" width="100" height="20" uuid="0197daa1-d3ba-4603-8351-62b1abfc84f4"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{total_1}-($P{diskon}/100*($V{total_1}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="353" y="5" width="100" height="20" uuid="27ee0ea9-b3af-456e-ad5f-ff0ec20002ef"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Sale Total : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="353" y="25" width="100" height="20" uuid="36fad947-fb23-45b9-b7b4-745c034e7458"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Profit Total : ]]></text>
+			</staticText>
+			<textField pattern="Rp #,##0">
+				<reportElement x="453" y="25" width="100" height="20" uuid="c9c0533a-0f11-44a7-a27e-572f14a1eeb9"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{keuntungan_1}-($P{diskon}/100*($V{keuntungan_1}))]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

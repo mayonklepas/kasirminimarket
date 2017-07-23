@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" onKeyPressed="#keypress" prefHeight="510.0" prefWidth="1162.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.Akun_keuanganController">
+    <children>
+        <TitledPane collapsible="false" layoutY="6.0" prefHeight="468.0" prefWidth="274.0" style="-fx-font-size: 14;" text="Input Form" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <content>
+                <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                    <children>
+                        <Label style="-fx-font-size: 14;" text="Acount Code" />
+                        <TextField fx:id="tkode" promptText="Input Account Code" style="-fx-font-size: 14;" />
+                        <Label style="-fx-font-size: 14;" text="Account Name" />
+                        <TextField fx:id="tnama" promptText="Input Account Name" style="-fx-font-size: 14;" />
+                        <Label style="-fx-font-size: 14;" text="Account Description" />
+                  <TextArea fx:id="tketerangan" prefHeight="200.0" prefWidth="200.0" promptText="Input Account Description" />
+                        <HBox prefHeight="6.0" prefWidth="252.0" spacing="10.0">
+                            <children>
+                                <Button fx:id="bsimpan" mnemonicParsing="true" style="-fx-font-size: 14;" text="_Save CTRL+S" />
+                                <Button fx:id="bclear" mnemonicParsing="true" style="-fx-font-size: 14;" text="_Clear CTRL+E" />
+                            </children>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </VBox>
+            </content>
+        </TitledPane>
+        <ToolBar layoutX="273.0" prefHeight="40.0" prefWidth="598.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <items>
+                <Button fx:id="bhapus" style="-fx-font-size: 14;" text="_Delete CTRL+D" />
+                <Button fx:id="brefresh" mnemonicParsing="true" style="-fx-font-size: 14;" text="_Refresh CTRL+R" />
+                <TextField fx:id="tcari" prefHeight="22.0" prefWidth="346.0" promptText="Type and Enter to Search Data" style="-fx-font-size: 14;" />
+            </items>
+        </ToolBar>
+        <ToolBar layoutX="273.0" layoutY="360.0" prefHeight="40.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0">
+            <items>
+                <Label style="-fx-font-size: 14;" text="Limit" />
+                <TextField fx:id="tlimit" style="-fx-font-size: 14;" text="100" />
+                <Button fx:id="bprev" mnemonicParsing="true" style="-fx-font-size: 14;" />
+                <Button fx:id="bberanda" mnemonicParsing="true" style="-fx-font-size: 14;" />
+                <Button fx:id="bnext" mnemonicParsing="true" style="-fx-font-size: 14;" />
+                <Label fx:id="ldata" style="-fx-font-size: 14;" text="100 / 200 Data" />
+            </items>
+        </ToolBar>
+        <TableView fx:id="tabel" layoutX="274.0" layoutY="40.0" prefHeight="432.0" prefWidth="200.0" style="-fx-font-size: 14;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+            <columns>
+                <TableColumn fx:id="kode" prefWidth="158.0" text="Account Code" />
+                <TableColumn fx:id="nama" prefWidth="237.0" text="Account Name" />
+                <TableColumn fx:id="keterangan" prefWidth="220.0" text="Account Desc" />
+            </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+        </TableView>
+    </children>
+</AnchorPane>

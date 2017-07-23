@@ -11,21 +11,22 @@ package entity;
  */
 public class PenjualanEntity {
     
-    String id,tanggal,kode_barang,nama_barang,satuan,jenis_penjualan,harga_barang,jumlah,total;
+    String id,tanggal,kode_barang,nama_barang,satuan,jenis_penjualan,harga_barang,jumlah,total,diskon;
 
     public PenjualanEntity() {
     }
 
-    public PenjualanEntity(String id, String tanggal, String kode_barang, String nama_barang, String satuan,String jenis_penjualan,String harga_barang, String jumlah, String total) {
+    public PenjualanEntity(String id, String tanggal, String kode_barang, String nama_barang, String satuan, String jenis_penjualan, String harga_barang, String jumlah, String total, String diskon) {
         this.id = id;
         this.tanggal = tanggal;
         this.kode_barang = kode_barang;
         this.nama_barang = nama_barang;
         this.satuan = satuan;
-        this.jenis_penjualan=jenis_penjualan;
+        this.jenis_penjualan = jenis_penjualan;
         this.harga_barang = harga_barang;
         this.jumlah = jumlah;
         this.total = total;
+        this.diskon = diskon;
     }
 
     public String getId() {
@@ -75,7 +76,7 @@ public class PenjualanEntity {
     public void setJenis_penjualan(String jenis_penjualan) {
         this.jenis_penjualan = jenis_penjualan;
     }
-    
+
     public String getHarga_barang() {
         return harga_barang;
     }
@@ -99,6 +100,16 @@ public class PenjualanEntity {
     public void setTotal(String total) {
         this.total = total;
     }
+
+    public String getDiskon() {
+        return diskon;
+    }
+
+    public void setDiskon(String diskon) {
+        this.diskon = diskon;
+    }
+
+   
 
    
     

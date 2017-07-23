@@ -8,8 +8,6 @@ package control;
 import entity.Sessiongs;
 import helper.helper;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -20,7 +18,6 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,20 +27,16 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -67,6 +60,10 @@ public class MainController implements Initializable {
     BorderPane borderpane;
     Sessiongs ses = new Sessiongs();
     File image = new File("bg.jpg");
+    @FXML
+    private MenuItem makunuang;
+    @FXML
+    private Menu melaporan;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -79,6 +76,7 @@ public class MainController implements Initializable {
         menuaturdb();
         menuaturinfo();
         menutentang();
+        menuakunkeuangan();
         cleartransaksi();
 
         /*try {
@@ -88,7 +86,6 @@ public class MainController implements Initializable {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }*/
-
     }
 
     private void menubarang() {
@@ -106,7 +103,7 @@ public class MainController implements Initializable {
                     try {
                         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                         Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/Barang.fxml"));
-                        Tab page = new Tab("Item", node);
+                        Tab page = new Tab("Items", node);
                         tabpane.getTabs().add(page);
                     } catch (IOException ex) {
                         Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
@@ -141,7 +138,7 @@ public class MainController implements Initializable {
                 try {
                     //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                     Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/Penjualan.fxml"));
-                    Tab page = new Tab("Sales", node);
+                    Tab page = new Tab("Sale", node);
                     tabpane.getTabs().add(page);
                 } catch (IOException ex) {
                     Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
@@ -214,14 +211,54 @@ public class MainController implements Initializable {
             public void handle(ActionEvent event) {
                 if (ses.getTipe().equals("User")) {
                     Alert alt = new Alert(Alert.AlertType.ERROR);
-                    alt.setHeaderText("Akses tidak diterima");
-                    alt.setContentText("Maaf anda tidak diizinkan untuk mengakses menu ini");
+                    alt.setHeaderText("Access Denied");
+                    alt.setContentText("Access Denied");
                     alt.showAndWait();
                 } else {
                     try {
                         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                         Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/Akun.fxml"));
                         Tab page = new Tab("User Account", node);
+                        tabpane.getTabs().add(page);
+                    } catch (IOException ex) {
+                        Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                        Alert al = new Alert(Alert.AlertType.ERROR);
+                        al.setTitle("Error");
+                        al.setHeaderText("Application Error");
+                        VBox v = new VBox();
+                        v.setPadding(new Insets(5, 5, 5, 5));
+                        v.setSpacing(5);
+                        StringWriter sw = new StringWriter();
+                        PrintWriter pw = new PrintWriter(sw);
+                        ex.printStackTrace(pw);
+                        TextArea terror = new TextArea(sw.toString());
+                        terror.setMaxWidth(400);
+                        terror.setMaxHeight(400);
+                        terror.setWrapText(true);
+                        v.getChildren().add(new Label("Error Detail has been read :"));
+                        v.getChildren().add(terror);
+                        al.getDialogPane().setContent(v);
+                        al.showAndWait();
+                    }
+                }
+            }
+        });
+    }
+    
+    private void menuakunkeuangan() {
+        makunuang.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (ses.getTipe().equals("User")) {
+                    Alert alt = new Alert(Alert.AlertType.ERROR);
+                    alt.setHeaderText("Access Denied");
+                    alt.setContentText("Access Denied");
+                    alt.showAndWait();
+                } else {
+                    try {
+                        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/Akun_keuangan.fxml"));
+                        Tab page = new Tab("Payment Account", node);
                         tabpane.getTabs().add(page);
                     } catch (IOException ex) {
                         Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
@@ -254,8 +291,8 @@ public class MainController implements Initializable {
             public void handle(ActionEvent event) {
                 if (ses.getTipe().equals("User")) {
                     Alert alt = new Alert(Alert.AlertType.ERROR);
-                    alt.setHeaderText("Akses tidak diterima");
-                    alt.setContentText("Maaf anda tidak diizinkan untuk mengakses menu ini");
+                    alt.setHeaderText("Access Denied");
+                    alt.setContentText("Access Denied");
                     alt.showAndWait();
                 } else {
                     try {
@@ -345,7 +382,6 @@ public class MainController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(Kasirminimarket.class.getName()).log(Level.SEVERE, null, ex);
                     Alert al = new Alert(Alert.AlertType.ERROR);
-                    al.setTitle("Kesalahan");
                     al.setTitle("Error");
                     al.setHeaderText("Application Error");
                     VBox v = new VBox();
@@ -396,10 +432,10 @@ public class MainController implements Initializable {
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                 Alert dial = new Alert(Alert.AlertType.CONFIRMATION);
                 dial.setTitle("Konfirmasi");
-                dial.setHeaderText("Yakin Ingin Menghapus Semua Data Transaksi??");
-                dial.setContentText("Data yang sudah dihapus tidak akan bisa dikembaliakan");
-                ButtonType ya = new ButtonType("Ya");
-                ButtonType tidak = new ButtonType("Tidak");
+                dial.setHeaderText("Are you sure to delete all transaction data");
+                dial.setContentText("you can't undo this process");
+                ButtonType ya = new ButtonType("Yes");
+                ButtonType tidak = new ButtonType("No");
                 dial.getButtonTypes().setAll(ya, tidak);
                 Optional<ButtonType> opt = dial.showAndWait();
                 if (opt.get() == ya) {
@@ -413,9 +449,9 @@ public class MainController implements Initializable {
                         Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     Alert al = new Alert(Alert.AlertType.INFORMATION);
-                    al.setTitle("Informasi");
-                    al.setHeaderText("Berhasil");
-                    al.setContentText("Data penjualan sudah berhasil dikosongkan");
+                    al.setTitle("Information");
+                    al.setHeaderText("Success");
+                    al.setContentText("All Transaction data has been deleted");
                     al.showAndWait();
                 }
             }

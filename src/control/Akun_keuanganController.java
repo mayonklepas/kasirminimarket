@@ -5,8 +5,7 @@
  */
 package control;
 
-import entity.AkunEntity;
-import entity.BarangEntity;
+import entity.Akun_keuanganEntity;
 import helper.helper;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -50,23 +49,25 @@ import javafx.scene.layout.VBox;
  *
  * @author Minami
  */
-public class AkunController implements Initializable {
+public class Akun_keuanganController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
     @FXML
-    TableView<AkunEntity> tabel;
+    TableView<Akun_keuanganEntity> tabel;
     @FXML
-    TableColumn<AkunEntity, String> id, nama, username, password, tipe;
+    TableColumn<Akun_keuanganEntity, String> kode, nama, keterangan;
     @FXML
     Button bsimpan, bclear, brefresh, bnext, bprev, bberanda, bhapus;
     @FXML
-    TextField tnama, tusername, tpassword, tlimit, tcari;
-    @FXML
-    ComboBox ctipe;
+    TextField tnama, tlimit, tcari;
     @FXML
     Label ldata;
+    @FXML
+    private TextArea tketerangan;
+    @FXML
+    private TextField tkode;
 
     @FXML
     private void keypress(KeyEvent e) {
@@ -84,8 +85,8 @@ public class AkunController implements Initializable {
     helper h = new helper();
     ObservableList ols = FXCollections.observableArrayList();
     int limit, offset;
-    String kode;
     NumberFormat nf = NumberFormat.getInstance();
+    String ids;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -99,7 +100,6 @@ public class AkunController implements Initializable {
         hapus();
         clearfield();
         makeup();
-        loadtipe();
     }
 
     private void makeup() {
@@ -120,12 +120,6 @@ public class AkunController implements Initializable {
         bberanda.setTooltip(new Tooltip("Home"));
     }
 
-    private void loadtipe() {
-        ObservableList ols = FXCollections.observableArrayList("User", "Admin");
-        ctipe.setItems(ols);
-        //ctipe.getEditor().
-    }
-
     private void loaddata() {
         try {
             tabel.getItems().clear();
@@ -133,14 +127,12 @@ public class AkunController implements Initializable {
             offset = 0;
             limit = Integer.parseInt(tlimit.getText());
             h.connect();
-            ResultSet res = h.read("SELECT id_akun,nama_akun,username,password,tipe"
-                    + " FROM akun LIMIT " + limit + " OFFSET " + offset + " ").executeQuery();
+            ResultSet res = h.read("SELECT kode_akun_keuangan,nama_akun_keuangan,keterangan"
+                    + " FROM akun_keuangan LIMIT " + limit + " OFFSET " + offset + " ").executeQuery();
             while (res.next()) {
-                ols.add(new AkunEntity(res.getString("id_akun"),
-                        res.getString("nama_akun"),
-                        res.getString("username"),
-                        res.getString("password"),
-                        res.getString("tipe")));
+                ols.add(new Akun_keuanganEntity(res.getString("kode_akun_keuangan"),
+                        res.getString("nama_akun_keuangan"),
+                        res.getString("keterangan")));
             }
 
             ResultSet resjumahdata = h.read("SELECT COUNT(id_akun) AS total FROM akun").executeQuery();
@@ -148,14 +140,12 @@ public class AkunController implements Initializable {
             ldata.setText(ols.size() + "/" + resjumahdata.getString("total") + " Data");
 
             h.disconnect();
-            id.setCellValueFactory(new PropertyValueFactory<>("id"));
-            nama.setCellValueFactory(new PropertyValueFactory<>("nama"));
-            username.setCellValueFactory(new PropertyValueFactory<>("username"));
-            password.setCellValueFactory(new PropertyValueFactory<>("password"));
-            tipe.setCellValueFactory(new PropertyValueFactory<>("tipe"));
+            kode.setCellValueFactory(new PropertyValueFactory<>("kode_akun_keuangan"));
+            nama.setCellValueFactory(new PropertyValueFactory<>("nama_akun_keuangan"));
+            keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
             tabel.setItems(ols);
         } catch (SQLException ex) {
-            Logger.getLogger(AkunController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Akun_keuanganController.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
             al.setTitle("Error");
             al.setHeaderText("Application Error");
@@ -187,14 +177,12 @@ public class AkunController implements Initializable {
                     offset = offset + limit;
                     limit = Integer.parseInt(tlimit.getText());
                     h.connect();
-                    ResultSet res = h.read("SELECT id_akun,nama_akun,username,password,tipe"
-                            + " FROM akun LIMIT " + limit + " OFFSET " + offset + " ").executeQuery();
+                    ResultSet res = h.read("SELECT kode_akun_keuangan,nama_akun_keuangan,keterangan"
+                            + " FROM akun_keuangan LIMIT " + limit + " OFFSET " + offset + " ").executeQuery();
                     while (res.next()) {
-                        ols.add(new AkunEntity(res.getString("id_akun"),
-                                res.getString("nama_akun"),
-                                res.getString("username"),
-                                res.getString("password"),
-                                res.getString("tipe")));
+                        ols.add(new Akun_keuanganEntity(res.getString("kode_akun_keuangan"),
+                                res.getString("nama_akun_keuangan"),
+                                res.getString("keterangan")));
                     }
 
                     ResultSet resjumahdata = h.read("SELECT COUNT(id_akun) AS total FROM akun").executeQuery();
@@ -202,14 +190,12 @@ public class AkunController implements Initializable {
                     ldata.setText(ols.size() + "/" + resjumahdata.getString("total") + " Data");
 
                     h.disconnect();
-                    id.setCellValueFactory(new PropertyValueFactory<>("id"));
-                    nama.setCellValueFactory(new PropertyValueFactory<>("nama"));
-                    username.setCellValueFactory(new PropertyValueFactory<>("username"));
-                    password.setCellValueFactory(new PropertyValueFactory<>("password"));
-                    tipe.setCellValueFactory(new PropertyValueFactory<>("tipe"));
+                    kode.setCellValueFactory(new PropertyValueFactory<>("kode_akun_keuangan"));
+                    nama.setCellValueFactory(new PropertyValueFactory<>("nama_akun_keuangan"));
+                    keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
                     tabel.setItems(ols);
                 } catch (SQLException ex) {
-                    Logger.getLogger(AkunController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Akun_keuanganController.class.getName()).log(Level.SEVERE, null, ex);
                     Alert al = new Alert(Alert.AlertType.ERROR);
                     al.setTitle("Error");
                     al.setHeaderText("Application Error");
@@ -241,14 +227,12 @@ public class AkunController implements Initializable {
                     offset = offset - limit;
                     limit = Integer.parseInt(tlimit.getText());
                     h.connect();
-                    ResultSet res = h.read("SELECT id_akun,nama_akun,username,password,tipe"
-                            + " FROM akun LIMIT " + limit + " OFFSET " + offset + " ").executeQuery();
+                    ResultSet res = h.read("SELECT kode_akun_keuangan,nama_akun_keuangan,keterangan"
+                            + " FROM akun_keuangan LIMIT " + limit + " OFFSET " + offset + " ").executeQuery();
                     while (res.next()) {
-                        ols.add(new AkunEntity(res.getString("id_akun"),
-                                res.getString("nama_akun"),
-                                res.getString("username"),
-                                res.getString("password"),
-                                res.getString("tipe")));
+                        ols.add(new Akun_keuanganEntity(res.getString("kode_akun_keuangan"),
+                                res.getString("nama_akun_keuangan"),
+                                res.getString("keterangan")));
                     }
 
                     ResultSet resjumahdata = h.read("SELECT COUNT(id_akun) AS total FROM akun").executeQuery();
@@ -256,14 +240,12 @@ public class AkunController implements Initializable {
                     ldata.setText(ols.size() + "/" + resjumahdata.getString("total") + " Data");
 
                     h.disconnect();
-                    id.setCellValueFactory(new PropertyValueFactory<>("id"));
-                    nama.setCellValueFactory(new PropertyValueFactory<>("nama"));
-                    username.setCellValueFactory(new PropertyValueFactory<>("username"));
-                    password.setCellValueFactory(new PropertyValueFactory<>("password"));
-                    tipe.setCellValueFactory(new PropertyValueFactory<>("tipe"));
+                    kode.setCellValueFactory(new PropertyValueFactory<>("kode_akun_keuangan"));
+                    nama.setCellValueFactory(new PropertyValueFactory<>("nama_akun_keuangan"));
+                    keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
                     tabel.setItems(ols);
                 } catch (SQLException ex) {
-                    Logger.getLogger(AkunController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Akun_keuanganController.class.getName()).log(Level.SEVERE, null, ex);
                     Alert al = new Alert(Alert.AlertType.ERROR);
                     al.setTitle("Error");
                     al.setHeaderText("Application Error");
@@ -306,15 +288,13 @@ public class AkunController implements Initializable {
                     o[1] = "%" + tcari.getText() + "%";
                     o[2] = "%" + tcari.getText() + "%";
                     o[3] = "%" + tcari.getText() + "%";
-                    ResultSet res = h.read("SELECT id_akun,nama_akun,username,password,tipe"
-                            + " FROM akun WHERE id_akun ILIKE ? OR nama_akun ILIKE ? OR "
+                    ResultSet res = h.read("SELECT kode_akun_keuangan,nama_akun_keuangan,keterangan"
+                            + " FROM akun_keuangan WHERE id_akun ILIKE ? OR nama_akun ILIKE ? OR "
                             + "username ILIKE ? OR password ILIKE ? OR tipe ILIKE ? ").executeQuery();
                     while (res.next()) {
-                        ols.add(new AkunEntity(res.getString("id_akun"),
-                                res.getString("nama_akun"),
-                                res.getString("username"),
-                                res.getString("password"),
-                                res.getString("tipe")));
+                        ols.add(new Akun_keuanganEntity(res.getString("kode_akun_keuangan"),
+                                res.getString("nama_akun_keuangan"),
+                                res.getString("keterangam")));
                     }
 
                     ResultSet resjumahdata = h.read("SELECT COUNT(id_akun) AS total FROM akun").executeQuery();
@@ -322,14 +302,12 @@ public class AkunController implements Initializable {
                     ldata.setText(ols.size() + "/" + resjumahdata.getString("total") + " Data");
 
                     h.disconnect();
-                    id.setCellValueFactory(new PropertyValueFactory<>("id"));
-                    nama.setCellValueFactory(new PropertyValueFactory<>("nama"));
-                    username.setCellValueFactory(new PropertyValueFactory<>("username"));
-                    password.setCellValueFactory(new PropertyValueFactory<>("password"));
-                    tipe.setCellValueFactory(new PropertyValueFactory<>("tipe"));
+                    kode.setCellValueFactory(new PropertyValueFactory<>("kode_akun_keuangan"));
+                    nama.setCellValueFactory(new PropertyValueFactory<>("nama_akun_keuangan"));
+                    keterangan.setCellValueFactory(new PropertyValueFactory<>("keterangan"));
                     tabel.setItems(ols);
                 } catch (SQLException ex) {
-                    Logger.getLogger(AkunController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Akun_keuanganController.class.getName()).log(Level.SEVERE, null, ex);
                     Alert al = new Alert(Alert.AlertType.ERROR);
                     al.setTitle("Error");
                     al.setHeaderText("Application Error");
@@ -370,7 +348,7 @@ public class AkunController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                rawclear();
+                loaddata();
                 bprev.setDisable(false);
                 bnext.setDisable(false);
                 tcari.clear();
@@ -392,11 +370,10 @@ public class AkunController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 int i = newValue.intValue();
-                kode = String.valueOf(id.getCellData(i));
+                ids = String.valueOf(kode.getCellData(i));
                 tnama.setText(String.valueOf(nama.getCellData(i)));
-                tusername.setText(String.valueOf(username.getCellData(i)));
-                tpassword.setText(String.valueOf(password.getCellData(i)));
-                ctipe.getEditor().setText(String.valueOf(tipe.getCellData(i)));
+                tkode.setText(String.valueOf(kode.getCellData(i)));
+                tketerangan.setText(String.valueOf(keterangan.getCellData(i)));
                 bhapus.disableProperty().set(Boolean.FALSE);
             }
         });
@@ -407,34 +384,32 @@ public class AkunController implements Initializable {
             //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             h.connect();
             Setnumber no = new Setnumber();
-            if (kode == null || kode.equals("")) {
+            if (ids == null || ids.equals("")) {
                 Object[] o = new Object[5];
-                o[0] = no.nourut("AK", "id_akun", "akun");
+                o[0] = tkode.getText();
                 o[1] = tnama.getText();
-                o[2] = tusername.getText();
-                o[3] = tpassword.getText();
-                o[4] = ctipe.getEditor().getText();
-                h.insert("INSERT INTO akun(id_akun,nama_akun,username,password,tipe) VALUES(?,?,?,?,?)", 5, o);
+                o[2] = tketerangan.getText();
+                h.insert("INSERT INTO akun_keuangan(kode_akun_keuangan,nama_akun_keuangan,keterangan) VALUES(?,?,?)", 3, o);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText("Data has been added");
                 alert.setContentText("Refresh if new data not appeared");
                 alert.showAndWait();
             } else {
                 Object[] o = new Object[5];
-                o[0] = tnama.getText();
-                o[1] = tusername.getText();
-                o[2] = tpassword.getText();
-                o[3] = ctipe.getEditor().getText();
-                o[4] = kode;
+                o[0] = tkode.getText();
+                o[1] = tnama.getText();
+                o[2] = tketerangan.getText();
+                o[3] = ids;
                 Alert alertcon = new Alert(Alert.AlertType.CONFIRMATION);
                 alertcon.setHeaderText("Are you sure to update this data?");
                 alertcon.setContentText("You can't undo this process");
                 ButtonType ya = new ButtonType("Yes");
-                ButtonType tidak = new ButtonType("NO");
+                ButtonType tidak = new ButtonType("nO");
                 alertcon.getButtonTypes().setAll(ya, tidak);
                 Optional<ButtonType> opt = alertcon.showAndWait();
                 if (opt.get() == ya) {
-                    h.update("UPDATE akun SET nama_akun=?,username=?,password=?,tipe=? WHERE id_akun=? ", 5, o);
+                    h.update("UPDATE akun_keuangan SET kode_akun_keuangan=?,"
+                            + "nama_akun_keuangan=?,keterangan=? WHERE kode_akun_keuangan=? ", 4, o);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText("Data has been update");
                     alert.setContentText("Refresh if data not changed");
@@ -445,7 +420,7 @@ public class AkunController implements Initializable {
             h.disconnect();
             loaddata();
         } catch (SQLException ex) {
-            Logger.getLogger(AkunController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Akun_keuanganController.class.getName()).log(Level.SEVERE, null, ex);
             Alert al = new Alert(Alert.AlertType.ERROR);
             al.setTitle("Error");
             al.setHeaderText("Application Error");
@@ -487,15 +462,15 @@ public class AkunController implements Initializable {
         Optional<ButtonType> opt = alertcon.showAndWait();
         if (opt.get() == ya) {
             try {
-                ObservableList<AkunEntity> ols = tabel.getSelectionModel().getSelectedItems();
+                ObservableList<Akun_keuanganEntity> ols = tabel.getSelectionModel().getSelectedItems();
                 h.connect();
                 for (int i = 0; i < ols.size(); i++) {
-                    h.delete("DELETE FROM akun WHERE id_akun=?", id.getCellData(ols.get(i)));
+                    h.delete("DELETE FROM akun WHERE id_akun=?", kode.getCellData(ols.get(i)));
                 }
                 h.disconnect();
                 loaddata();
             } catch (SQLException ex) {
-                Logger.getLogger(AkunController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Akun_keuanganController.class.getName()).log(Level.SEVERE, null, ex);
                 Alert al = new Alert(Alert.AlertType.ERROR);
                 al.setTitle("Error");
                 al.setHeaderText("Application Error");
@@ -530,12 +505,12 @@ public class AkunController implements Initializable {
 
     private void rawclear() {
         loaddata();
-        kode = null;
+        ids = null;
         tnama.clear();
-        tusername.clear();
-        ctipe.getEditor().clear();
-        tpassword.clear();
+        tkode.clear();
+        tketerangan.clear();
         bhapus.disableProperty().set(Boolean.TRUE);
+
     }
 
     private void clearfield() {

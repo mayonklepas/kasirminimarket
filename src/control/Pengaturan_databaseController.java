@@ -56,7 +56,7 @@ public class Pengaturan_databaseController implements Initializable {
                  Alert al=new Alert(Alert.AlertType.INFORMATION);
                  al.setTitle("Information");
                  al.setHeaderText("Setting has been saved");
-                 al.setContentText("Restart Application to apply setting");
+                 al.setContentText("Restart Application to apply new setting");
                  al.showAndWait();
             }
            

@@ -22,6 +22,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -129,6 +131,7 @@ public class PembelianController implements Initializable {
         bprev.setTooltip(new Tooltip("Previous Data"));
         bberanda.setGraphic(new ImageView(getClass().getResource("/image/go-home-4.png").toString()));
         bberanda.setTooltip(new Tooltip("Home"));
+        bcek.setVisible(false);
     }
 
     private void loadsatuan() {
@@ -423,7 +426,7 @@ public class PembelianController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                loaddata();
+                rawclear();
                 bprev.setDisable(false);
                 bnext.setDisable(false);
                 tcari.clear();
@@ -445,11 +448,10 @@ public class PembelianController implements Initializable {
     }
 
     private void select() {
-        tabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        tabel.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
-            public void handle(MouseEvent event) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                int i = tabel.getSelectionModel().getSelectedIndex();
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                int i = newValue.intValue();
                 kode = String.valueOf(id_pembelian.getCellData(i));
                 dtanggal.setValue(LocalDate.parse(tanggal.getCellData(i)));
                 tkodebarang.setText(String.valueOf(kode_barang.getCellData(i)));
@@ -512,8 +514,8 @@ public class PembelianController implements Initializable {
                 }
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText("Success");
-                alert.setContentText("Refresh if data not appeared");
+                alert.setHeaderText("Data has been added");
+                alert.setContentText("Refresh if new data not appeared");
                 alert.showAndWait();
                 tkodebarang.requestFocus();
             } else {
@@ -536,8 +538,8 @@ public class PembelianController implements Initializable {
                     h.update("UPDATE pembelian SET tanggal_pembelian=?::date,id_barang=?,nama_barang=?,satuan_barang=?,"
                             + "harga_beli=?,jumlah=? WHERE id_pembelian=? ", 7, o);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setHeaderText("Success");
-                    alert.setContentText("Refresh if data not appeared");
+                    alert.setHeaderText("Data has been update");
+                    alert.setContentText("Refresh if data not changed");
                     alert.showAndWait();
                 }
 
@@ -629,6 +631,8 @@ public class PembelianController implements Initializable {
     }
 
     private void rawclear() {
+        thargajualgrosir.setDisable(false);
+        loaddata();
         kode = null;
         dtanggal.setValue(LocalDate.now());
         tkodebarang.clear();
@@ -640,7 +644,6 @@ public class PembelianController implements Initializable {
         thargajualgrosir.clear();
         bhapus.disableProperty().set(Boolean.TRUE);
         thargajualecer.setDisable(false);
-        thargajualgrosir.setDisable(false);
     }
 
     private void clearfield() {

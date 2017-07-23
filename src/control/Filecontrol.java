@@ -32,6 +32,7 @@ public class Filecontrol {
     File modemsetting = new File("modemsetting");
     File info = new File("info");
     File satuan = new File("satuan");
+    File diskon = new File("diskon");
 
     public Filecontrol() {
         if (!dbsetting.exists()) {
@@ -112,6 +113,31 @@ public class Filecontrol {
         if (!satuan.exists()) {
             try {
                 satuan.createNewFile();
+            } catch (IOException ex) {
+                Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
+                Alert al = new Alert(Alert.AlertType.ERROR);
+                al.setTitle("Error");
+                al.setHeaderText("Application Error");
+                VBox v = new VBox();
+                v.setPadding(new Insets(5, 5, 5, 5));
+                v.setSpacing(5);
+                StringWriter sw = new StringWriter();
+                PrintWriter pw = new PrintWriter(sw);
+                ex.printStackTrace(pw);
+                TextArea terror = new TextArea(sw.toString());
+                terror.setMaxWidth(400);
+                terror.setMaxHeight(400);
+                terror.setWrapText(true);
+                v.getChildren().add(new Label("Error Detail has been read :"));
+                v.getChildren().add(terror);
+                al.getDialogPane().setContent(v);
+                al.showAndWait();
+            }
+        }
+        
+        if (!diskon.exists()) {
+            try {
+                diskon.createNewFile();
             } catch (IOException ex) {
                 Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
                 Alert al = new Alert(Alert.AlertType.ERROR);
@@ -1107,6 +1133,20 @@ public class Filecontrol {
 
         return dataline;
     }
+    
+    public String diskon(){
+        String data="";
+        String line="";
+        try {
+            BufferedReader br=new BufferedReader(new FileReader(diskon));
+            while ((line=br.readLine())!=null) {
+                data=line;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Filecontrol.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
+    }
 
     //simpan
     public void simpanpengaturandb(String host, String port, String user, String password, String db) {
@@ -1220,5 +1260,6 @@ public class Filecontrol {
             al.showAndWait();
         }
     }
+    
 
 }

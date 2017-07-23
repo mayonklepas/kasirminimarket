@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" onKeyPressed="#keypress" prefHeight="510.0" prefWidth="1536.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.PenjualanController">
+<AnchorPane id="AnchorPane" onKeyPressed="#keypress" prefHeight="613.0" prefWidth="1536.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.PenjualanController">
     <children>
         <ToolBar layoutX="279.0" layoutY="-2.0" prefHeight="40.0" prefWidth="1060.0" AnchorPane.leftAnchor="279.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
             <items>
@@ -28,6 +28,7 @@
                 <TableColumn fx:id="kode_barang" prefWidth="159.0" text="Item Code" />
                 <TableColumn fx:id="nama_barang" prefWidth="217.0" text="Item Name" />
             <TableColumn fx:id="jenis_penjualan" prefWidth="122.0" text="Types Of Sale" />
+            <TableColumn fx:id="diskon" prefWidth="75.0" text="Discount" />
                 <TableColumn fx:id="harga_barang" prefWidth="104.0" text="Price" />
                 <TableColumn fx:id="satuan" prefWidth="73.0" text="Unit" />
                 <TableColumn fx:id="jumlah" prefWidth="79.0" text="Amount" />
@@ -41,6 +42,12 @@
          <content>
             <VBox prefHeight="487.0" prefWidth="240.0" spacing="10.0">
                <children>
+                  <Label text="Transaction Discount">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="calldiskon" editable="true" prefHeight="45.0" prefWidth="250.0" promptText="Transaction DIscount" />
                   <Label text="Grand Total">
                      <font>
                         <Font name="System Bold" size="19.0" />
@@ -67,7 +74,7 @@
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font></TextField>
-                  <Button fx:id="bprint" mnemonicParsing="false" prefHeight="30.0" prefWidth="294.0" style="-fx-font-size: 14;" text="Print (Enter)" />
+                  <FlowPane fx:id="fpakunuang" hgap="5.0" prefHeight="200.0" prefWidth="200.0" vgap="5.0" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

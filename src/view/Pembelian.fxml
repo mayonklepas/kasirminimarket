@@ -51,7 +51,7 @@
             <items>
                 <Button fx:id="bhapus" style="-fx-font-size: 14;" text="_Delete CTRL+D" />
                 <Button fx:id="brefresh" mnemonicParsing="true" style="-fx-font-size: 14;" text="_Refresh CTRL+R" />
-                <TextField fx:id="tcari" prefHeight="22.0" prefWidth="346.0" promptText="Ketik dan Enter untuk mencari" style="-fx-font-size: 14;" />
+                <TextField fx:id="tcari" prefHeight="22.0" prefWidth="346.0" promptText="Type and Enter to Search Data" style="-fx-font-size: 14;" />
             </items>
         </ToolBar>
         <ToolBar layoutX="273.0" layoutY="360.0" prefHeight="40.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0">
