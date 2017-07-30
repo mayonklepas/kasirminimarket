@@ -11,6 +11,7 @@ import java.io.StringWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +28,7 @@ import javafx.scene.layout.VBox;
 public class helper {
     Filecontrol fc=new Filecontrol();
     public String host = "jdbc:postgresql://"+fc.host()+":"+fc.port()+"/"+fc.database()+"";
+    public String hostcheck = "jdbc:postgresql://"+fc.host()+":"+fc.port()+"/";
     public String user = fc.username();
     public String password = fc.password();
     public Connection conn;
@@ -112,6 +114,44 @@ public class helper {
     public void exec(String sql) throws SQLException {
         PreparedStatement pre = conn.prepareStatement(sql);
         pre.executeUpdate();
+    }
+    
+    
+    public void execbat(StringBuilder sb) throws SQLException {
+        PreparedStatement pre = conn.prepareStatement(sb.toString());
+        pre.executeUpdate();
+    }
+    
+    public int checkconnection(){
+        int countdb=0;
+        try {
+            Connection con = DriverManager.getConnection(hostcheck, user, password);
+            PreparedStatement pre=con.prepareStatement("SELECT COUNT(datname) AS jumlah FROM pg_catalog.pg_database WHERE lower(datname) = lower('kasirminimarketdb');");
+            ResultSet res=pre.executeQuery();
+            res.next();
+            countdb=res.getInt("jumlah");
+        } catch (SQLException ex) {
+            Logger.getLogger(helper.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+        return countdb;
+    }
+    
+    public void createdb(){
+        try {
+            Connection con = DriverManager.getConnection(hostcheck, user, password);
+            PreparedStatement pre=con.prepareStatement("CREATE DATABASE kasirminimarketdb;");
+            pre.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(helper.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+    }
+    
+    public String digitinputreplacer(String kata){
+        String res1=kata.replace(".", "");
+        String res2=res1.replace(",", ".");
+        return res2;
     }
 
 }

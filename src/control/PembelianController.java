@@ -477,7 +477,7 @@ public class PembelianController implements Initializable {
                 o[2] = tkodebarang.getText();
                 o[3] = tnamabarang.getText();
                 o[4] = csatuan.getEditor().getText();
-                o[5] = Double.parseDouble(thargabeli.getText().replaceAll("[.,]", ""));
+                o[5] = Double.parseDouble(h.digitinputreplacer(thargabeli.getText()));
                 o[6] = Integer.parseInt(tjumlah.getText());
                 h.insert("INSERT INTO pembelian(id_pembelian,tanggal_pembelian,id_barang,nama_barang,satuan_barang,"
                         + "harga_beli,jumlah) VALUES(?,?::date,?,?,?,?,?)", 7, o);
@@ -487,7 +487,7 @@ public class PembelianController implements Initializable {
                 ResultSet res = h.readdetail("SELECT COUNT(id_barang)as jumlah FROM barang WHERE id_barang = ?", 1, oo).executeQuery();
                 while (res.next()) {
                     if (res.getInt("jumlah") == 1) {
-                        Object[] ooo = new Object[2];
+                        Object[] ooo = new Object[2]; 
                         ooo[0] = Integer.parseInt(tjumlah.getText());
                         ooo[1] = tkodebarang.getText();
                         h.update("UPDATE barang SET jumlah_barang=jumlah_barang+? WHERE id_barang=? ", 2, ooo);
@@ -502,9 +502,9 @@ public class PembelianController implements Initializable {
                         oooo[0] = tkodebarang.getText();
                         oooo[1] = tnamabarang.getText();
                         oooo[2] = csatuan.getEditor().getText();
-                        oooo[3] = Double.parseDouble(thargabeli.getText().replaceAll("[.,]", ""));
-                        oooo[4] = Double.parseDouble(thargajualecer.getText().replaceAll("[.,]", ""));
-                        oooo[5] = Double.parseDouble(thargajualgrosir.getText().replaceAll("[.,]", ""));
+                        oooo[3] = Double.parseDouble(h.digitinputreplacer(thargabeli.getText()));
+                        oooo[4] = Double.parseDouble(h.digitinputreplacer(thargajualecer.getText()));
+                        oooo[5] = Double.parseDouble(h.digitinputreplacer(thargajualgrosir.getText()));
                         oooo[6] = Integer.parseInt(tjumlah.getText());
                         h.insert("INSERT INTO barang(id_barang,nama_barang,satuan_barang,"
                                 + "harga_beli_barang,harga_jual_ecer_barang,"
@@ -524,7 +524,7 @@ public class PembelianController implements Initializable {
                 o[1] = tkodebarang.getText();
                 o[2] = tnamabarang.getText();
                 o[3] = csatuan.getEditor().getText();
-                o[4] = Double.parseDouble(thargabeli.getText().replaceAll("[.,]", ""));
+                o[4] = Double.parseDouble(h.digitinputreplacer(thargabeli.getText()));
                 o[5] = Integer.parseInt(tjumlah.getText());
                 o[6] = kode;
                 Alert alertcon = new Alert(Alert.AlertType.CONFIRMATION);
@@ -675,7 +675,7 @@ public class PembelianController implements Initializable {
                             thargabeli.setText(res.getString("harga_beli_barang"));
                             thargajualecer.setText(res.getString("harga_jual_ecer_barang"));
                             thargajualgrosir.setText(res.getString("harga_jual_grosir_barang"));
-                            tjumlah.setText(res.getString("jumlah_barang"));
+                            //tjumlah.setText(res.getString("jumlah_barang"));
                         }
                     }
 

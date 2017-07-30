@@ -47,7 +47,7 @@
                         <Font name="System Bold" size="19.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="calldiskon" editable="true" prefHeight="45.0" prefWidth="250.0" promptText="Transaction DIscount" />
+                  <ComboBox fx:id="calldiskon" editable="true" prefHeight="45.0" prefWidth="250.0" promptText="Transaction Discount" />
                   <Label text="Grand Total">
                      <font>
                         <Font name="System Bold" size="19.0" />

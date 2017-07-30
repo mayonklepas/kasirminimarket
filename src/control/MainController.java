@@ -8,6 +8,8 @@ package control;
 import entity.Sessiongs;
 import helper.helper;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -34,6 +36,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -79,13 +82,14 @@ public class MainController implements Initializable {
         menuakunkeuangan();
         cleartransaksi();
 
-        /*try {
+        try {
             ibg.setImage(new Image(new FileInputStream(image)));
             ibg.fitWidthProperty().bind(borderpane.widthProperty());
             ibg.fitHeightProperty().bind(borderpane.heightProperty());
+            borderpane.setCenter(ibg);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
     }
 
     private void menubarang() {

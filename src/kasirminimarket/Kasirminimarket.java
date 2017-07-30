@@ -7,9 +7,13 @@ package kasirminimarket;
 
 import entity.Sessiongs;
 import helper.helper;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -46,9 +50,34 @@ import org.apache.log4j.spi.Configurator;
  * @author Minami
  */
 public class Kasirminimarket extends Application {
+    
+    helper h=new helper();
+    StringBuilder data=new StringBuilder();
 
     @Override
     public void start(Stage stage) throws Exception {
+        
+        if (h.checkconnection() == 0) {
+                h.createdb();
+                System.out.println("Database Telah Dibuat");
+                try {
+                    File datasql = new File("kasirminimarketdb.txt");
+                    String line = "";
+                    BufferedReader br = new BufferedReader(new FileReader(datasql));
+                    while ((line = br.readLine()) != null) {
+                        data.append(line);
+                    }
+                    h.connect();
+                    h.exec(data.toString());
+                    h.disconnect();
+                    System.out.println("Table Telah Dibuat");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        
+        
         Parent root = FXMLLoader.load(getClass().getResource("/view/Main.fxml"));
 
         Scene scene = new Scene(root);

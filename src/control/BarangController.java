@@ -454,9 +454,9 @@ public class BarangController implements Initializable {
                 o[0] = tkodebarang.getText();
                 o[1] = tnamabarang.getText();
                 o[2] = csatuan.getEditor().getText();
-                o[3] = Double.parseDouble(thargabeli.getText().replaceAll("[.,]", ""));
-                o[4] = Double.parseDouble(thargajualecer.getText().replaceAll("[.,]", ""));
-                o[5] = Double.parseDouble(thargajualgrosir.getText().replaceAll("[.,]", ""));
+                o[3] = Double.parseDouble(h.digitinputreplacer(thargabeli.getText()));
+                o[4] = Double.parseDouble(h.digitinputreplacer(thargajualecer.getText()));
+                o[5] = Double.parseDouble(h.digitinputreplacer(thargajualgrosir.getText()));
                 o[6] = Integer.parseInt(tjumlah.getText());
                 h.insert("INSERT INTO barang(id_barang,nama_barang,satuan_barang,"
                         + "harga_beli_barang,harga_jual_ecer_barang,harga_jual_grosir_barang,jumlah_barang) "
@@ -471,9 +471,9 @@ public class BarangController implements Initializable {
                 o[0] = tkodebarang.getText();
                 o[1] = tnamabarang.getText();
                 o[2] = csatuan.getEditor().getText();
-                o[3] = Double.parseDouble(thargabeli.getText().replaceAll("[.,]", ""));
-                o[4] = Double.parseDouble(thargajualecer.getText().replaceAll("[.,]", ""));
-                o[5] = Double.parseDouble(thargajualgrosir.getText().replaceAll("[.,]", ""));
+                o[3] = Double.parseDouble(h.digitinputreplacer(thargabeli.getText()));
+                o[4] = Double.parseDouble(h.digitinputreplacer(thargajualecer.getText()));
+                o[5] = Double.parseDouble(h.digitinputreplacer(thargajualgrosir.getText()));
                 o[6] = Integer.parseInt(tjumlah.getText());
                 o[7] = kode;
                 Alert alertcon = new Alert(Alert.AlertType.CONFIRMATION);
@@ -610,7 +610,7 @@ public class BarangController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                int hargabeli = Integer.parseInt(thargabeli.getText().replaceAll("[.,]", ""));
+                int hargabeli = Integer.parseInt(h.digitinputreplacer(thargabeli.getText()));
                 int jumlahbarang = Integer.parseInt(tjumlah.getText());
                 thargabeli.setText(String.valueOf(hargabeli / jumlahbarang));
             }

@@ -148,7 +148,6 @@ public class PenjualanController implements Initializable {
 
     }
 
-    
     private void makeup() {
         bhapus.disableProperty().setValue(Boolean.TRUE);
         bsimpan.setGraphic(new ImageView(getClass().getResource("/image/document-save-5.png").toString()));
@@ -208,7 +207,7 @@ public class PenjualanController implements Initializable {
             } else {
                 disc = Double.parseDouble(calldiskon.getEditor().getText());
             }
-            total_belanja = total_belanja - (disc/100*(total_belanja));
+            total_belanja = total_belanja - (disc / 100 * (total_belanja));
             ltotal.setText("Rp. " + nf.format(total_belanja));
 
         } catch (SQLException ex) {
@@ -232,7 +231,7 @@ public class PenjualanController implements Initializable {
             al.showAndWait();
         }
     }
-    
+
     public void loadalldiscount() {
         ObservableList ols = FXCollections.observableArrayList();
         String isicombo = fc.diskon();
@@ -248,7 +247,6 @@ public class PenjualanController implements Initializable {
             }
         });
     }
-
 
     private void rawsimpan() {
         try {
@@ -398,7 +396,7 @@ public class PenjualanController implements Initializable {
                     if (tbayar.getText().isEmpty()) {
                         jumlahuang = 0;
                     } else {
-                        jumlahuang = Double.parseDouble(tbayar.getText().replace(".", ""));
+                        jumlahuang = Double.parseDouble(h.digitinputreplacer(tbayar.getText()));
                     }
                     Double disc = 0.0;
                     if (calldiskon.getEditor().getText().isEmpty()) {
@@ -630,11 +628,19 @@ public class PenjualanController implements Initializable {
                 try {
                     //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                     double total_uang = 0;
+                    double total_diskon = 0;
+                    if (calldiskon.getEditor().getText().equals("")) {
+                        total_diskon = 0;
+                    } else {
+                        total_diskon = Double.parseDouble(calldiskon.getEditor().getText().replaceAll("[.]", ""));
+                    }
+
                     if (tbayar.getText().isEmpty()) {
                         total_uang = 0;
                     } else {
-                        total_uang = Double.parseDouble(tbayar.getText().replaceAll("[.,]", ""));
+                        total_uang = Double.parseDouble(h.digitinputreplacer(tbayar.getText()));
                     }
+
                     if (total_belanja > total_uang) {
                         Alert al = new Alert(Alert.AlertType.INFORMATION);
                         al.setTitle("Information");
@@ -651,16 +657,23 @@ public class PenjualanController implements Initializable {
                         has.put("alamat", fc.alamat());
                         has.put("nohp", fc.nohp());
                         has.put("kasir", ses.getNama());
-                        has.put("jumlahuang", Double.parseDouble(tbayar.getText().replace(".", "")));
+                        has.put("jumlahuang", total_uang);
                         has.put("kembalian", kembalian);
                         has.put("kode_transaksi", kode_transaksi);
-                        has.put("tdiskon", Double.parseDouble(calldiskon.getEditor().getText()));
+                        has.put("tdiskon", total_diskon);
                         JasperReport jr = (JasperReport) JRLoader.loadObject(new File("Laporan/Struk2inc.jasper"));
                         JasperPrint jp = JasperFillManager.fillReport(jr, has, h.conn);
                         JasperPrintManager.printReport(jp, false);
+                        ResultSet res = h.read("SELECT jumlah,id_barang FROM penjualan WHERE status=0").executeQuery();
+                        while (res.next()) {
+                            Object[] ooo = new Object[2];
+                            ooo[0] = res.getInt("jumlah");
+                            ooo[1] = res.getString("id_barang");
+                            h.update("UPDATE barang SET jumlah_barang=jumlah_barang-? WHERE id_barang=? ", 2, ooo);
+                        }
                         h.exec("UPDATE penjualan SET kode_transaksi='" + kode_transaksi + "',"
                                 + "kode_akun_keuangan='" + datakeuangan.get(y).kode_akun_keuangan + "',"
-                                + "diskon_transaksi=" + Double.parseDouble(calldiskon.getEditor().getText()) + " "
+                                + "diskon_transaksi=" + total_diskon + " "
                                 + "WHERE status=0; UPDATE penjualan SET status=1 WHERE status=0");
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setHeaderText("Transaction Success");

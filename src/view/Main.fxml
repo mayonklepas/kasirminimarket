@@ -56,8 +56,7 @@
                                     <Rectangle2D />
                                  </viewport>
                               </ImageView>
-                           </center>
-                        </BorderPane>
+                           </center></BorderPane>
                      </children></AnchorPane>
                     </content>
                 </Tab>

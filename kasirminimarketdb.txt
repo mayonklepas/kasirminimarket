@@ -1,0 +1,119 @@
+CREATE TABLE akun (
+    id_akun character varying(15) NOT NULL,
+    nama_akun character varying(50),
+    username character varying(15),
+    password character varying(100),
+    tipe character varying(10)
+);
+
+
+ALTER TABLE akun OWNER TO postgres;
+
+CREATE TABLE akun_keuangan (
+    kode_akun_keuangan character varying(15),
+    nama_akun_keuangan character varying(50),
+    keterangan text
+);
+
+
+ALTER TABLE akun_keuangan OWNER TO postgres;
+
+CREATE TABLE barang (
+    id_barang character varying(30) NOT NULL,
+    nama_barang character varying(100),
+    satuan_barang character varying(20),
+    jumlah_barang integer,
+    harga_beli_barang double precision,
+    harga_jual_ecer_barang double precision,
+    harga_jual_grosir_barang double precision
+);
+
+
+ALTER TABLE barang OWNER TO postgres;
+
+CREATE TABLE pembelian (
+    id_pembelian character varying(15) NOT NULL,
+    tanggal_pembelian date,
+    id_barang character varying(20),
+    nama_barang character varying,
+    jumlah integer,
+    harga_beli double precision,
+    satuan_barang character varying(20),
+    kode_akun_keuangan character varying(15)
+);
+
+
+ALTER TABLE pembelian OWNER TO postgres;
+
+CREATE TABLE penjualan (
+    id_penjualan character varying(15) NOT NULL,
+    tanggal_penjualan timestamp without time zone DEFAULT now(),
+    id_barang character varying(20),
+    jumlah integer,
+    status integer DEFAULT 0,
+    jenis_penjualan character varying(20),
+    harga_jual double precision,
+    harga_beli double precision,
+    id_kasir character varying(15),
+    kode_transaksi character varying(15),
+    kode_akun_keuangan character varying(15),
+    diskon double precision,
+    diskon_transaksi double precision
+);
+
+
+ALTER TABLE penjualan OWNER TO postgres;
+
+INSERT INTO akun (id_akun, nama_akun, username, password, tipe) VALUES ('AK160504-001', 'Mulyadi', 'minami', 'bk201', 'admin');
+INSERT INTO akun (id_akun, nama_akun, username, password, tipe) VALUES ('AK160504-002', 'Jack', 'jack', 'bk201', 'user');
+INSERT INTO akun (id_akun, nama_akun, username, password, tipe) VALUES ('AK160504-003', 'admin', 'admin', 'admin', 'Admin');
+INSERT INTO akun (id_akun, nama_akun, username, password, tipe) VALUES ('AK160504-004', 'User', 'User', 'User', 'User');
+
+
+INSERT INTO akun_keuangan (kode_akun_keuangan, nama_akun_keuangan, keterangan) VALUES ('001', 'CASH', 'desc');
+INSERT INTO akun_keuangan (kode_akun_keuangan, nama_akun_keuangan, keterangan) VALUES ('002', 'MDR', 'Account Mandiri Bank');
+INSERT INTO akun_keuangan (kode_akun_keuangan, nama_akun_keuangan, keterangan) VALUES ('003', 'BNI', 'Account BNI Bank');
+INSERT INTO akun_keuangan (kode_akun_keuangan, nama_akun_keuangan, keterangan) VALUES ('004', 'BCA', 'Account BCA Bank');
+INSERT INTO akun_keuangan (kode_akun_keuangan, nama_akun_keuangan, keterangan) VALUES ('004', 'DNM', 'Account danamon Bank');
+
+
+INSERT INTO barang (id_barang, nama_barang, satuan_barang, jumlah_barang, harga_beli_barang, harga_jual_ecer_barang, harga_jual_grosir_barang) VALUES ('564753', 'Sarimi 1 DUS', 'Pack', 4, 30000, 35000, 32000);
+INSERT INTO barang (id_barang, nama_barang, satuan_barang, jumlah_barang, harga_beli_barang, harga_jual_ecer_barang, harga_jual_grosir_barang) VALUES ('9786020253961', 'Buku Akuntansi dengan VB.Net', 'PCS', 1, 60000, 65000, 64000);
+INSERT INTO barang (id_barang, nama_barang, satuan_barang, jumlah_barang, harga_beli_barang, harga_jual_ecer_barang, harga_jual_grosir_barang) VALUES ('8991389220009', 'Buku Tulis Sidu', 'PCS', 14, 1500, 2000, 1700);
+INSERT INTO barang (id_barang, nama_barang, satuan_barang, jumlah_barang, harga_beli_barang, harga_jual_ecer_barang, harga_jual_grosir_barang) VALUES ('0009', 'dress', 'PCS', 70, 90000, 590000, 0);
+INSERT INTO barang (id_barang, nama_barang, satuan_barang, jumlah_barang, harga_beli_barang, harga_jual_ecer_barang, harga_jual_grosir_barang) VALUES ('097543', 'sarimie', 'PCS', 16, 1000, 2000, 1500);
+INSERT INTO barang (id_barang, nama_barang, satuan_barang, jumlah_barang, harga_beli_barang, harga_jual_ecer_barang, harga_jual_grosir_barang) VALUES ('786', 'headset', 'PCS', 217, 12000, 20000, 15000);
+INSERT INTO barang (id_barang, nama_barang, satuan_barang, jumlah_barang, harga_beli_barang, harga_jual_ecer_barang, harga_jual_grosir_barang) VALUES ('0001', 'v top', 'PCS', 100, 120000, 299000, 0);
+INSERT INTO barang (id_barang, nama_barang, satuan_barang, jumlah_barang, harga_beli_barang, harga_jual_ecer_barang, harga_jual_grosir_barang) VALUES ('8993417215124', 'eskulin cheer the world', 'PCS', 8, 5000, 7000, 6000);
+INSERT INTO barang (id_barang, nama_barang, satuan_barang, jumlah_barang, harga_beli_barang, harga_jual_ecer_barang, harga_jual_grosir_barang) VALUES ('002', 'pampers', 'PCS', 116, 1458, 2000, 1700);
+INSERT INTO barang (id_barang, nama_barang, satuan_barang, jumlah_barang, harga_beli_barang, harga_jual_ecer_barang, harga_jual_grosir_barang) VALUES ('003', 'Sabun', 'PCS', -7, 12000, 130000, 125000);
+INSERT INTO barang (id_barang, nama_barang, satuan_barang, jumlah_barang, harga_beli_barang, harga_jual_ecer_barang, harga_jual_grosir_barang) VALUES ('001', 'Mie Goreng', 'PCS', -24, 1500, 2100, 1800);
+INSERT INTO barang (id_barang, nama_barang, satuan_barang, jumlah_barang, harga_beli_barang, harga_jual_ecer_barang, harga_jual_grosir_barang) VALUES ('8991389228685', 'dadsad', 'PCS', 4, 1200, 1300, 1300);
+
+INSERT INTO pembelian (id_pembelian, tanggal_pembelian, id_barang, nama_barang, jumlah, harga_beli, satuan_barang, kode_akun_keuangan) VALUES ('PB170716-001', '2017-07-01', '001', 'Mie Goreng', 10, 1500, 'PCS', NULL);
+
+
+INSERT INTO penjualan (id_penjualan, tanggal_penjualan, id_barang, jumlah, status, jenis_penjualan, harga_jual, harga_beli, id_kasir, kode_transaksi, kode_akun_keuangan, diskon, diskon_transaksi) VALUES ('PJ170722-004', '2017-07-22 11:08:19.14975', '002', 1, 1, 'Normal', 2000, 1458, 'AK160504-003', '1707222', '001', 0, 5);
+INSERT INTO penjualan (id_penjualan, tanggal_penjualan, id_barang, jumlah, status, jenis_penjualan, harga_jual, harga_beli, id_kasir, kode_transaksi, kode_akun_keuangan, diskon, diskon_transaksi) VALUES ('PJ170722-005', '2017-07-22 11:08:21.076464', '001', 1, 1, 'Normal', 2100, 1500, 'AK160504-003', '1707222', '001', 5, 5);
+INSERT INTO penjualan (id_penjualan, tanggal_penjualan, id_barang, jumlah, status, jenis_penjualan, harga_jual, harga_beli, id_kasir, kode_transaksi, kode_akun_keuangan, diskon, diskon_transaksi) VALUES ('PJ170722-001', '2017-07-22 11:07:52.688483', '001', 1, 1, 'Normal', 2100, 1500, 'AK160504-003', '1707221', '001', 0, 10);
+INSERT INTO penjualan (id_penjualan, tanggal_penjualan, id_barang, jumlah, status, jenis_penjualan, harga_jual, harga_beli, id_kasir, kode_transaksi, kode_akun_keuangan, diskon, diskon_transaksi) VALUES ('PJ170722-002', '2017-07-22 11:07:54.147344', '002', 1, 1, 'Normal', 2000, 1458, 'AK160504-003', '1707221', '001', 0, 10);
+INSERT INTO penjualan (id_penjualan, tanggal_penjualan, id_barang, jumlah, status, jenis_penjualan, harga_jual, harga_beli, id_kasir, kode_transaksi, kode_akun_keuangan, diskon, diskon_transaksi) VALUES ('PJ170722-003', '2017-07-22 11:07:55.74673', '003', 1, 1, 'Normal', 130000, 12000, 'AK160504-003', '1707221', '001', 20, 10);
+
+
+ALTER TABLE ONLY akun
+    ADD CONSTRAINT akun_pkey PRIMARY KEY (id_akun);
+
+ALTER TABLE ONLY barang
+    ADD CONSTRAINT barang_pkey PRIMARY KEY (id_barang);
+
+ALTER TABLE ONLY pembelian
+    ADD CONSTRAINT pembelian_pkey PRIMARY KEY (id_pembelian);
+
+ALTER TABLE ONLY penjualan
+    ADD CONSTRAINT penjualan_pkey PRIMARY KEY (id_penjualan);
+
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
