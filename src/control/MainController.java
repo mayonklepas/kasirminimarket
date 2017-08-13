@@ -67,6 +67,10 @@ public class MainController implements Initializable {
     private MenuItem makunuang;
     @FXML
     private Menu melaporan;
+    @FXML
+    private MenuItem makunusaha;
+    @FXML
+    private MenuItem mcatatan;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -81,6 +85,8 @@ public class MainController implements Initializable {
         menutentang();
         menuakunkeuangan();
         cleartransaksi();
+        menuakunusaha();
+        menucatatan();
 
         try {
             ibg.setImage(new Image(new FileInputStream(image)));
@@ -288,6 +294,86 @@ public class MainController implements Initializable {
             }
         });
     }
+    
+    private void menuakunusaha() {
+        makunusaha.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (ses.getTipe().equals("User")) {
+                    Alert alt = new Alert(Alert.AlertType.ERROR);
+                    alt.setHeaderText("Access Denied");
+                    alt.setContentText("Access Denied");
+                    alt.showAndWait();
+                } else {
+                    try {
+                        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/Perkiraan.fxml"));
+                        Tab page = new Tab("Note Account", node);
+                        tabpane.getTabs().add(page);
+                    } catch (IOException ex) {
+                        Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                        Alert al = new Alert(Alert.AlertType.ERROR);
+                        al.setTitle("Error");
+                        al.setHeaderText("Application Error");
+                        VBox v = new VBox();
+                        v.setPadding(new Insets(5, 5, 5, 5));
+                        v.setSpacing(5);
+                        StringWriter sw = new StringWriter();
+                        PrintWriter pw = new PrintWriter(sw);
+                        ex.printStackTrace(pw);
+                        TextArea terror = new TextArea(sw.toString());
+                        terror.setMaxWidth(400);
+                        terror.setMaxHeight(400);
+                        terror.setWrapText(true);
+                        v.getChildren().add(new Label("Error Detail has been read :"));
+                        v.getChildren().add(terror);
+                        al.getDialogPane().setContent(v);
+                        al.showAndWait();
+                    }
+                }
+            }
+        });
+    }
+    
+    private void menucatatan() {
+        mcatatan.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (ses.getTipe().equals("User")) {
+                    Alert alt = new Alert(Alert.AlertType.ERROR);
+                    alt.setHeaderText("Access Denied");
+                    alt.setContentText("Access Denied");
+                    alt.showAndWait();
+                } else {
+                    try {
+                        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                        Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/Catatan.fxml"));
+                        Tab page = new Tab("Note", node);
+                        tabpane.getTabs().add(page);
+                    } catch (IOException ex) {
+                        Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                        Alert al = new Alert(Alert.AlertType.ERROR);
+                        al.setTitle("Error");
+                        al.setHeaderText("Application Error");
+                        VBox v = new VBox();
+                        v.setPadding(new Insets(5, 5, 5, 5));
+                        v.setSpacing(5);
+                        StringWriter sw = new StringWriter();
+                        PrintWriter pw = new PrintWriter(sw);
+                        ex.printStackTrace(pw);
+                        TextArea terror = new TextArea(sw.toString());
+                        terror.setMaxWidth(400);
+                        terror.setMaxHeight(400);
+                        terror.setWrapText(true);
+                        v.getChildren().add(new Label("Error Detail has been read :"));
+                        v.getChildren().add(terror);
+                        al.getDialogPane().setContent(v);
+                        al.showAndWait();
+                    }
+                }
+            }
+        });
+    }
 
     private void menulaporan() {
         mlaporan.setOnAction(new EventHandler<ActionEvent>() {
@@ -461,5 +547,7 @@ public class MainController implements Initializable {
             }
         });
     }
+    
+    
 
 }

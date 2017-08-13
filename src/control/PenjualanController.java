@@ -5,7 +5,6 @@
  */
 package control;
 
-import entity.BarangEntity;
 import entity.PenjualanEntity;
 import entity.Sessiongs;
 import helper.helper;
@@ -13,20 +12,16 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.URL;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -35,17 +30,12 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
@@ -61,19 +51,14 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javax.swing.JOptionPane;
-import javax.swing.SingleSelectionModel;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -608,11 +593,14 @@ public class PenjualanController implements Initializable {
             while (resno.next()) {
                 kode_transaksi = resno.getString("kode_transaksi");
             }
-            if (kode_transaksi == null || kode_transaksi.equals("")
-                    || !kode_transaksi.substring(0, 6).equals(tglhariini)) {
-                kode_transaksi = tglhariini + "1";
+            if (kode_transaksi == null || kode_transaksi.equals("")) {
+                kode_transaksi = tglhariini + "0001";
             } else {
-                kode_transaksi = String.valueOf(Integer.parseInt(kode_transaksi) + 1);
+                if (kode_transaksi.substring(0, 6).equals(tglhariini)) {
+                    kode_transaksi = String.valueOf(Integer.parseInt(kode_transaksi) + 1);
+                } else {
+                    kode_transaksi = tglhariini + "0001";
+                }
             }
             resno.close();
         } catch (SQLException ex) {

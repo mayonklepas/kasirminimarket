@@ -17,6 +17,8 @@
                         <MenuItem fx:id="mbarang" mnemonicParsing="false" text="Items" />
                         <MenuItem fx:id="makun" mnemonicParsing="false" text="User Account" />
                   <MenuItem fx:id="makunuang" mnemonicParsing="false" text="Payment Account" />
+                  <MenuItem fx:id="makunusaha" mnemonicParsing="false" text="Note Account" />
+                  <MenuItem fx:id="mcatatan" mnemonicParsing="false" text="Note" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Transaction">
