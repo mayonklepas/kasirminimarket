@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="struck2inc" pageWidth="136" pageHeight="709" columnWidth="136" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="62478702-e89a-469d-8dbe-8195036f8d69">
 	<property name="ireport.zoom" value="4.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="218"/>
+	<property name="ireport.y" value="354"/>
 	<parameter name="nama" class="java.lang.String"/>
 	<parameter name="alamat" class="java.lang.String"/>
 	<parameter name="nohp" class="java.lang.String"/>
@@ -17,6 +17,7 @@
 	<parameter name="tdiskon" class="java.lang.Double">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="cc" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT nama_barang,jenis_penjualan,penjualan.jumlah,diskon,diskon_transaksi,
 (harga_jual*penjualan.jumlah)-(diskon / 100 *(harga_jual*penjualan.jumlah)) AS total FROM penjualan INNER JOIN barang ON penjualan.id_barang=barang.id_barang WHERE penjualan.status=0 ORDER BY id_penjualan ASC]]>
@@ -190,7 +191,7 @@
 				<text><![CDATA[Cash]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="46" width="58" height="11" uuid="c941db4e-e355-43c6-b6d4-868447778998"/>
+				<reportElement x="0" y="57" width="58" height="11" uuid="c941db4e-e355-43c6-b6d4-868447778998"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
@@ -204,20 +205,20 @@
 				<textFieldExpression><![CDATA[$P{jumlahuang}]]></textFieldExpression>
 			</textField>
 			<textField pattern="Rp #,##0">
-				<reportElement x="58" y="46" width="78" height="11" uuid="956b6938-b634-4840-9171-615057e507cc"/>
+				<reportElement x="58" y="57" width="78" height="11" uuid="956b6938-b634-4840-9171-615057e507cc"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{kembalian}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="44" width="136" height="1" uuid="564c94cc-c36d-475e-9587-db0f807d0f4c"/>
+				<reportElement x="0" y="55" width="136" height="1" uuid="564c94cc-c36d-475e-9587-db0f807d0f4c"/>
 				<graphicElement>
 					<pen lineStyle="Dotted"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="0" y="70" width="136" height="10" uuid="b1c14d04-ed1b-4e06-9db2-466f74df2d88"/>
+				<reportElement x="0" y="80" width="136" height="10" uuid="b1c14d04-ed1b-4e06-9db2-466f74df2d88"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
@@ -257,6 +258,20 @@
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[%]]></text>
+			</staticText>
+			<textField pattern="Rp #,##0">
+				<reportElement x="58" y="44" width="78" height="11" uuid="22e5be36-89bd-4040-a436-4ede88da0b36"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cc}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="44" width="58" height="11" uuid="f39832e4-e5d8-49ce-ad71-8c869db41894"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CC Code]]></text>
 			</staticText>
 		</band>
 	</summary>

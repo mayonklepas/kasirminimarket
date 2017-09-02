@@ -133,7 +133,7 @@ FROM penjualan INNER JOIN barang ON penjualan.id_barang=barang.id_barang WHERE t
 			<textField>
 				<reportElement x="316" y="0" width="37" height="20" uuid="b8566d9d-dbe5-432a-b4c1-413da7982f3e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{diskon}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{diskon}+"%"]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

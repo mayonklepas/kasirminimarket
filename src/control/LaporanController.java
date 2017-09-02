@@ -40,25 +40,22 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JRViewer;
 
 /**
@@ -105,6 +102,8 @@ public class LaporanController implements Initializable {
         ols.add("Purchase Reporting");
         ols.add("Daily Sale Reporting");
         ols.add("Barcode Generator");
+        ols.add("Note Report");
+        ols.add("Note Report Details");
         ckategori.setItems(ols);
 
     }
@@ -168,7 +167,7 @@ public class LaporanController implements Initializable {
                         hash.put("subheader", ckategori.getSelectionModel().getSelectedItem().toString());
                         hash.put("tanggal_dari", new Date().from(dari));
                         hash.put("tanggal_hingga", new Date().from(sampai));
-                        hash.put("SUBREPORT_DIR","laporan/");
+                        hash.put("SUBREPORT_DIR", "laporan/");
                         path = "laporan/Laporanpenjualanperiodik.jasper";
                     } else if (pilkat == 2) {
                         Instant dari = Instant.from(ddari.getValue().atStartOfDay(ZoneId.of("GMT")));
@@ -185,7 +184,7 @@ public class LaporanController implements Initializable {
                         hash.put("header", fc.namaperusahaan());
                         hash.put("subheader", ckategori.getSelectionModel().getSelectedItem().toString());
                         hash.put("tanggal", new Date().from(tanggal));
-                        hash.put("SUBREPORT_DIR","laporan/");
+                        hash.put("SUBREPORT_DIR", "laporan/");
                         path = "laporan/Laporanpenjualanharian.jasper";
                     } else if (pilkat == 4) {
                         List ls = new ArrayList();
@@ -196,24 +195,46 @@ public class LaporanController implements Initializable {
 
                         }
                         m.disconnect();
-                        ChoiceDialog cod = new ChoiceDialog<>("Select Unit", ls);
+                        TextInputDialog cod = new TextInputDialog("PCS");
                         cod.setTitle("Confirmation");
-                        cod.setHeaderText("Select Unit ");
-                        cod.setContentText("Select Unit");
+                        cod.setHeaderText("Select Unit");
+                        cod.setContentText("Type Key");
                         Optional<String> opt = cod.showAndWait();
                         if (opt.isPresent()) {
-                            hash = new HashMap(4);
+                            hash = new HashMap(3);
                             hash.put("header", fc.namaperusahaan());
                             hash.put("subheader", ckategori.getSelectionModel().getSelectedItem().toString());
-                            hash.put("satuan", opt.get());
+                            hash.put("key", "%" + opt.get() + "%");
                             path = "laporan/barcode.jasper";
                         } else {
-                            hash = new HashMap(4);
+                            hash = new HashMap(3);
                             hash.put("header", fc.namaperusahaan());
                             hash.put("subheader", ckategori.getSelectionModel().getSelectedItem().toString());
-                            hash.put("satuan", "PCS");
+                            hash.put("key", "%PCS%");
                             path = "laporan/barcode.jasper";
                         }
+
+                    } else if (pilkat == 5) {
+                        Instant dari = Instant.from(ddari.getValue().atStartOfDay(ZoneId.of("GMT")));
+                        Instant sampai = Instant.from(dsampai.getValue().atStartOfDay(ZoneId.of("GMT")));
+                        hash = new HashMap(5);
+                        hash.put("header", fc.namaperusahaan());
+                        hash.put("subheader", ckategori.getSelectionModel().getSelectedItem().toString());
+                        hash.put("tanggal_dari", new Date().from(dari));
+                        hash.put("tanggal_hingga", new Date().from(sampai));
+                        hash.put("SUBREPORT_DIR", "laporan/");
+                        path = "laporan/Laporancatatanmaster.jasper";
+
+                    }else if (pilkat == 6) {
+                        Instant dari = Instant.from(ddari.getValue().atStartOfDay(ZoneId.of("GMT")));
+                        Instant sampai = Instant.from(dsampai.getValue().atStartOfDay(ZoneId.of("GMT")));
+                        hash = new HashMap(5);
+                        hash.put("header", fc.namaperusahaan());
+                        hash.put("subheader", ckategori.getSelectionModel().getSelectedItem().toString());
+                        hash.put("tanggal_dari", new Date().from(dari));
+                        hash.put("tanggal_hingga", new Date().from(sampai));
+                        hash.put("SUBREPORT_DIR", "laporan/");
+                        path = "laporan/Laporancatatanmasterdetail.jasper";
 
                     }
 

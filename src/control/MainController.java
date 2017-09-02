@@ -87,6 +87,8 @@ public class MainController implements Initializable {
         cleartransaksi();
         menuakunusaha();
         menucatatan();
+        //makunusaha.visibleProperty().setValue(Boolean.FALSE);
+        //mcatatan.visibleProperty().setValue(Boolean.FALSE);
 
         try {
             ibg.setImage(new Image(new FileInputStream(image)));
@@ -348,7 +350,7 @@ public class MainController implements Initializable {
                     try {
                         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                         Node node = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/Catatan.fxml"));
-                        Tab page = new Tab("Note", node);
+                        Tab page = new Tab("Note Transaction", node);
                         tabpane.getTabs().add(page);
                     } catch (IOException ex) {
                         Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);

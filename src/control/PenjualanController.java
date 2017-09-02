@@ -44,6 +44,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -629,18 +630,18 @@ public class PenjualanController implements Initializable {
                         total_uang = Double.parseDouble(h.digitinputreplacer(tbayar.getText()));
                     }
 
-                    if (total_belanja > total_uang) {
-                        Alert al = new Alert(Alert.AlertType.INFORMATION);
-                        al.setTitle("Information");
-                        al.setHeaderText("Missed Calculation");
-                        al.setContentText("Cash not enough for payment");
-                        al.show();
-                    } else {
-
+                    if (datakeuangan.get(y).kode_akun_keuangan.equals("cash")) {
+                        if(total_belanja > total_uang){
+                            Alert al=new Alert(Alert.AlertType.INFORMATION);
+                            al.setTitle("Information");
+                            al.setHeaderText("Payment Failed");
+                            al.setContentText("Amount not enough for payment");
+                            al.showAndWait();
+                        }else{
                         String kode_transaksi = setterkodetransaksi();
                         Sessiongs ses = new Sessiongs();
                         Filecontrol fc = new Filecontrol();
-                        HashMap has = new HashMap(8);
+                        HashMap has = new HashMap(9);
                         has.put("nama", fc.namaperusahaan());
                         has.put("alamat", fc.alamat());
                         has.put("nohp", fc.nohp());
@@ -649,6 +650,7 @@ public class PenjualanController implements Initializable {
                         has.put("kembalian", kembalian);
                         has.put("kode_transaksi", kode_transaksi);
                         has.put("tdiskon", total_diskon);
+                        has.put("cc", "CASH");
                         JasperReport jr = (JasperReport) JRLoader.loadObject(new File("Laporan/Struk2inc.jasper"));
                         JasperPrint jp = JasperFillManager.fillReport(jr, has, h.conn);
                         JasperPrintManager.printReport(jp, false);
@@ -661,8 +663,8 @@ public class PenjualanController implements Initializable {
                         }
                         h.exec("UPDATE penjualan SET kode_transaksi='" + kode_transaksi + "',"
                                 + "kode_akun_keuangan='" + datakeuangan.get(y).kode_akun_keuangan + "',"
-                                + "diskon_transaksi=" + total_diskon + " "
-                                + "WHERE status=0; UPDATE penjualan SET status=1 WHERE status=0");
+                                + "diskon_transaksi=" + total_diskon + ", "
+                                + "kode_cc='CASH' WHERE status=0; UPDATE penjualan SET status=1 WHERE status=0");
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setHeaderText("Transaction Success");
                         alert.setContentText("Transaction Success");
@@ -671,6 +673,49 @@ public class PenjualanController implements Initializable {
                         tbayar.clear();
                         lkembalian.setText("Rp. 0");
                         loaddata();
+                    }
+                    } else {
+                        TextInputDialog ti = new TextInputDialog();
+                        ti.setTitle("CC Code Confirmation");
+                        ti.setHeaderText("Input CC Code");
+                        Optional<String> opt = ti.showAndWait();
+                        if (opt.isPresent()) {
+                            String kode_transaksi = setterkodetransaksi();
+                            Sessiongs ses = new Sessiongs();
+                            Filecontrol fc = new Filecontrol();
+                            HashMap has = new HashMap(9);
+                            has.put("nama", fc.namaperusahaan());
+                            has.put("alamat", fc.alamat());
+                            has.put("nohp", fc.nohp());
+                            has.put("kasir", ses.getNama());
+                            has.put("jumlahuang", total_belanja);
+                            has.put("kembalian", 0.0);
+                            has.put("kode_transaksi", kode_transaksi);
+                            has.put("tdiskon", total_diskon);
+                            has.put("cc", opt.get());
+                            JasperReport jr = (JasperReport) JRLoader.loadObject(new File("Laporan/Struk2inc.jasper"));
+                            JasperPrint jp = JasperFillManager.fillReport(jr, has, h.conn);
+                            JasperPrintManager.printReport(jp, false);
+                            ResultSet res = h.read("SELECT jumlah,id_barang FROM penjualan WHERE status=0").executeQuery();
+                            while (res.next()) {
+                                Object[] ooo = new Object[2];
+                                ooo[0] = res.getInt("jumlah");
+                                ooo[1] = res.getString("id_barang");
+                                h.update("UPDATE barang SET jumlah_barang=jumlah_barang-? WHERE id_barang=? ", 2, ooo);
+                            }
+                            h.exec("UPDATE penjualan SET kode_transaksi='" + kode_transaksi + "',"
+                                    + "kode_akun_keuangan='" + datakeuangan.get(y).kode_akun_keuangan + "',"
+                                    + "diskon_transaksi=" + total_diskon + ", "
+                                    + "kode_cc=" + opt.get() + " WHERE status=0; UPDATE penjualan SET status=1 WHERE status=0");
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setHeaderText("Transaction Success");
+                            alert.setContentText("Transaction Success");
+                            alert.showAndWait();
+                            rawclear();
+                            tbayar.clear();
+                            lkembalian.setText("Rp. 0");
+                            loaddata();
+                        }
                     }
 
                 } catch (SQLException ex) {
@@ -693,7 +738,7 @@ public class PenjualanController implements Initializable {
             btlist.clear();
             fpakunuang.getChildren().clear();
             h.connect();
-            ResultSet res = h.read("SELECT kode_akun_keuangan,nama_akun_keuangan FROM akun_keuangan").executeQuery();
+            ResultSet res = h.read("SELECT kode_akun_keuangan,nama_akun_keuangan FROM akun_keuangan ORDER BY kode_akun_keuangan DESC").executeQuery();
             while (res.next()) {
                 String kode = res.getString("kode_akun_keuangan");
                 String nama = res.getString("nama_akun_keuangan");

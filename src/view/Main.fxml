@@ -18,13 +18,13 @@
                         <MenuItem fx:id="makun" mnemonicParsing="false" text="User Account" />
                   <MenuItem fx:id="makunuang" mnemonicParsing="false" text="Payment Account" />
                   <MenuItem fx:id="makunusaha" mnemonicParsing="false" text="Note Account" />
-                  <MenuItem fx:id="mcatatan" mnemonicParsing="false" text="Note" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Transaction">
                     <items>
                         <MenuItem fx:id="mpenjualan" mnemonicParsing="false" text="Sale" />
                         <MenuItem fx:id="mpembelian" mnemonicParsing="false" text="Purchase" />
+                  <MenuItem fx:id="mcatatan" mnemonicParsing="false" text="Note Transaction" />
                     </items>
                 </Menu>
                 <Menu fx:id="melaporan" mnemonicParsing="false" text="Report">

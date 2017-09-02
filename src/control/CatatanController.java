@@ -211,7 +211,7 @@ public class CatatanController implements Initializable {
                         kode_keuangan, nama_keuangan, nama, jumlah, keterangan));
             }
 
-            ResultSet resjumahdata = h.read("SELECT COUNT(kode) AS total FROM perkiraan").executeQuery();
+            ResultSet resjumahdata = h.read("SELECT COUNT(id) AS total FROM catatan").executeQuery();
             resjumahdata.next();
             ldata.setText(ols.size() + "/" + resjumahdata.getString("total") + " Data");
 
@@ -524,7 +524,7 @@ public class CatatanController implements Initializable {
                 o[3] = tnama.getText();
                 o[4] = Double.parseDouble(h.digitinputreplacer(tjumlah.getText()));
                 o[5] = tketerangan.getText();
-                h.insert("INSERT INTO catatan(tanggal,kode_keuangan,kode_perkiraan,nama,jumlah,keterangan) "
+                h.insert("INSERT INTO catatan(tanggal,kode_perkiraan,kode_keuangan,nama,jumlah,keterangan) "
                         + "VALUES(?::date,?,?,?,?,?)", 6, o);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText("Data has been added");
@@ -547,8 +547,8 @@ public class CatatanController implements Initializable {
                 alertcon.getButtonTypes().setAll(ya, tidak);
                 Optional<ButtonType> opt = alertcon.showAndWait();
                 if (opt.get() == ya) {
-                    h.update("UPDATE catatan SET tanggal=?::date,kode_keuangan=?,"
-                            + "kode_perkiraan=?,nama=?,jumlah=?,keterangan=? WHERE id=?::integer ", 7, o);
+                    h.update("UPDATE catatan SET tanggal=?::date,kode_perkiraan=?,"
+                            + "kode_keuangan=?,nama=?,jumlah=?,keterangan=? WHERE id=?::integer ", 7, o);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText("Data has been update");
                     alert.setContentText("Refresh if data not changed");

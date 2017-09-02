@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Laporancatatanmastersub" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="72804ebc-ae18-4a92-906d-3e268aaaede3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tipe" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tanggal_dari" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tanggal_hingga" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT perkiraan.nama,akun_keuangan.nama_akun_keuangan,SUM(catatan.jumlah) as jumlah FROM catatan INNER JOIN perkiraan ON catatan.kode_perkiraan=perkiraan.kode INNER join akun_keuangan ON catatan.kode_keuangan=akun_keuangan.kode_akun_keuangan WHERE perkiraan.tipe=$P{tipe} AND tanggal >= $P{tanggal_dari} AND tanggal <= $P{tanggal_hingga} GROUP BY perkiraan.nama,akun_keuangan.nama_akun_keuangan]]>
+	</queryString>
+	<field name="nama" class="java.lang.String"/>
+	<field name="nama_akun_keuangan" class="java.lang.String"/>
+	<field name="jumlah" class="java.lang.Double"/>
+	<variable name="jumlah_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{jumlah}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="5" width="242" height="20" uuid="e22eac8d-ffb4-421f-a189-e921adfdab15"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Perkiraan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="242" y="5" width="169" height="20" uuid="171e8aa2-87a5-41f4-aa74-962b4170b6ed"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Akun Keuangan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="411" y="5" width="144" height="20" uuid="996290c9-7e5d-4c93-aa69-ddbb8e55bfe8"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jumlah]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="27" width="555" height="1" uuid="83fc1c45-882d-400a-bb27-d95f47191cc0"/>
+			</line>
+			<line>
+				<reportElement x="0" y="2" width="555" height="1" uuid="c9ecad42-fea7-44f7-b896-ffc68833f80f"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="242" height="20" uuid="26528ec0-1247-4cd7-9f4f-f859658acc62"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="242" y="0" width="169" height="20" uuid="9816c033-ccde-4b14-9ba4-1aaa0ecb3c5f"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nama_akun_keuangan}]]></textFieldExpression>
+			</textField>
+			<textField pattern="Rp #,##0">
+				<reportElement x="411" y="0" width="144" height="20" uuid="fb754f9f-3e8d-4583-b70d-5ada9f08db3b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{jumlah}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="21" width="555" height="1" uuid="5d54519f-5ed6-48ca-b76b-df50a40e8362"/>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="30" splitType="Stretch">
+			<textField pattern="Rp #,##0">
+				<reportElement x="411" y="4" width="144" height="20" uuid="8665b22f-440b-45f0-b13d-686a2e8ba2b8"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{jumlah_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="242" y="4" width="169" height="20" uuid="14f27bdc-710c-4062-b4a6-5efff8b56716"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total :]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

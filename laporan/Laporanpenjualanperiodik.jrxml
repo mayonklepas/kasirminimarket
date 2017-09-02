@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="penjualanharian" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cbf7f65a-64d3-40ee-8b8b-354cc4b4a8a3">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="51"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
@@ -19,11 +19,12 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT pj.kode_transaksi,akk.nama_akun_keuangan,ak.nama_akun,SUM(jumlah * harga_jual-(diskon/100*(jumlah * harga_jual))) - (diskon_transaksi/100*SUM(jumlah * harga_jual-(diskon/100*(jumlah * harga_jual)))) AS pendapatan_penjualan,SUM(jumlah * harga_jual-(diskon/100*(jumlah * harga_jual)))-SUM(jumlah*harga_beli)-(diskon_transaksi/100*(SUM(jumlah * harga_jual-(diskon/100*(jumlah * harga_jual)))-SUM(jumlah*harga_beli))) AS keuntungan_penjualan,pj.diskon_transaksi FROM penjualan pj INNER JOIN 
+		<![CDATA[SELECT pj.kode_transaksi,pj.kode_cc,akk.nama_akun_keuangan,ak.nama_akun,SUM(jumlah * harga_jual-(diskon/100*(jumlah * harga_jual))) - (diskon_transaksi/100*SUM(jumlah * harga_jual-(diskon/100*(jumlah * harga_jual)))) AS pendapatan_penjualan,SUM(jumlah * harga_jual-(diskon/100*(jumlah * harga_jual)))-SUM(jumlah*harga_beli)-(diskon_transaksi/100*(SUM(jumlah * harga_jual-(diskon/100*(jumlah * harga_jual)))-SUM(jumlah*harga_beli))) AS keuntungan_penjualan,pj.diskon_transaksi FROM penjualan pj INNER JOIN 
 akun_keuangan akk ON pj.kode_akun_keuangan=akk.kode_akun_keuangan INNER JOIN 
-akun ak ON pj.id_kasir=ak.id_akun WHERE tanggal_penjualan::date >= $P{tanggal_dari} AND tanggal_penjualan::date <= $P{tanggal_hingga} AND status=1 GROUP BY pj.kode_transaksi,akk.nama_akun_keuangan,ak.nama_akun,pj.diskon_transaksi]]>
+akun ak ON pj.id_kasir=ak.id_akun WHERE tanggal_penjualan::date >= $P{tanggal_dari} AND tanggal_penjualan::date <= $P{tanggal_hingga} AND status=1 GROUP BY pj.kode_transaksi,akk.nama_akun_keuangan,ak.nama_akun,pj.diskon_transaksi,pj.kode_cc ORDER BY pj.kode_transaksi]]>
 	</queryString>
 	<field name="kode_transaksi" class="java.lang.String"/>
+	<field name="kode_cc" class="java.lang.String"/>
 	<field name="nama_akun_keuangan" class="java.lang.String"/>
 	<field name="nama_akun" class="java.lang.String"/>
 	<field name="pendapatan_penjualan" class="java.lang.Double"/>
@@ -78,17 +79,17 @@ akun ak ON pj.id_kasir=ak.id_akun WHERE tanggal_penjualan::date >= $P{tanggal_da
 	<columnHeader>
 		<band height="29" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="5" width="185" height="20" uuid="a608f46d-d556-41d7-b262-0a83d0b2d6ca"/>
+				<reportElement x="0" y="5" width="130" height="20" uuid="a608f46d-d556-41d7-b262-0a83d0b2d6ca"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Transaction Code]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="185" y="5" width="119" height="20" uuid="99f01d9e-aac0-42a6-ab5f-9b0a1d48cfa8"/>
+				<reportElement x="130" y="5" width="102" height="20" uuid="99f01d9e-aac0-42a6-ab5f-9b0a1d48cfa8"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[User]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="304" y="5" width="130" height="20" uuid="468c286f-bca7-4dcd-936c-079d94bdb133"/>
+				<reportElement x="232" y="5" width="107" height="20" uuid="468c286f-bca7-4dcd-936c-079d94bdb133"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Payment Account]]></text>
 			</staticText>
@@ -99,26 +100,31 @@ akun ak ON pj.id_kasir=ak.id_akun WHERE tanggal_penjualan::date >= $P{tanggal_da
 				<reportElement x="0" y="2" width="555" height="1" uuid="63f6ce55-6899-4fb0-ba0d-3d35b8b1435c"/>
 			</line>
 			<staticText>
-				<reportElement x="434" y="5" width="119" height="20" uuid="2eb0e6eb-8136-4441-afc8-6f1cf025cc78"/>
+				<reportElement x="453" y="5" width="100" height="20" uuid="2eb0e6eb-8136-4441-afc8-6f1cf025cc78"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<text><![CDATA[Discount Transaction]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="339" y="5" width="114" height="20" uuid="c6fada77-e786-4d65-9d15-8b90ff116977"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CC Code]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="97" splitType="Stretch">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="185" height="20" forecolor="#000000" backcolor="#66FF66" uuid="979c1f59-94d7-40d5-acb9-d9a7637fadfb"/>
+				<reportElement mode="Opaque" x="0" y="0" width="130" height="20" forecolor="#000000" backcolor="#66FF66" uuid="979c1f59-94d7-40d5-acb9-d9a7637fadfb"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{kode_transaksi}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="185" y="0" width="119" height="20" forecolor="#000000" backcolor="#66FF66" uuid="599beddb-9557-4a31-b487-4d65dfee623e"/>
+				<reportElement mode="Opaque" x="130" y="0" width="102" height="20" forecolor="#000000" backcolor="#66FF66" uuid="599beddb-9557-4a31-b487-4d65dfee623e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{nama_akun}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="304" y="0" width="130" height="20" forecolor="#000000" backcolor="#66FF66" uuid="e771adce-13f6-4446-934a-5ed4dd2c8385"/>
+				<reportElement mode="Opaque" x="232" y="0" width="107" height="20" forecolor="#000000" backcolor="#66FF66" uuid="e771adce-13f6-4446-934a-5ed4dd2c8385"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{nama_akun_keuangan}]]></textFieldExpression>
 			</textField>
@@ -140,14 +146,19 @@ akun ak ON pj.id_kasir=ak.id_akun WHERE tanggal_penjualan::date >= $P{tanggal_da
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Laporanpenjualanperiodik_sub.jasper"]]></subreportExpression>
 			</subreport>
 			<textField>
-				<reportElement mode="Opaque" x="434" y="0" width="121" height="20" backcolor="#66FF66" uuid="4829f732-6667-4c7c-b14d-5a266712f07c"/>
+				<reportElement mode="Opaque" x="453" y="0" width="102" height="20" backcolor="#66FF66" uuid="4829f732-6667-4c7c-b14d-5a266712f07c"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{diskon_transaksi}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{diskon_transaksi}+"%"]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="1" y="23" width="100" height="14" uuid="971574c4-5b5c-4a40-844b-0710d7dd079a"/>
 				<text><![CDATA[Detail Items : ]]></text>
 			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="339" y="0" width="114" height="20" forecolor="#000000" backcolor="#66FF66" uuid="77c83b1e-ec6b-4e71-95c4-4b492546ad6a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{kode_cc}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<pageFooter>

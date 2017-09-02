@@ -29,7 +29,6 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
@@ -453,41 +452,48 @@ public class Akun_keuanganController implements Initializable {
     }
 
     private void rawhapus() {
-        Alert alertcon = new Alert(Alert.AlertType.CONFIRMATION);
-        alertcon.setHeaderText("Are you sure to delete this data?");
-        alertcon.setContentText("You can't undo this process");
-        ButtonType ya = new ButtonType("Yes");
-        ButtonType tidak = new ButtonType("No");
-        alertcon.getButtonTypes().setAll(ya, tidak);
-        Optional<ButtonType> opt = alertcon.showAndWait();
-        if (opt.get() == ya) {
-            try {
-                ObservableList<Akun_keuanganEntity> ols = tabel.getSelectionModel().getSelectedItems();
-                h.connect();
-                for (int i = 0; i < ols.size(); i++) {
-                    h.delete("DELETE FROM akun WHERE id_akun=?", kode.getCellData(ols.get(i)));
+        if (ids.equals("cash")) {
+            Alert al=new Alert(Alert.AlertType.INFORMATION);
+            al.setTitle("Information");
+            al.setContentText("Account CASH cannot deleted");
+            al.showAndWait();
+        } else {
+            Alert alertcon = new Alert(Alert.AlertType.CONFIRMATION);
+            alertcon.setHeaderText("Are you sure to delete this data?");
+            alertcon.setContentText("You can't undo this process");
+            ButtonType ya = new ButtonType("Yes");
+            ButtonType tidak = new ButtonType("No");
+            alertcon.getButtonTypes().setAll(ya, tidak);
+            Optional<ButtonType> opt = alertcon.showAndWait();
+            if (opt.get() == ya) {
+                try {
+                    ObservableList<Akun_keuanganEntity> ols = tabel.getSelectionModel().getSelectedItems();
+                    h.connect();
+                    for (int i = 0; i < ols.size(); i++) {
+                        h.delete("DELETE FROM akun WHERE id_akun=?", kode.getCellData(ols.get(i)));
+                    }
+                    h.disconnect();
+                    loaddata();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Akun_keuanganController.class.getName()).log(Level.SEVERE, null, ex);
+                    Alert al = new Alert(Alert.AlertType.ERROR);
+                    al.setTitle("Error");
+                    al.setHeaderText("Application Error");
+                    VBox v = new VBox();
+                    v.setPadding(new Insets(5, 5, 5, 5));
+                    v.setSpacing(5);
+                    StringWriter sw = new StringWriter();
+                    PrintWriter pw = new PrintWriter(sw);
+                    ex.printStackTrace(pw);
+                    TextArea terror = new TextArea(sw.toString());
+                    terror.setMaxWidth(400);
+                    terror.setMaxHeight(400);
+                    terror.setWrapText(true);
+                    v.getChildren().add(new Label("Error Detail has been read :"));
+                    v.getChildren().add(terror);
+                    al.getDialogPane().setContent(v);
+                    al.showAndWait();
                 }
-                h.disconnect();
-                loaddata();
-            } catch (SQLException ex) {
-                Logger.getLogger(Akun_keuanganController.class.getName()).log(Level.SEVERE, null, ex);
-                Alert al = new Alert(Alert.AlertType.ERROR);
-                al.setTitle("Error");
-                al.setHeaderText("Application Error");
-                VBox v = new VBox();
-                v.setPadding(new Insets(5, 5, 5, 5));
-                v.setSpacing(5);
-                StringWriter sw = new StringWriter();
-                PrintWriter pw = new PrintWriter(sw);
-                ex.printStackTrace(pw);
-                TextArea terror = new TextArea(sw.toString());
-                terror.setMaxWidth(400);
-                terror.setMaxHeight(400);
-                terror.setWrapText(true);
-                v.getChildren().add(new Label("Error Detail has been read :"));
-                v.getChildren().add(terror);
-                al.getDialogPane().setContent(v);
-                al.showAndWait();
             }
 
         }
