@@ -13,7 +13,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT catatan.tanggal,catatan.nama AS nama_catatan,catatan.keterangan,perkiraan.nama AS nama_perkiraan,akun_keuangan.nama_akun_keuangan,catatan.jumlah as jumlah FROM catatan INNER JOIN perkiraan ON catatan.kode_perkiraan=perkiraan.kode INNER join akun_keuangan ON catatan.kode_keuangan=akun_keuangan.kode_akun_keuangan WHERE perkiraan.tipe=$P{tipe} AND tanggal >= $P{tanggal_dari} AND tanggal <= $P{tanggal_hingga} ]]>
+		<![CDATA[SELECT catatan.tanggal,catatan.nama AS nama_catatan,catatan.keterangan,perkiraan.nama AS nama_perkiraan,akun_keuangan.nama_akun_keuangan,catatan.jumlah as jumlah FROM catatan INNER JOIN perkiraan ON catatan.kode_perkiraan=perkiraan.kode INNER join akun_keuangan ON catatan.kode_keuangan=akun_keuangan.kode_akun_keuangan WHERE perkiraan.tipe=$P{tipe} AND tanggal >= $P{tanggal_dari} AND tanggal <= $P{tanggal_hingga}]]>
 	</queryString>
 	<field name="tanggal" class="java.sql.Date"/>
 	<field name="nama_catatan" class="java.lang.String"/>
@@ -58,17 +58,23 @@
 			</line>
 			<staticText>
 				<reportElement x="0" y="5" width="56" height="20" uuid="30d47c6e-cdfd-4bc6-a20a-b86438301a43"/>
-				<textElement verticalAlignment="Middle"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Tanggal]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="56" y="5" width="115" height="20" uuid="bd2942b2-3c4d-4e51-89a2-f7dcc0bbfc06"/>
-				<textElement verticalAlignment="Middle"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Nama Catatan]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="171" y="5" width="118" height="20" uuid="263e9431-2902-4669-b23b-7837526ef96c"/>
-				<textElement verticalAlignment="Middle"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Keterangan]]></text>
 			</staticText>
 		</band>

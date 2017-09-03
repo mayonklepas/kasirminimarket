@@ -43,13 +43,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 /**
@@ -76,6 +74,10 @@ public class PembelianController implements Initializable {
     ComboBox csatuan;
     @FXML
     Label ldata;
+    @FXML
+    private ComboBox<String> cakunuang;
+    @FXML
+    private TableColumn<PembelianEntity, String> akun_uang;
 
     @FXML
     private void keypress(KeyEvent e) {
@@ -91,7 +93,7 @@ public class PembelianController implements Initializable {
         }
     }
     helper h = new helper();
-    ObservableList ols = FXCollections.observableArrayList();
+    ObservableList<PembelianEntity> ols = FXCollections.observableArrayList();
     int limit, offset;
     String kode;
     NumberFormat nf = NumberFormat.getInstance();
@@ -112,6 +114,7 @@ public class PembelianController implements Initializable {
         loadsatuan();
         cekidbarang();
         bagiharga();
+        loadakunuan();
 
     }
 
@@ -154,6 +157,24 @@ public class PembelianController implements Initializable {
         csatuan.setItems(ols);
     }
 
+    private void loadakunuan() {
+        try {
+            ObservableList olsuang = FXCollections.observableArrayList();
+            olsuang.clear();
+            h.connect();
+            ResultSet res = h.read("SELECT kode_akun_keuangan,nama_akun_keuangan"
+                    + " FROM akun_keuangan ORDER BY kode_akun_keuangan DESC").executeQuery();
+            while (res.next()) {
+                olsuang.add(res.getString("kode_akun_keuangan") + "-" + res.getString("nama_akun_keuangan"));
+            }
+            cakunuang.getItems().clear();
+            cakunuang.setItems(olsuang);
+        } catch (SQLException ex) {
+            Logger.getLogger(PembelianController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
     private void loaddata() {
         try {
             tabel.getItems().clear();
@@ -161,13 +182,17 @@ public class PembelianController implements Initializable {
             offset = 0;
             limit = Integer.parseInt(tlimit.getText());
             h.connect();
-            ResultSet res = h.read("SELECT id_pembelian,tanggal_pembelian,id_barang,nama_barang,satuan_barang,"
+            ResultSet res = h.read("SELECT id_pembelian,tanggal_pembelian,akun_keuangan.kode_akun_keuangan,"
+                    + "akun_keuangan.nama_akun_keuangan,id_barang,nama_barang,satuan_barang,"
                     + "harga_beli,jumlah,(harga_beli*jumlah) AS total"
-                    + " FROM pembelian LIMIT " + limit + " OFFSET " + offset + " ").executeQuery();
+                    + " FROM pembelian LEFT JOIN akun_keuangan ON pembelian.kode_akun_keuangan="
+                    + "akun_keuangan.kode_akun_keuangan  LIMIT " + limit + " OFFSET " + offset + " ").executeQuery();
             while (res.next()) {
                 ols.add(new PembelianEntity(
                         res.getString("id_pembelian"),
                         res.getString("tanggal_pembelian"),
+                        res.getString("kode_akun_keuangan"),
+                        res.getString("nama_akun_keuangan"),
                         res.getString("id_barang"),
                         res.getString("nama_barang"),
                         res.getString("satuan_barang"),
@@ -184,6 +209,7 @@ public class PembelianController implements Initializable {
             h.disconnect();
             id_pembelian.setCellValueFactory(new PropertyValueFactory<>("id_pembelian"));
             tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal_pembelian"));
+            akun_uang.setCellValueFactory(new PropertyValueFactory<>("nama_akun_keuangan"));
             kode_barang.setCellValueFactory(new PropertyValueFactory<>("id_barang"));
             nama_barang.setCellValueFactory(new PropertyValueFactory<>("nama_barang"));
             satuan.setCellValueFactory(new PropertyValueFactory<>("satuan"));
@@ -224,13 +250,17 @@ public class PembelianController implements Initializable {
                     offset = offset + limit;
                     limit = Integer.parseInt(tlimit.getText());
                     h.connect();
-                    ResultSet res = h.read("SELECT id_pembelian,tanggal_pembelian,id_barang,nama_barang,satuan_barang,"
+                    ResultSet res = h.read("SELECT id_pembelian,tanggal_pembelian,akun_keuangan.kode_akun_keuangan,"
+                            + "akun_keuangan.nama_akun_keuangan,id_barang,nama_barang,satuan_barang,"
                             + "harga_beli,jumlah,(harga_beli*jumlah) AS total"
-                            + " FROM pembelian LIMIT " + limit + " OFFSET " + offset + " ").executeQuery();
+                            + " FROM pembelian LEFT JOIN akun_keuangan ON pembelian.kode_akun_keuangan="
+                            + "akun_keuangan.kode_akun_keuangan  LIMIT " + limit + " OFFSET " + offset + " ").executeQuery();
                     while (res.next()) {
                         ols.add(new PembelianEntity(
                                 res.getString("id_pembelian"),
                                 res.getString("tanggal_pembelian"),
+                                res.getString("kode_akun_keuangan"),
+                                res.getString("nama_akun_keuangan"),
                                 res.getString("id_barang"),
                                 res.getString("nama_barang"),
                                 res.getString("satuan_barang"),
@@ -247,6 +277,7 @@ public class PembelianController implements Initializable {
                     h.disconnect();
                     id_pembelian.setCellValueFactory(new PropertyValueFactory<>("id_pembelian"));
                     tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal_pembelian"));
+                    akun_uang.setCellValueFactory(new PropertyValueFactory<>("nama_akun_keuangan"));
                     kode_barang.setCellValueFactory(new PropertyValueFactory<>("id_barang"));
                     nama_barang.setCellValueFactory(new PropertyValueFactory<>("nama_barang"));
                     satuan.setCellValueFactory(new PropertyValueFactory<>("satuan"));
@@ -287,13 +318,17 @@ public class PembelianController implements Initializable {
                     offset = offset - limit;
                     limit = Integer.parseInt(tlimit.getText());
                     h.connect();
-                    ResultSet res = h.read("SELECT id_pembelian,tanggal_pembelian,id_barang,nama_barang,satuan_barang,"
+                    ResultSet res = h.read("SELECT id_pembelian,tanggal_pembelian,akun_keuangan.kode_akun_keuangan,"
+                            + "akun_keuangan.nama_akun_keuangan,id_barang,nama_barang,satuan_barang,"
                             + "harga_beli,jumlah,(harga_beli*jumlah) AS total"
-                            + " FROM pembelian LIMIT " + limit + " OFFSET " + offset + " ").executeQuery();
+                            + " FROM pembelian LEFT JOIN akun_keuangan ON pembelian.kode_akun_keuangan="
+                            + "akun_keuangan.kode_akun_keuangan  LIMIT " + limit + " OFFSET " + offset + " ").executeQuery();
                     while (res.next()) {
                         ols.add(new PembelianEntity(
                                 res.getString("id_pembelian"),
                                 res.getString("tanggal_pembelian"),
+                                res.getString("kode_akun_keuangan"),
+                                res.getString("nama_akun_keuangan"),
                                 res.getString("id_barang"),
                                 res.getString("nama_barang"),
                                 res.getString("satuan_barang"),
@@ -310,6 +345,7 @@ public class PembelianController implements Initializable {
                     h.disconnect();
                     id_pembelian.setCellValueFactory(new PropertyValueFactory<>("id_pembelian"));
                     tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal_pembelian"));
+                    akun_uang.setCellValueFactory(new PropertyValueFactory<>("nama_akun_keuangan"));
                     kode_barang.setCellValueFactory(new PropertyValueFactory<>("id_barang"));
                     nama_barang.setCellValueFactory(new PropertyValueFactory<>("nama_barang"));
                     satuan.setCellValueFactory(new PropertyValueFactory<>("satuan"));
@@ -364,15 +400,19 @@ public class PembelianController implements Initializable {
                     o[4] = "%" + tcari.getText() + "%";
                     o[5] = "%" + tcari.getText() + "%";
                     o[6] = "%" + tcari.getText() + "%";
-                    ResultSet res = h.readdetail("SELECT id_pembelian,tanggal_pembelian,id_barang,nama_barang,satuan_barang,"
+                    ResultSet res = h.readdetail("SELECT id_pembelian,tanggal_pembelian,akun_keuangan.kode_akun_keuangan,"
+                            + "akun_keuangan.nama_akun_keuangan,id_barang,nama_barang,satuan_barang,"
                             + "harga_beli,jumlah,(harga_beli*jumlah) AS total"
-                            + " FROM pembelian WHERE tanggal_pembelian::text ILIKE ? OR id_pembelian ILIKE ? "
+                            + " FROM pembelian LEFT JOIN akun_keuangan ON pembelian.kode_akun_keuangan="
+                            + "akun_keuangan.kode_akun_keuangan WHERE tanggal_pembelian::text ILIKE ? OR id_pembelian ILIKE ? "
                             + "OR id_barang ILIKE ? OR nama_barang ILIKE ? OR satuan_barang ILIKE ? "
                             + "OR harga_beli::text ILIKE ? OR jumlah::text ILIKE ? ", 7, o).executeQuery();
                     while (res.next()) {
                         ols.add(new PembelianEntity(
                                 res.getString("id_pembelian"),
                                 res.getString("tanggal_pembelian"),
+                                res.getString("kode_akun_keuangan"),
+                                res.getString("nama_akun_keuangan"),
                                 res.getString("id_barang"),
                                 res.getString("nama_barang"),
                                 res.getString("satuan_barang"),
@@ -389,6 +429,7 @@ public class PembelianController implements Initializable {
                     h.disconnect();
                     id_pembelian.setCellValueFactory(new PropertyValueFactory<>("id_pembelian"));
                     tanggal.setCellValueFactory(new PropertyValueFactory<>("tanggal_pembelian"));
+                    akun_uang.setCellValueFactory(new PropertyValueFactory<>("nama_akun_keuangan"));
                     kode_barang.setCellValueFactory(new PropertyValueFactory<>("id_barang"));
                     nama_barang.setCellValueFactory(new PropertyValueFactory<>("nama_barang"));
                     satuan.setCellValueFactory(new PropertyValueFactory<>("satuan"));
@@ -452,14 +493,20 @@ public class PembelianController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 int i = newValue.intValue();
-                kode = String.valueOf(id_pembelian.getCellData(i));
-                dtanggal.setValue(LocalDate.parse(tanggal.getCellData(i)));
-                tkodebarang.setText(String.valueOf(kode_barang.getCellData(i)));
-                tnamabarang.setText(String.valueOf(nama_barang.getCellData(i)));
-                csatuan.getEditor().setText(String.valueOf(satuan.getCellData(i)));
-                thargabeli.setText(String.valueOf(harga_beli.getCellData(i)));
-                tjumlah.setText(String.valueOf(jumlah.getCellData(i)));
-                bhapus.disableProperty().set(Boolean.FALSE);
+                if (i >= 0) {
+                    kode = String.valueOf(id_pembelian.getCellData(i));
+                    dtanggal.setValue(LocalDate.parse(tanggal.getCellData(i)));
+                    String kode_keuangan=ols.get(i).getKode_akun_keuangan();
+                    String nama_keuangan=ols.get(i).getNama_akun_keuangan();
+                    cakunuang.getEditor().setText(kode_keuangan+"-"+nama_keuangan);
+                    tkodebarang.setText(String.valueOf(kode_barang.getCellData(i)));
+                    tnamabarang.setText(String.valueOf(nama_barang.getCellData(i)));
+                    csatuan.getEditor().setText(String.valueOf(satuan.getCellData(i)));
+                    thargabeli.setText(String.valueOf(harga_beli.getCellData(i)));
+                    tjumlah.setText(String.valueOf(jumlah.getCellData(i)));
+                    bhapus.disableProperty().set(Boolean.FALSE);
+                }
+
             }
         });
     }
@@ -471,23 +518,24 @@ public class PembelianController implements Initializable {
             if (kode == null || kode.equals("")) {
 
                 Setnumber no = new Setnumber();
-                Object[] o = new Object[7];
+                Object[] o = new Object[8];
                 o[0] = no.nourut("PB", "id_pembelian", "pembelian");
                 o[1] = dtanggal.getValue().toString();
-                o[2] = tkodebarang.getText();
-                o[3] = tnamabarang.getText();
-                o[4] = csatuan.getEditor().getText();
-                o[5] = Double.parseDouble(h.digitinputreplacer(thargabeli.getText()));
-                o[6] = Integer.parseInt(tjumlah.getText());
-                h.insert("INSERT INTO pembelian(id_pembelian,tanggal_pembelian,id_barang,nama_barang,satuan_barang,"
-                        + "harga_beli,jumlah) VALUES(?,?::date,?,?,?,?,?)", 7, o);
+                o[2] = cakunuang.getEditor().getText().split("-")[0];
+                o[3] = tkodebarang.getText();
+                o[4] = tnamabarang.getText();
+                o[5] = csatuan.getEditor().getText();
+                o[6] = Double.parseDouble(h.digitinputreplacer(thargabeli.getText()));
+                o[7] = Integer.parseInt(tjumlah.getText());
+                h.insert("INSERT INTO pembelian(id_pembelian,tanggal_pembelian,kode_akun_keuangan,id_barang,nama_barang,satuan_barang,"
+                        + "harga_beli,jumlah) VALUES(?,?::date,?,?,?,?,?,?)", 8, o);
 
                 Object[] oo = new Object[1];
                 oo[0] = tkodebarang.getText();
                 ResultSet res = h.readdetail("SELECT COUNT(id_barang)as jumlah FROM barang WHERE id_barang = ?", 1, oo).executeQuery();
                 while (res.next()) {
                     if (res.getInt("jumlah") == 1) {
-                        Object[] ooo = new Object[2]; 
+                        Object[] ooo = new Object[2];
                         ooo[0] = Integer.parseInt(tjumlah.getText());
                         ooo[1] = tkodebarang.getText();
                         h.update("UPDATE barang SET jumlah_barang=jumlah_barang+? WHERE id_barang=? ", 2, ooo);
@@ -519,14 +567,15 @@ public class PembelianController implements Initializable {
                 alert.showAndWait();
                 tkodebarang.requestFocus();
             } else {
-                Object[] o = new Object[7];
+                Object[] o = new Object[8];
                 o[0] = dtanggal.getValue().toString();
-                o[1] = tkodebarang.getText();
-                o[2] = tnamabarang.getText();
-                o[3] = csatuan.getEditor().getText();
-                o[4] = Double.parseDouble(h.digitinputreplacer(thargabeli.getText()));
-                o[5] = Integer.parseInt(tjumlah.getText());
-                o[6] = kode;
+                o[1] = cakunuang.getEditor().getText().split("-")[0];
+                o[2] = tkodebarang.getText();
+                o[3] = tnamabarang.getText();
+                o[4] = csatuan.getEditor().getText();
+                o[5] = Double.parseDouble(h.digitinputreplacer(thargabeli.getText()));
+                o[6] = Integer.parseInt(tjumlah.getText());
+                o[7] = kode;
                 Alert alertcon = new Alert(Alert.AlertType.CONFIRMATION);
                 alertcon.setHeaderText("Are you sure to update this data?");
                 alertcon.setContentText("You can't undo this process");
@@ -535,8 +584,8 @@ public class PembelianController implements Initializable {
                 alertcon.getButtonTypes().setAll(ya, tidak);
                 Optional<ButtonType> opt = alertcon.showAndWait();
                 if (opt.get() == ya) {
-                    h.update("UPDATE pembelian SET tanggal_pembelian=?::date,id_barang=?,nama_barang=?,satuan_barang=?,"
-                            + "harga_beli=?,jumlah=? WHERE id_pembelian=? ", 7, o);
+                    h.update("UPDATE pembelian SET tanggal_pembelian=?::date,kode_akun_keuangan=?,id_barang=?,nama_barang=?,satuan_barang=?,"
+                            + "harga_beli=?,jumlah=? WHERE id_pembelian=? ", 8, o);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText("Data has been update");
                     alert.setContentText("Refresh if data not changed");

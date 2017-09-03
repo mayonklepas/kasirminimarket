@@ -11,14 +11,16 @@ package entity;
  */
 public class PembelianEntity {
 
-    String id_pembelian, tanggal_pembelian,id_barang,nama_barang,satuan,jumlah,harga_beli,total;
+    String id_pembelian, tanggal_pembelian,kode_akun_keuangan,nama_akun_keuangan,id_barang,nama_barang,satuan,jumlah,harga_beli,total;
 
     public PembelianEntity() {
     }
 
-    public PembelianEntity(String id_pembelian, String tanggal_pembelian, String id_barang, String nama_barang, String satuan, String jumlah, String harga_beli, String total) {
+    public PembelianEntity(String id_pembelian, String tanggal_pembelian,String kode_akun_keuangan,String nama_akun_keuangan,String id_barang, String nama_barang, String satuan, String jumlah, String harga_beli, String total) {
         this.id_pembelian = id_pembelian;
         this.tanggal_pembelian = tanggal_pembelian;
+        this.kode_akun_keuangan=kode_akun_keuangan;
+        this.nama_akun_keuangan=nama_akun_keuangan;
         this.id_barang = id_barang;
         this.nama_barang = nama_barang;
         this.satuan = satuan;
@@ -42,6 +44,24 @@ public class PembelianEntity {
     public void setTanggal_pembelian(String tanggal_pembelian) {
         this.tanggal_pembelian = tanggal_pembelian;
     }
+
+    public String getKode_akun_keuangan() {
+        return kode_akun_keuangan;
+    }
+
+    public void setKode_akun_keuangan(String kode_akun_keuangan) {
+        this.kode_akun_keuangan = kode_akun_keuangan;
+    }
+
+    public String getNama_akun_keuangan() {
+        return nama_akun_keuangan;
+    }
+
+    public void setNama_akun_keuangan(String nama_akun_keuangan) {
+        this.nama_akun_keuangan = nama_akun_keuangan;
+    }
+
+    
 
     public String getId_barang() {
         return id_barang;

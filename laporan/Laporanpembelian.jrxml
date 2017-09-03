@@ -16,10 +16,11 @@
 	<parameter name="header" class="java.lang.String"/>
 	<parameter name="subheader" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT tanggal_pembelian, id_barang, nama_barang,  satuan_barang,jumlah, harga_beli,harga_beli*jumlah as total
-FROM pembelian WHERE tanggal_pembelian >= $P{dari} AND tanggal_pembelian <= $P{ke} ORDER BY tanggal_pembelian DESC]]>
+		<![CDATA[SELECT tanggal_pembelian,nama_akun_keuangan,id_barang, nama_barang,  satuan_barang,jumlah, harga_beli,harga_beli*jumlah as total
+FROM pembelian LEFT JOIN akun_keuangan ON pembelian.kode_akun_keuangan=akun_keuangan.kode_akun_keuangan WHERE tanggal_pembelian >= $P{dari} AND tanggal_pembelian <= $P{ke} ORDER BY tanggal_pembelian DESC]]>
 	</queryString>
 	<field name="tanggal_pembelian" class="java.sql.Date"/>
+	<field name="nama_akun_keuangan" class="java.lang.String"/>
 	<field name="id_barang" class="java.lang.String"/>
 	<field name="nama_barang" class="java.lang.String"/>
 	<field name="satuan_barang" class="java.lang.String"/>
@@ -79,21 +80,21 @@ FROM pembelian WHERE tanggal_pembelian >= $P{dari} AND tanggal_pembelian <= $P{k
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement style="Column header" x="0" y="19" width="79" height="15" uuid="b486d084-0840-482c-9d66-a9c2283c4dc3"/>
+				<reportElement style="Column header" x="0" y="19" width="62" height="15" uuid="b486d084-0840-482c-9d66-a9c2283c4dc3"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
 				<text><![CDATA[Date]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="79" y="19" width="97" height="15" uuid="72eaa84a-0631-450c-b18d-41b85db71952"/>
+				<reportElement style="Column header" x="62" y="19" width="85" height="15" uuid="72eaa84a-0631-450c-b18d-41b85db71952"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
 				<text><![CDATA[Item Code]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="176" y="19" width="151" height="15" uuid="5ccda7d6-3f3e-47f7-85e6-28bdb8ab5a31"/>
+				<reportElement style="Column header" x="197" y="19" width="130" height="15" uuid="5ccda7d6-3f3e-47f7-85e6-28bdb8ab5a31"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
@@ -133,6 +134,13 @@ FROM pembelian WHERE tanggal_pembelian >= $P{dari} AND tanggal_pembelian <= $P{k
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
 			</line>
+			<staticText>
+				<reportElement style="Column header" x="147" y="19" width="50" height="15" uuid="376a78ec-3ae7-4b35-9059-6c93c91e8440"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Payment]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
@@ -144,21 +152,21 @@ FROM pembelian WHERE tanggal_pembelian >= $P{dari} AND tanggal_pembelian <= $P{k
 				</graphicElement>
 			</line>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement style="Detail" x="0" y="0" width="79" height="15" uuid="9599beff-86b9-4cdf-9f8f-9731b926c5b4"/>
+				<reportElement style="Detail" x="0" y="0" width="62" height="15" uuid="9599beff-86b9-4cdf-9f8f-9731b926c5b4"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tanggal_pembelian}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Detail" x="79" y="0" width="97" height="15" uuid="ce93a9a6-65c2-4789-9563-fb325faf97d2"/>
+				<reportElement style="Detail" x="62" y="0" width="85" height="15" uuid="ce93a9a6-65c2-4789-9563-fb325faf97d2"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id_barang}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Detail" x="176" y="0" width="151" height="15" uuid="80b434f1-4604-4ac5-aba8-ab58bbe62015"/>
+				<reportElement style="Detail" x="197" y="0" width="130" height="15" uuid="80b434f1-4604-4ac5-aba8-ab58bbe62015"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
@@ -191,6 +199,13 @@ FROM pembelian WHERE tanggal_pembelian >= $P{dari} AND tanggal_pembelian <= $P{k
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="147" y="0" width="50" height="15" uuid="dc9194a8-638f-43b1-9b47-ed2bee628f53"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama_akun_keuangan}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

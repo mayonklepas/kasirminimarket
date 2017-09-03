@@ -9,52 +9,58 @@
 
 <AnchorPane id="AnchorPane" onKeyPressed="#keypress" prefHeight="643.0" prefWidth="1410.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.PembelianController">
     <children>
-        <TitledPane collapsible="false" layoutY="6.0" prefHeight="468.0" prefWidth="274.0" text="Entri Data" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <TitledPane collapsible="false" layoutY="6.0" prefHeight="643.0" prefWidth="285.0" text="Entri Data" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <content>
-                <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
-                    <children>
-                        <Label style="-fx-font-size: 14;" text="Purchase Date" />
-                        <DatePicker fx:id="dtanggal" prefHeight="22.0" prefWidth="273.0" promptText="Select Purchase Date" style="-fx-font-size: 14;" />
-                        <Label style="-fx-font-size: 14;" text="Item Code" />
-                        <TextField fx:id="tkodebarang" promptText="Input Item Code" style="-fx-font-size: 14;" />
-                        <Label style="-fx-font-size: 14;" text="Item Name" />
-                        <TextField fx:id="tnamabarang" promptText="Input Item Name" style="-fx-font-size: 14;" />
-                        <Label style="-fx-font-size: 14;" text="Unit" />
-                        <ComboBox fx:id="csatuan" editable="true" prefHeight="22.0" prefWidth="260.0" promptText="Select Unit" style="-fx-font-size: 14;" />
-                        <Label style="-fx-font-size: 14;" text="Purchase Price" />
-                        <TextField fx:id="thargabeli" promptText="Input Purchase Price" style="-fx-font-size: 14;" />
-                  <Label style="-fx-font-size: 14;" text="Retail Price" />
-                  <TextField fx:id="thargajualecer" promptText="Input Retail Price" style="-fx-font-size: 14;" />
-                  <Label style="-fx-font-size: 14;" text="Wholesale Price" />
-                  <TextField fx:id="thargajualgrosir" promptText="Input Wholesale Price" style="-fx-font-size: 14;" />
-                        <Label style="-fx-font-size: 14;" text="Item Amount" />
-                  <HBox prefHeight="0.0" prefWidth="252.0" spacing="5.0">
-                     <children>
-                              <TextField fx:id="tjumlah" prefHeight="30.0" prefWidth="228.0" promptText="Input Item Amount" style="-fx-font-size: 14;" />
-                        <Button fx:id="bcek" mnemonicParsing="false" prefHeight="29.0" prefWidth="121.0" style="-fx-font-size: 13;" text="Check" />
-                     </children>
-                  </HBox>
-                        <HBox prefHeight="6.0" prefWidth="252.0" spacing="10.0">
-                            <children>
-                                <Button fx:id="bsimpan" mnemonicParsing="true" style="-fx-font-size: 14;" text="_Save CTRL+S" />
-                                <Button fx:id="bclear" mnemonicParsing="true" style="-fx-font-size: 14;" text="_Clear CTRL+E" />
-                            </children>
+            <ScrollPane prefViewportHeight="617.0" prefViewportWidth="272.0">
+               <content>
+                      <VBox prefHeight="610.0" prefWidth="271.0" spacing="10.0">
+                          <children>
+                              <Label style="-fx-font-size: 14;" text="Purchase Date" />
+                              <DatePicker fx:id="dtanggal" prefHeight="22.0" prefWidth="273.0" promptText="Select Purchase Date" style="-fx-font-size: 14;" />
+                        <Label text="Payment Account" />
+                        <ComboBox fx:id="cakunuang" editable="true" prefHeight="25.0" prefWidth="261.0" promptText="Select Account" style="-fx-font-size: 14;" />
+                              <Label style="-fx-font-size: 14;" text="Item Code" />
+                              <TextField fx:id="tkodebarang" promptText="Input Item Code" style="-fx-font-size: 14;" />
+                              <Label style="-fx-font-size: 14;" text="Item Name" />
+                              <TextField fx:id="tnamabarang" promptText="Input Item Name" style="-fx-font-size: 14;" />
+                              <Label style="-fx-font-size: 14;" text="Unit" />
+                              <ComboBox fx:id="csatuan" editable="true" prefHeight="22.0" prefWidth="260.0" promptText="Select Unit" style="-fx-font-size: 14;" />
+                              <Label style="-fx-font-size: 14;" text="Purchase Price" />
+                              <TextField fx:id="thargabeli" promptText="Input Purchase Price" style="-fx-font-size: 14;" />
+                        <Label style="-fx-font-size: 14;" text="Retail Price" />
+                        <TextField fx:id="thargajualecer" promptText="Input Retail Price" style="-fx-font-size: 14;" />
+                        <Label style="-fx-font-size: 14;" text="Wholesale Price" />
+                        <TextField fx:id="thargajualgrosir" promptText="Input Wholesale Price" style="-fx-font-size: 14;" />
+                              <Label style="-fx-font-size: 14;" text="Item Amount" />
+                        <HBox prefHeight="0.0" prefWidth="252.0" spacing="5.0">
+                           <children>
+                                    <TextField fx:id="tjumlah" prefHeight="30.0" prefWidth="228.0" promptText="Input Item Amount" style="-fx-font-size: 14;" />
+                              <Button fx:id="bcek" mnemonicParsing="false" prefHeight="29.0" prefWidth="121.0" style="-fx-font-size: 13;" text="Check" />
+                           </children>
                         </HBox>
-                    </children>
-                    <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                    </padding>
-                </VBox>
+                              <HBox prefHeight="6.0" prefWidth="252.0" spacing="10.0">
+                                  <children>
+                                      <Button fx:id="bsimpan" mnemonicParsing="true" style="-fx-font-size: 14;" text="_Save CTRL+S" />
+                                      <Button fx:id="bclear" mnemonicParsing="true" style="-fx-font-size: 14;" text="_Clear CTRL+E" />
+                                  </children>
+                              </HBox>
+                          </children>
+                          <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                          </padding>
+                      </VBox>
+               </content>
+            </ScrollPane>
             </content>
         </TitledPane>
-        <ToolBar layoutX="273.0" prefHeight="40.0" prefWidth="598.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ToolBar layoutX="286.0" prefHeight="40.0" prefWidth="1124.0" AnchorPane.leftAnchor="286.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
                 <Button fx:id="bhapus" style="-fx-font-size: 14;" text="_Delete CTRL+D" />
                 <Button fx:id="brefresh" mnemonicParsing="true" style="-fx-font-size: 14;" text="_Refresh CTRL+R" />
                 <TextField fx:id="tcari" prefHeight="22.0" prefWidth="346.0" promptText="Type and Enter to Search Data" style="-fx-font-size: 14;" />
             </items>
         </ToolBar>
-        <ToolBar layoutX="273.0" layoutY="360.0" prefHeight="40.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0">
+        <ToolBar layoutX="286.0" layoutY="360.0" prefHeight="40.0" prefWidth="1124.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="286.0" AnchorPane.rightAnchor="0.0">
             <items>
                 <Label style="-fx-font-size: 14;" text="Limit" />
                 <TextField fx:id="tlimit" style="-fx-font-size: 14;" text="100" />
@@ -64,10 +70,11 @@
                 <Label fx:id="ldata" style="-fx-font-size: 14;" text="100 / 200 Data" />
             </items>
         </ToolBar>
-        <TableView fx:id="tabel" layoutX="274.0" layoutY="40.0" prefHeight="432.0" prefWidth="200.0" style="-fx-font-size: 14;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+        <TableView fx:id="tabel" layoutX="286.0" layoutY="40.0" prefHeight="563.0" prefWidth="1124.0" style="-fx-font-size: 14;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="286.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
             <columns>
                 <TableColumn fx:id="id_pembelian" prefWidth="100.0" text="Purchase ID" />
                 <TableColumn fx:id="tanggal" prefWidth="185.0" text="Purchase Date" />
+            <TableColumn fx:id="akun_uang" prefWidth="75.0" text="Payment Account" />
                 <TableColumn fx:id="kode_barang" prefWidth="170.0" text="Item Code" />
                 <TableColumn fx:id="nama_barang" prefWidth="293.0" text="Item Name" />
                 <TableColumn fx:id="satuan" prefWidth="105.0" text="Unit" />
